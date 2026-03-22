@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>With Light — NDIS Support, Done Differently</title>
+  <meta name="description" content="With Light is a Social Work-led NDIS provider in South West Sydney. We support people with psychosocial disabilities to live brighter lives." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #F5A623;
+      --gold-deep: #E8941A;
+      --gold-light: #FDF3E0;
+      --gold-pale: #FFFAF0;
+      --dark: #1C1A17;
+      --dark-2: #2D2A24;
+      --warm-gray: #6B6560;
+      --white: #FFFFFF;
+      --border: rgba(245, 166, 35, 0.2);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── LOGO SVG ── */
+    .logo-svg {
+      width: 36px;
+      height: 36px;
+    }
+
+    .logo-svg-lg {
+      width: 56px;
+      height: 56px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--dark);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--warm-gray);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--dark); }
+
+    .nav-cta {
+      background: var(--gold) !important;
+      color: white !important;
+      padding: 10px 22px;
+      border-radius: 100px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--gold-deep) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      padding: 140px 40px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold-light);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gold-deep);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 5vw, 68px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      color: var(--dark);
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--warm-gray);
+      margin-bottom: 40px;
+      max-width: 480px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: white;
+      padding: 14px 28px;
+      border-radius: 100px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 4px 20px rgba(245, 166, 35, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-deep);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 28px rgba(245, 166, 35, 0.45);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--dark);
+      padding: 14px 28px;
+      border-radius: 100px;
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1.5px solid var(--border);
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      color: var(--gold-deep);
+    }
+
+    .hero-trust {
+      margin-top: 48px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-trust-avatars {
+      display: flex;
+    }
+
+    .hero-trust-avatars span {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: 2px solid white;
+      background: var(--gold-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      margin-left: -8px;
+      font-weight: 600;
+      color: var(--gold-deep);
+    }
+
+    .hero-trust-avatars span:first-child { margin-left: 0; }
+
+    .hero-trust-text {
+      font-size: 13px;
+      color: var(--warm-gray);
+      font-weight: 500;
+    }
+
+    .hero-trust-text strong { color: var(--dark); font-weight: 600; }
+
+    /* ── PHONE MOCKUP ── */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .phone-outer {
+      width: 280px;
+      height: 580px;
+      background: var(--dark);
+      border-radius: 44px;
+      padding: 12px;
+      box-shadow: 0 40px 80px rgba(28,26,23,0.25), 0 0 0 1px rgba(255,255,255,0.08);
+      position: relative;
+      z-index: 2;
+    }
+
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #2D2A24, #3D3525);
+      border-radius: 34px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .phone-header {
+      background: linear-gradient(135deg, #1C1A17, #3D3525);
+      padding: 32px 20px 20px;
+    }
+
+    .phone-header-tag {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 4px;
+    }
+
+    .phone-header-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: white;
+    }
+
+    .phone-body {
+      flex: 1;
+      padding: 16px;
+      background: #F8F6F2;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .phone-card {
+      background: white;
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .phone-card-label {
+      font-size: 9px;
+      font-weight: 600;
+      color: #9CA3AF;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .phone-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .phone-stat {
+      background: white;
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .phone-stat-num {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .phone-stat-label {
+      font-size: 9px;
+      color: #9CA3AF;
+      margin-top: 2px;
+      font-weight: 500;
+    }
+
+    .phone-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 9px;
+      font-weight: 600;
+    }
+
+    .badge-green { background: #DCFCE7; color: #16A34A; }
+
+    .phone-nav {
+      background: white;
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px solid #F3F4F6;
+    }
+
+    .phone-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .phone-nav-dot {
+      width: 20px; height: 20px;
+      border-radius: 6px;
+      background: #F3F4F6;
+    }
+
+    .phone-nav-dot.active { background: #FDF3E0; }
+
+    .phone-nav-label {
+      font-size: 8px;
+      color: #9CA3AF;
+      font-weight: 500;
+    }
+
+    .phone-nav-label.active { color: var(--gold-deep); }
+
+    .float-card {
+      position: absolute;
+      background: white;
+      border-radius: 16px;
+      padding: 12px 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      z-index: 3;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .float-card-1 { right: -20px; top: 20%; animation-delay: 0s; }
+    .float-card-2 { left: -24px; bottom: 25%; animation-delay: 2s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .float-label { font-size: 10px; font-weight: 600; color: var(--warm-gray); margin-bottom: 2px; }
+    .float-value { font-size: 14px; font-weight: 700; color: var(--dark); }
+    .float-tag {
+      font-size: 10px; font-weight: 600;
+      padding: 2px 8px; border-radius: 100px;
+      background: #DCFCE7; color: #16A34A;
+      margin-top: 4px; display: inline-block;
+    }
+
+    .hero-bg {
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(245,166,35,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 100px 40px; }
+
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold-light);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gold-deep);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--dark);
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--warm-gray);
+      max-width: 560px;
+    }
+
+    /* ── ABOUT ── */
+    .about { background: var(--gold-pale); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-card {
+      background: white;
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 8px 40px rgba(245,166,35,0.12);
+      position: relative;
+    }
+
+    .about-card::after {
+      content: '';
+      position: absolute;
+      top: -16px; right: -16px;
+      width: 100px; height: 100px;
+      background: var(--gold-light);
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .about-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.6;
+      color: var(--dark);
+      margin-bottom: 24px;
+    }
+
+    .about-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .about-author-avatar {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .about-author-name {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--dark);
+    }
+
+    .about-author-title {
+      font-size: 13px;
+      color: var(--warm-gray);
+      margin-top: 2px;
+    }
+
+    .about-content p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--warm-gray);
+      margin-bottom: 20px;
+    }
+
+    .about-content p:last-child { margin-bottom: 0; }
+    .about-content strong { color: var(--dark); font-weight: 600; }
+
+    /* ── FEATURES ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 60px;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border: 1px solid rgba(245,166,35,0.15);
+      border-radius: 20px;
+      padding: 32px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-deep));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(245,166,35,0.12);
+      border-color: var(--gold);
+    }
+
+    .feature-card:hover::before { opacity: 1; }
+
+    .feature-icon {
+      width: 48px; height: 48px;
+      background: var(--gold-light);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    .feature-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--warm-gray);
+    }
+
+    /* ── WORKERS ── */
+    .workers { background: var(--dark); color: white; }
+    .workers .section-title { color: white; }
+    .workers .section-sub { color: rgba(255,255,255,0.6); }
+    .workers .section-tag {
+      background: rgba(245,166,35,0.15);
+      border-color: rgba(245,166,35,0.3);
+      color: var(--gold);
+    }
+
+    .workers-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .worker-item {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      transition: all 0.3s;
+    }
+
+    .worker-item:hover {
+      background: rgba(245,166,35,0.08);
+      border-color: rgba(245,166,35,0.2);
+    }
+
+    .worker-icon {
+      width: 40px; height: 40px;
+      background: rgba(245,166,35,0.15);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .worker-title { font-weight: 600; font-size: 15px; color: white; margin-bottom: 6px; }
+    .worker-desc { font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.5); }
+
+    .appstore-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 14px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .appstore-badge:hover {
+      background: rgba(255,255,255,0.15);
+      transform: translateY(-1px);
+    }
+
+    .appstore-badge-icon { font-size: 22px; }
+    .appstore-badge-text { text-align: left; }
+    .appstore-badge-sub { font-size: 10px; color: rgba(255,255,255,0.6); }
+    .appstore-badge-name { font-size: 15px; font-weight: 600; }
+
+    /* ── CONTACT ── */
+    .contact { background: var(--gold-pale); }
+
+    .contact-inner { max-width: 640px; margin: 0 auto; text-align: center; }
+
+    .contact-card {
+      background: white;
+      border-radius: 28px;
+      padding: 56px 48px;
+      box-shadow: 0 8px 48px rgba(245,166,35,0.1);
+      margin-top: 48px;
+      text-align: left;
+    }
+
+    .contact-form { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+
+    .contact-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 13px; font-weight: 600; color: var(--dark); }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      padding: 12px 16px;
+      border: 1.5px solid #E5E7EB;
+      border-radius: 12px;
+      font-size: 14px;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--dark);
+      background: white;
+      transition: border-color 0.2s;
+      outline: none;
+      resize: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--gold); }
+
+    .form-group textarea { height: 100px; }
+
+    .form-submit {
+      background: var(--gold);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 100px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 20px rgba(245,166,35,0.35);
+      width: 100%;
+    }
+
+    .form-submit:hover { background: var(--gold-deep); transform: translateY(-1px); }
+
+    .contact-info {
+      display: flex;
+      gap: 32px;
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid #F3F4F6;
+    }
+
+    .contact-info-item { display: flex; flex-direction: column; gap: 4px; }
+    .contact-info-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--warm-gray); }
+    .contact-info-value { font-size: 14px; font-weight: 500; color: var(--dark); text-decoration: none; }
+    .contact-info-value:hover { color: var(--gold-deep); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .footer-logo-text { font-family: 'Playfair Display', serif; font-size: 16px; color: rgba(255,255,255,0.8); font-weight: 600; }
+    .footer-copy { font-size: 13px; color: rgba(255,255,255,0.3); }
+
+    .footer-links { display: flex; gap: 24px; list-style: none; }
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 120px 24px 60px; gap: 48px; }
+      .hero-visual { order: -1; }
+      .phone-outer { width: 220px; height: 460px; }
+      .float-card-1 { right: -10px; }
+      .float-card-2 { left: -10px; }
+      section { padding: 72px 24px; }
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .workers-grid { grid-template-columns: 1fr; }
+      .contact-row { grid-template-columns: 1fr; }
+      .contact-card { padding: 32px 24px; }
+      .contact-info { flex-direction: column; gap: 16px; }
+      footer { flex-direction: column; gap: 20px; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero-bg"></div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <svg class="logo-svg" viewBox="0 0 140 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="140" height="120" rx="24" fill="#F5A623"/>
+        <line x1="70" y1="8" x2="70" y2="20" stroke="white" stroke-width="4" stroke-linecap="round"/>
+        <line x1="50" y1="14" x2="56" y2="24" stroke="white" stroke-width="4" stroke-linecap="round"/>
+        <line x1="90" y1="14" x2="84" y2="24" stroke="white" stroke-width="4" stroke-linecap="round"/>
+        <line x1="35" y1="25" x2="43" y2="32" stroke="white" stroke-width="4" stroke-linecap="round"/>
+        <line x1="105" y1="25" x2="97" y2="32" stroke="white" stroke-width="4" stroke-linecap="round"/>
+        <path d="M28 38 L42 85 L56 58 L70 85 L84 38" stroke="white" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M88 38 L88 90 Q88 98 96 98 L112 98" stroke="white" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <span class="nav-logo-text">With Light</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#workers">For Workers</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="https://app.withlight.site" class="nav-cta">Open App</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section style="padding: 0;">
+    <div class="hero">
+      <div class="fade-up visible">
+        <div class="hero-tag">NDIS Registered Provider · Liverpool, NSW</div>
+        <h1>Support that <em>illuminates</em> the path forward</h1>
+        <p class="hero-sub">With Light is a Social Work-led NDIS provider in South West Sydney. We specialise in psychosocial disability, culturally safe care, and genuine human connection.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">
+            Get in Touch
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="https://app.withlight.site" class="btn-secondary">Open Platform</a>
+        </div>
+        <div class="hero-trust">
+          <div class="hero-trust-avatars">
+            <span>N</span><span>A</span><span>M</span><span>+</span>
+          </div>
+          <p class="hero-trust-text"><strong>Trusted by families</strong> across South West Sydney</p>
+        </div>
+      </div>
+
+      <div class="hero-visual fade-up visible" style="transition-delay: 0.2s;">
+        <div class="phone-outer">
+          <div class="phone-screen">
+            <div class="phone-header">
+              <div class="phone-header-tag">With Light</div>
+              <div class="phone-header-title">Admin — Nour</div>
+            </div>
+            <div class="phone-body">
+              <div class="phone-card">
+                <div class="phone-card-label">Overview</div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <div>
+                    <div style="font-size:22px; font-weight:700; color:#1C1A17;">12</div>
+                    <div style="font-size:10px; color:#9CA3AF;">Active participants</div>
+                  </div>
+                  <span class="phone-badge badge-green">✓ Compliant</span>
+                </div>
+              </div>
+              <div class="phone-grid">
+                <div class="phone-stat"><div class="phone-stat-num">8</div><div class="phone-stat-label">Shifts Today</div></div>
+                <div class="phone-stat"><div class="phone-stat-num">5</div><div class="phone-stat-label">Workers Active</div></div>
+                <div class="phone-stat"><div class="phone-stat-num">100%</div><div class="phone-stat-label">Docs Valid</div></div>
+                <div class="phone-stat"><div class="phone-stat-num">0</div><div class="phone-stat-label">Incidents</div></div>
+              </div>
+              <div class="phone-card">
+                <div class="phone-card-label">Recent Shift</div>
+                <div style="font-size:12px; font-weight:600; color:#1C1A17;">Kelly A. MacDonald</div>
+                <div style="font-size:10px; color:#9CA3AF; margin-top:2px;">D.A.P note submitted · GPS verified</div>
+                <span class="phone-badge badge-green" style="margin-top:6px; font-size:9px;">✓ Submitted</span>
+              </div>
+            </div>
+            <div class="phone-nav">
+              <div class="phone-nav-item"><div class="phone-nav-dot active"></div><div class="phone-nav-label active">Overview</div></div>
+              <div class="phone-nav-item"><div class="phone-nav-dot"></div><div class="phone-nav-label">Shifts</div></div>
+              <div class="phone-nav-item"><div class="phone-nav-dot"></div><div class="phone-nav-label">Workers</div></div>
+              <div class="phone-nav-item"><div class="phone-nav-dot"></div><div class="phone-nav-label">More</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="float-card float-card-1">
+          <div class="float-label">GPS Verified</div>
+          <div class="float-value">📍 Liverpool NSW</div>
+          <div class="float-tag">Location confirmed</div>
+        </div>
+        <div class="float-card float-card-2">
+          <div class="float-label">Compliance</div>
+          <div class="float-value">🟢 All clear</div>
+          <div class="float-tag">NDIS ready</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="fade-up">
+          <div class="about-card">
+            <p class="about-quote">"I built With Light because I believe every person deserves support that sees them as a whole human being — not just a participant number."</p>
+            <div class="about-author">
+              <div class="about-author-avatar">
+                <svg width="28" height="24" viewBox="0 0 140 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="70" y1="2" x2="70" y2="14" stroke="white" stroke-width="4" stroke-linecap="round"/>
+                  <line x1="50" y1="8" x2="56" y2="18" stroke="white" stroke-width="4" stroke-linecap="round"/>
+                  <line x1="90" y1="8" x2="84" y2="18" stroke="white" stroke-width="4" stroke-linecap="round"/>
+                  <path d="M28 32 L42 79 L56 52 L70 79 L84 32" stroke="white" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                  <path d="M88 32 L88 84 Q88 92 96 92 L112 92" stroke="white" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+              </div>
+              <div>
+                <div class="about-author-name">Nour Ladkani</div>
+                <div class="about-author-title">Director & Social Worker, With Light</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fade-up" style="transition-delay: 0.15s;">
+          <div class="section-tag">Our Story</div>
+          <h2 class="section-title">Social Work at the heart of everything</h2>
+          <div class="about-content">
+            <p>With Light was founded by <strong>Nour Ladkani</strong>, a qualified Social Worker with deep roots in the Liverpool and South West Sydney community. Unlike many NDIS providers, we put clinical expertise at the centre of every support we deliver.</p>
+            <p>We specialise in supporting people with <strong>psychosocial disabilities</strong> — mental health conditions, complex trauma, and dual diagnoses — with the kind of nuanced, recovery-oriented care that makes a real difference.</p>
+            <p>We are proudly <strong>Arabic-speaking</strong> and culturally safe for the diverse communities of South West Sydney, including CALD families who have historically been underserved by mainstream disability services.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="section-inner">
+      <div class="fade-up">
+        <div class="section-tag">Platform Features</div>
+        <h2 class="section-title">Built for NDIS excellence</h2>
+        <p class="section-sub">Our platform brings together everything an NDIS provider needs — compliance, clinical documentation, and family visibility — in one place.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card fade-up">
+          <div class="feature-icon">📋</div>
+          <div class="feature-title">D.A.P. Clinical Notes</div>
+          <p class="feature-desc">Every shift note follows the Data, Assessment, Plan clinical format — ensuring quality documentation that meets NDIS audit standards.</p>
+        </div>
+        <div class="feature-card fade-up" style="transition-delay:0.1s;">
+          <div class="feature-icon">📍</div>
+          <div class="feature-title">GPS Verification</div>
+          <p class="feature-desc">Clock-in is GPS verified at the participant's address, protecting against ghost shifting and giving families peace of mind.</p>
+        </div>
+        <div class="feature-card fade-up" style="transition-delay:0.2s;">
+          <div class="feature-icon">🛡️</div>
+          <div class="feature-title">Compliance Monitoring</div>
+          <p class="feature-desc">Traffic light system tracks every worker's certifications — WWCC, Police Check, NDIS Screening — with automatic alerts before expiry.</p>
+        </div>
+        <div class="feature-card fade-up" style="transition-delay:0.3s;">
+          <div class="feature-icon">👨‍👩‍👧</div>
+          <div class="feature-title">Family Portal</div>
+          <p class="feature-desc">Families can see upcoming shifts, goal progress, and shift summaries in real time, keeping them connected to their loved one's care.</p>
+        </div>
+        <div class="feature-card fade-up" style="transition-delay:0.4s;">
+          <div class="feature-icon">🤝</div>
+          <div class="feature-title">Coordinator Portal</div>
+          <p class="feature-desc">Support Coordinators can refer participants, track onboarding status, and monitor goal progress — making With Light their easiest referral.</p>
+        </div>
+        <div class="feature-card fade-up" style="transition-delay:0.5s;">
+          <div class="feature-icon">🌐</div>
+          <div class="feature-title">Arabic & English</div>
+          <p class="feature-desc">The entire platform is available in both English and Arabic, making it accessible to the CALD communities we proudly serve.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOR WORKERS -->
+  <section class="workers" id="workers">
+    <div class="section-inner">
+      <div class="fade-up">
+        <div class="section-tag">For Support Workers</div>
+        <h2 class="section-title">Everything you need in one app</h2>
+        <p class="section-sub">The With Light app makes your job simpler, protects you legally, and helps you deliver the best possible care.</p>
+      </div>
+      <div class="workers-grid">
+        <div class="worker-item fade-up">
+          <div class="worker-icon">📱</div>
+          <div>
+            <div class="worker-title">Mobile-first design</div>
+            <p class="worker-desc">Built for your phone. Clock in, write notes, and report incidents — all from the field without needing a laptop.</p>
+          </div>
+        </div>
+        <div class="worker-item fade-up" style="transition-delay:0.1s;">
+          <div class="worker-icon">📂</div>
+          <div>
+            <div class="worker-title">Document vault</div>
+            <p class="worker-desc">Upload and store your WWCC, Police Check, First Aid, and Insurance in one secure place with automatic expiry reminders.</p>
+          </div>
+        </div>
+        <div class="worker-item fade-up" style="transition-delay:0.2s;">
+          <div class="worker-icon">🚨</div>
+          <div>
+            <div class="worker-title">Instant incident reporting</div>
+            <p class="worker-desc">One tap to report an incident with photo, severity level, and automatic notification to the clinical team.</p>
+          </div>
+        </div>
+        <div class="worker-item fade-up" style="transition-delay:0.3s;">
+          <div class="worker-icon">🌏</div>
+          <div>
+            <div class="worker-title">Bilingual interface</div>
+            <p class="worker-desc">Switch between English and Arabic instantly. We support workers from all backgrounds in their preferred language.</p>
+          </div>
+        </div>
+      </div>
+      <div class="fade-up" style="margin-top: 48px; transition-delay: 0.2s;">
+        <a href="#" class="appstore-badge">
+          <div class="appstore-badge-icon">🍎</div>
+          <div class="appstore-badge-text">
+            <div class="appstore-badge-sub">Download on the</div>
+            <div class="appstore-badge-name">App Store</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <div class="fade-up">
+        <div class="section-tag" style="margin: 0 auto 20px; display: table;">Get In Touch</div>
+        <h2 class="section-title" style="text-align:center;">Ready to get started?</h2>
+        <p class="section-sub" style="text-align:center; margin: 0 auto;">Whether you're a participant, family member, or support coordinator — we'd love to hear from you.</p>
+      </div>
+      <div class="contact-card fade-up">
+        <h3 style="font-family:'Playfair Display',serif; font-size:22px; font-weight:600; color:var(--dark); margin-bottom:6px;">Send us a message</h3>
+        <p style="font-size:14px; color:var(--warm-gray);">We usually respond within one business day.</p>
+        <form class="contact-form" action="mailto:nour@withlight.com.au" method="get">
+          <div class="contact-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" placeholder="Sarah" name="first_name" />
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" placeholder="Ahmed" name="last_name" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="sarah@example.com" name="email" />
+          </div>
+          <div class="form-group">
+            <label>I am a...</label>
+            <select name="type">
+              <option>Participant or Family Member</option>
+              <option>Support Coordinator</option>
+              <option>Prospective Support Worker</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea placeholder="Tell us how we can help..." name="message"></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Message</button>
+        </form>
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <span class="contact-info-label">Email</span>
+            <a href="mailto:nour@withlight.com.au" class="contact-info-value">nour@withlight.com.au</a>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-label">Location</span>
+            <span class="contact-info-value">Liverpool, NSW 2170</span>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-label">Platform</span>
+            <a href="https://app.withlight.site" class="contact-info-value">app.withlight.site</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="#" class="footer-logo">
+      <svg width="28" height="24" viewBox="0 0 140 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="70" y1="2" x2="70" y2="14" stroke="#F5A623" stroke-width="5" stroke-linecap="round"/>
+        <line x1="50" y1="8" x2="56" y2="18" stroke="#F5A623" stroke-width="5" stroke-linecap="round"/>
+        <line x1="90" y1="8" x2="84" y2="18" stroke="#F5A623" stroke-width="5" stroke-linecap="round"/>
+        <path d="M28 32 L42 79 L56 52 L70 79 L84 32" stroke="#F5A623" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M88 32 L88 84 Q88 92 96 92 L112 92" stroke="#F5A623" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <span class="footer-logo-text">With Light</span>
+    </a>
+    <span class="footer-copy">© 2025 With Light. NDIS Registered Provider. ABN available on request.</span>
+    <ul class="footer-links">
+      <li><a href="https://app.withlight.site/privacy-policy">Privacy Policy</a></li>
+      <li><a href="mailto:nour@withlight.com.au">Contact</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
