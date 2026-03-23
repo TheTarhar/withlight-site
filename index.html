@@ -8,6 +8,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Google Analytics 4 — G-5FP8CBCEBS -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5FP8CBCEBS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5FP8CBCEBS', {
+      page_title: 'With Light — NDIS Support',
+      page_location: window.location.href,
+    });
+  </script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1005,7 +1018,7 @@
         </div>
       </div>
       <div class="fade-up" style="margin-top: 48px; transition-delay: 0.2s;">
-        <a href="#" class="appstore-badge">
+        <a href="#" class="appstore-badge" id="appstore-btn">
           <div class="appstore-badge-icon">🍎</div>
           <div class="appstore-badge-text">
             <div class="appstore-badge-sub">Download on the</div>
@@ -1027,24 +1040,24 @@
       <div class="contact-card fade-up">
         <h3 style="font-family:'Playfair Display',serif; font-size:22px; font-weight:600; color:var(--dark); margin-bottom:6px;">Send us a message</h3>
         <p style="font-size:14px; color:var(--warm-gray);">We usually respond within one business day.</p>
-        <form class="contact-form" action="mailto:nour@withlight.com.au" method="get">
+        <form class="contact-form" id="contact-form" action="mailto:nour@withlight.com.au" method="get">
           <div class="contact-row">
             <div class="form-group">
               <label>First Name</label>
-              <input type="text" placeholder="Sarah" name="first_name" />
+              <input type="text" placeholder="Alex" name="first_name" />
             </div>
             <div class="form-group">
               <label>Last Name</label>
-              <input type="text" placeholder="Ahmed" name="last_name" />
+              <input type="text" placeholder="Johnson" name="last_name" />
             </div>
           </div>
           <div class="form-group">
             <label>Email</label>
-            <input type="email" placeholder="sarah@example.com" name="email" />
+            <input type="email" placeholder="Alex@example.com" name="email" />
           </div>
           <div class="form-group">
             <label>I am a...</label>
-            <select name="type">
+            <select name="type" id="contact-type">
               <option>Participant or Family Member</option>
               <option>Support Coordinator</option>
               <option>Prospective Support Worker</option>
@@ -1095,12 +1108,80 @@
   </footer>
 
   <script>
+    // ── Fade-up on scroll ──
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // ── Google Analytics 4 Event Tracking ──
+    document.addEventListener('DOMContentLoaded', function () {
+
+      // 1. "Get in Touch" / primary CTA clicks
+      document.querySelectorAll('.btn-primary, .btn-secondary, .nav-cta').forEach(btn => {
+        btn.addEventListener('click', function () {
+          gtag('event', 'cta_click', {
+            event_category: 'engagement',
+            event_label: this.innerText.trim(),
+            link_url: this.href || '',
+          });
+        });
+      });
+
+      // 2. App Store badge click
+      const appstoreBtn = document.getElementById('appstore-btn');
+      if (appstoreBtn) {
+        appstoreBtn.addEventListener('click', function () {
+          gtag('event', 'appstore_click', {
+            event_category: 'conversion',
+            event_label: 'App Store Badge',
+          });
+        });
+      }
+
+      // 3. Contact form submission — track who's enquiring
+      const form = document.getElementById('contact-form');
+      if (form) {
+        form.addEventListener('submit', function () {
+          const type = document.getElementById('contact-type')?.value || 'Unknown';
+          gtag('event', 'form_submit', {
+            event_category: 'lead',
+            event_label: 'Contact Form',
+            contact_type: type,
+          });
+        });
+      }
+
+      // 4. Nav link clicks
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function () {
+          gtag('event', 'nav_click', {
+            event_category: 'navigation',
+            event_label: this.innerText.trim(),
+          });
+        });
+      });
+
+      // 5. Scroll depth — 25 / 50 / 75 / 100%
+      const depths = [25, 50, 75, 100];
+      const fired = new Set();
+      window.addEventListener('scroll', function () {
+        const pct = (window.scrollY + window.innerHeight) / document.body.scrollHeight * 100;
+        depths.forEach(d => {
+          if (pct >= d && !fired.has(d)) {
+            fired.add(d);
+            gtag('event', 'scroll_depth', {
+              event_category: 'engagement',
+              event_label: d + '%',
+              value: d,
+            });
+          }
+        });
+      }, { passive: true });
+
+    });
   </script>
 
 </body>
