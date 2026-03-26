@@ -5,25 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <title>With Light — NDIS Support, Done Differently</title>
 <meta name="description" content="With Light is a Social Work-led NDIS provider in South West Sydney, specialising in psychosocial disability and culturally safe care."/>
-
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5FP8CBCEBS"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-5FP8CBCEBS');
-</script>
-
-<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap" rel="stylesheet"/>
-
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
-/* ═══════════════════════════════════════════════
-   DESIGN TOKENS
-═══════════════════════════════════════════════ */
+/* ═══════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════ */
 :root {
   --gold:        #F5A623;
   --gold-deep:   #E8941A;
@@ -38,6 +26,7 @@
   --cream:       #FFFDF5;
   --border:      rgba(28,26,23,0.10);
   --green:       #2ECC8A;
+  --amber:       #F5A623;
   --red:         #E05555;
   --radius:      14px;
   --nav-h:       70px;
@@ -58,28 +47,20 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* RTL Arabic/Assyrian */
-body.rtl { font-family: var(--font-ar); }
-body.rtl h1, body.rtl h2, body.rtl h3, body.rtl p, body.rtl span, body.rtl li, body.rtl a {
-  font-family: var(--font-ar);
-}
-body.rtl .hero-sub, body.rtl .lead { text-align: right; }
+body.rtl { font-family: var(--font-ar); direction: rtl; }
+body.rtl h1,body.rtl h2,body.rtl h3,body.rtl p,body.rtl span,body.rtl a { font-family: var(--font-ar); }
+body.rtl .hero-sub,.rtl .lead { text-align: right; }
 body.rtl .hero-btns { flex-direction: row-reverse; }
-body.rtl .about-quote { border-left: none; border-right: 3px solid var(--gold); border-radius: var(--radius) 0 0 var(--radius); }
-body.rtl .cd-item { flex-direction: row-reverse; }
-body.rtl .feat { text-align: right; }
+body.rtl .about-quote { border-left:none; border-right:3px solid var(--gold); border-radius:var(--radius) 0 0 var(--radius); }
 
-/* ─── SHARED HELPERS ─────────────────────────────── */
+/* ─── HELPERS ─────────────────────────────────── */
 .tag {
   display: inline-flex; align-items: center; gap: 7px;
   font-size: 0.7rem; font-weight: 700;
   letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--gold-deep); margin-bottom: 1rem;
 }
-.tag-dot {
-  width: 7px; height: 7px; border-radius: 50%;
-  background: var(--gold); flex-shrink: 0;
-}
+.tag-dot { width:7px; height:7px; border-radius:50%; background:var(--gold); flex-shrink:0; }
 
 h2.display {
   font-family: var(--font-d);
@@ -87,855 +68,569 @@ h2.display {
   font-weight: 500; line-height: 1.13;
   letter-spacing: -0.025em; margin-bottom: 1rem;
 }
-h2.display em { font-style: italic; color: var(--gold-deep); }
+h2.display em { font-style:italic; color:var(--gold-deep); }
 
-.lead {
-  font-size: 1rem; color: var(--charcoal-s);
-  line-height: 1.75; max-width: 520px;
-}
+.lead { font-size:1rem; color:var(--charcoal-s); line-height:1.75; max-width:520px; }
 
 section { padding: clamp(4.5rem,9vw,7rem) clamp(1.25rem,5vw,3.5rem); }
-.inner  { max-width: 1160px; margin: 0 auto; width: 100%; }
+.inner  { max-width:1160px; margin:0 auto; width:100%; }
 
-/* ═══════════════════════════════════════════════
-   NAVIGATION
-═══════════════════════════════════════════════ */
+/* ═══════════════════════════════════════
+   NAV
+═══════════════════════════════════════ */
 nav {
-  position: fixed; inset: 0 0 auto;
-  z-index: 300; height: var(--nav-h);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 clamp(1.25rem,5vw,3.5rem);
-  background: rgba(255,250,240,0.82);
-  backdrop-filter: blur(22px) saturate(200%);
-  -webkit-backdrop-filter: blur(22px) saturate(200%);
-  border-bottom: 1px solid rgba(245,166,35,0.18);
-  transition: background 0.3s;
+  position:fixed; inset:0 0 auto; z-index:300; height:var(--nav-h);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 clamp(1.25rem,5vw,3.5rem);
+  background:rgba(255,250,240,0.82);
+  backdrop-filter:blur(22px) saturate(200%);
+  -webkit-backdrop-filter:blur(22px) saturate(200%);
+  border-bottom:1px solid rgba(245,166,35,0.18);
+  transition:background 0.3s;
 }
-nav.scrolled {
-  background: rgba(255,250,240,0.96);
-  box-shadow: 0 4px 28px rgba(28,26,23,0.07);
-}
+nav.scrolled { background:rgba(255,250,240,0.96); box-shadow:0 4px 28px rgba(28,26,23,0.07); }
 
-/* Logo */
+/* Logo — exact match to live site */
 .nav-logo {
-  display: flex; align-items: center; gap: 11px;
-  font-family: var(--font-d); font-size: 1.18rem; font-weight: 600;
-  color: var(--charcoal); text-decoration: none; letter-spacing: -0.02em;
-  flex-shrink: 0;
+  display:flex; align-items:center; gap:11px;
+  font-family:var(--font-d); font-size:1.18rem; font-weight:600;
+  color:var(--charcoal); text-decoration:none; letter-spacing:-0.02em; flex-shrink:0;
 }
 .logo-mark {
-  width: 34px; height: 34px; border-radius: 9px;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 3px 12px rgba(245,166,35,0.38);
-  flex-shrink: 0;
+  width:34px; height:34px; border-radius:9px;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-deep) 100%);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 3px 12px rgba(245,166,35,0.38); flex-shrink:0;
 }
 
-/* Nav links */
 .nav-links {
-  display: flex; align-items: center;
-  gap: clamp(0.75rem,2.2vw,1.75rem); list-style: none;
+  display:flex; align-items:center;
+  gap:clamp(0.75rem,2.2vw,1.75rem); list-style:none;
 }
-.nav-links a {
-  font-size: 0.875rem; font-weight: 500;
-  color: var(--charcoal-s); text-decoration: none;
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--gold-deep); }
+.nav-links a { font-size:0.875rem; font-weight:500; color:var(--charcoal-s); text-decoration:none; transition:color 0.2s; }
+.nav-links a:hover { color:var(--gold-deep); }
 
 /* Language dropdown */
-.lang-wrap { position: relative; }
+.lang-wrap { position:relative; }
 .lang-btn-main {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: var(--white); border: 1.5px solid var(--gold-border);
-  border-radius: 999px; padding: 6px 13px 6px 10px;
-  font-size: 0.78rem; font-weight: 600; color: var(--charcoal-s);
-  cursor: pointer; transition: all 0.2s; letter-spacing: 0.02em;
-  white-space: nowrap;
+  display:inline-flex; align-items:center; gap:6px;
+  background:var(--white); border:1.5px solid var(--gold-border);
+  border-radius:999px; padding:6px 13px 6px 10px;
+  font-size:0.78rem; font-weight:600; color:var(--charcoal-s);
+  cursor:pointer; transition:all 0.2s; white-space:nowrap;
 }
-.lang-btn-main:hover { border-color: var(--gold); color: var(--charcoal); }
-.lang-btn-main svg { transition: transform 0.2s; }
-.lang-wrap.open .lang-btn-main svg { transform: rotate(180deg); }
-.lang-globe {
-  width: 16px; height: 16px; flex-shrink: 0;
-  color: var(--gold);
-}
+.lang-btn-main:hover { border-color:var(--gold); color:var(--charcoal); }
+.lang-btn-main svg { transition:transform 0.2s; }
+.lang-wrap.open .lang-btn-main svg { transform:rotate(180deg); }
+.lang-globe { width:16px; height:16px; flex-shrink:0; color:var(--gold); }
 
 .lang-dropdown {
-  position: absolute; top: calc(100% + 8px);
-  right: 0; min-width: 165px;
-  background: var(--white);
-  border: 1.5px solid var(--border);
-  border-radius: 13px;
-  box-shadow: 0 12px 40px rgba(28,26,23,0.12);
-  overflow: hidden; opacity: 0;
-  transform: translateY(-6px) scale(0.97);
-  pointer-events: none;
-  transition: all 0.18s cubic-bezier(0.22,1,0.36,1);
-  z-index: 400;
+  position:absolute; top:calc(100% + 8px); right:0; min-width:165px;
+  background:var(--white); border:1.5px solid var(--border);
+  border-radius:13px; box-shadow:0 12px 40px rgba(28,26,23,0.12);
+  overflow:hidden; opacity:0;
+  transform:translateY(-6px) scale(0.97); pointer-events:none;
+  transition:all 0.18s cubic-bezier(0.22,1,0.36,1); z-index:400;
 }
-.lang-wrap.open .lang-dropdown {
-  opacity: 1; transform: translateY(0) scale(1); pointer-events: all;
-}
+.lang-wrap.open .lang-dropdown { opacity:1; transform:translateY(0) scale(1); pointer-events:all; }
 .lang-option {
-  display: flex; align-items: center; gap: 9px;
-  padding: 9px 14px; font-size: 0.82rem; font-weight: 500;
-  color: var(--charcoal-s); cursor: pointer;
-  transition: background 0.15s, color 0.15s;
-  border: none; background: none; width: 100%; text-align: left;
+  display:flex; align-items:center; gap:9px; padding:9px 14px;
+  font-size:0.82rem; font-weight:500; color:var(--charcoal-s);
+  cursor:pointer; transition:background 0.15s,color 0.15s;
+  border:none; background:none; width:100%; text-align:left;
 }
-.lang-option:hover { background: var(--gold-pale); color: var(--charcoal); }
-.lang-option.active { background: var(--gold-mid); color: var(--gold-darker); font-weight: 700; }
-.lang-option .flag { font-size: 1rem; flex-shrink: 0; }
+.lang-option:hover { background:var(--gold-pale); color:var(--charcoal); }
+.lang-option.active { background:var(--gold-mid); color:var(--gold-darker); font-weight:700; }
+.lang-option .flag { font-size:1rem; flex-shrink:0; }
 
-/* Platform Login button */
 .nav-app {
-  display: inline-flex; align-items: center; gap: 7px;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
-  color: var(--charcoal) !important;
-  padding: 9px 20px; border-radius: 999px;
-  font-size: 0.82rem !important; font-weight: 700 !important;
-  letter-spacing: 0.01em;
-  box-shadow: 0 4px 16px rgba(245,166,35,0.36);
-  text-decoration: none;
-  transition: transform 0.15s, box-shadow 0.15s !important;
+  display:inline-flex; align-items:center; gap:7px;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-deep) 100%);
+  color:var(--charcoal) !important;
+  padding:9px 20px; border-radius:999px;
+  font-size:0.82rem !important; font-weight:700 !important;
+  box-shadow:0 4px 16px rgba(245,166,35,0.36); text-decoration:none;
+  transition:transform 0.15s,box-shadow 0.15s !important;
 }
-.nav-app:hover { transform: translateY(-2px); box-shadow: 0 8px 26px rgba(245,166,35,0.45) !important; }
+.nav-app:hover { transform:translateY(-2px); box-shadow:0 8px 26px rgba(245,166,35,0.45) !important; }
 
-/* Hamburger */
-.hamburger {
-  display: none; flex-direction: column;
-  gap: 5px; cursor: pointer;
-  background: none; border: none; padding: 4px;
-}
-.hamburger span {
-  display: block; width: 22px; height: 2px;
-  background: var(--charcoal); border-radius: 2px; transition: all 0.3s;
-}
-.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:4px; }
+.hamburger span { display:block; width:22px; height:2px; background:var(--charcoal); border-radius:2px; transition:all 0.3s; }
+.hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity:0; }
+.hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
 
-/* Mobile drawer */
 .nav-drawer {
-  display: none; position: fixed;
-  top: var(--nav-h); left: 0; right: 0;
-  background: rgba(255,250,240,0.97);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--gold-border);
-  padding: 1.5rem 2rem 2rem; z-index: 299;
-  flex-direction: column; gap: 1.25rem;
+  display:none; position:fixed; top:var(--nav-h); left:0; right:0;
+  background:rgba(255,250,240,0.97); backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--gold-border);
+  padding:1.5rem 2rem 2rem; z-index:299; flex-direction:column; gap:1.25rem;
 }
-.nav-drawer.open { display: flex; }
-.nav-drawer a { font-size: 1rem; font-weight: 500; color: var(--charcoal-s); text-decoration: none; }
-.nav-drawer .drawer-lang { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0.5rem; }
+.nav-drawer.open { display:flex; }
+.nav-drawer a { font-size:1rem; font-weight:500; color:var(--charcoal-s); text-decoration:none; }
+.nav-drawer .drawer-lang { display:flex; flex-wrap:wrap; gap:8px; margin-top:0.5rem; }
 .drawer-lang-btn {
-  font-size: 0.72rem; font-weight: 700; padding: 5px 12px;
-  border-radius: 999px; border: 1.5px solid var(--gold-border);
-  background: transparent; color: var(--charcoal-s); cursor: pointer; transition: all 0.2s;
-  letter-spacing: 0.04em;
+  font-size:0.72rem; font-weight:700; padding:5px 12px;
+  border-radius:999px; border:1.5px solid var(--gold-border);
+  background:transparent; color:var(--charcoal-s); cursor:pointer; transition:all 0.2s;
 }
-.drawer-lang-btn.active { background: var(--gold); color: var(--charcoal); border-color: var(--gold); box-shadow: 0 2px 10px rgba(245,166,35,0.3); }
+.drawer-lang-btn.active { background:var(--gold); color:var(--charcoal); border-color:var(--gold); box-shadow:0 2px 10px rgba(245,166,35,0.3); }
 
-/* ═══════════════════════════════════════════════
+/* ═══════════════════════════════════════
    HERO
-═══════════════════════════════════════════════ */
+═══════════════════════════════════════ */
 #hero {
-  min-height: 100dvh; display: flex; align-items: center;
-  padding-top: calc(var(--nav-h) + 3rem); padding-bottom: 4rem;
-  position: relative; overflow: hidden;
+  min-height:100dvh; display:flex; align-items:center;
+  padding-top:calc(var(--nav-h) + 3rem); padding-bottom:4rem;
+  position:relative; overflow:hidden;
 }
 .hero-bg {
-  position: absolute; inset: 0; z-index: 0;
+  position:absolute; inset:0; z-index:0;
   background:
-    radial-gradient(ellipse 70% 60% at 85% 15%, rgba(245,166,35,0.10) 0%, transparent 65%),
-    radial-gradient(ellipse 45% 50% at 10% 90%, rgba(232,148,26,0.07) 0%, transparent 60%),
-    radial-gradient(ellipse 30% 40% at 50% 50%, rgba(245,166,35,0.04) 0%, transparent 70%);
+    radial-gradient(ellipse 70% 60% at 85% 15%,rgba(245,166,35,0.10) 0%,transparent 65%),
+    radial-gradient(ellipse 45% 50% at 10% 90%,rgba(232,148,26,0.07) 0%,transparent 60%);
 }
-
-/* Decorative grain */
-.hero-bg::after {
-  content: ''; position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.018'/%3E%3C/svg%3E");
-  pointer-events: none; opacity: 0.5;
-}
-
 .hero-grid {
-  position: relative; z-index: 1;
-  display: grid; grid-template-columns: 1.1fr 0.9fr;
-  gap: clamp(2.5rem,5vw,5rem); align-items: center;
+  position:relative; z-index:1;
+  display:grid; grid-template-columns:1.1fr 0.9fr;
+  gap:clamp(2.5rem,5vw,5rem); align-items:center;
 }
 
-/* Kicker badge */
 .hero-kicker {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--white); border: 1.5px solid var(--gold-border);
-  border-radius: 999px; padding: 6px 14px 6px 8px;
-  font-size: 0.75rem; font-weight: 500; color: var(--charcoal-s);
-  margin-bottom: 1.6rem;
-  box-shadow: 0 3px 14px rgba(245,166,35,0.12);
-  opacity: 0; animation: fadeUp 0.6s 0.05s forwards;
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--white); border:1.5px solid var(--gold-border);
+  border-radius:999px; padding:6px 14px 6px 8px;
+  font-size:0.75rem; font-weight:500; color:var(--charcoal-s);
+  margin-bottom:1.6rem; box-shadow:0 3px 14px rgba(245,166,35,0.12);
+  opacity:0; animation:fadeUp 0.6s 0.05s forwards;
 }
 .kicker-dot {
-  width: 9px; height: 9px; border-radius: 50%;
-  background: var(--gold);
-  box-shadow: 0 0 0 3px rgba(245,166,35,0.25);
-  animation: pulseGold 2.4s infinite; flex-shrink: 0;
+  width:9px; height:9px; border-radius:50%; background:var(--gold);
+  box-shadow:0 0 0 3px rgba(245,166,35,0.25);
+  animation:pulseGold 2.4s infinite; flex-shrink:0;
 }
 @keyframes pulseGold {
-  0%,100% { box-shadow: 0 0 0 0 rgba(245,166,35,0.5); }
-  50%      { box-shadow: 0 0 0 7px rgba(245,166,35,0); }
+  0%,100% { box-shadow:0 0 0 0 rgba(245,166,35,0.5); }
+  50%      { box-shadow:0 0 0 7px rgba(245,166,35,0); }
 }
 
 .hero-h1 {
-  font-family: var(--font-d);
-  font-size: clamp(2.5rem,5.2vw,4.2rem);
-  font-weight: 500; line-height: 1.1; letter-spacing: -0.03em;
-  margin-bottom: 1.3rem;
-  opacity: 0; animation: fadeUp 0.7s 0.18s forwards;
+  font-family:var(--font-d);
+  font-size:clamp(2.5rem,5.2vw,4.2rem);
+  font-weight:500; line-height:1.1; letter-spacing:-0.03em;
+  margin-bottom:1.3rem;
+  opacity:0; animation:fadeUp 0.7s 0.18s forwards;
 }
-.hero-h1 em { font-style: italic; color: var(--gold-deep); }
+.hero-h1 em { font-style:italic; color:var(--gold-deep); }
 
 .hero-sub {
-  font-size: 1.05rem; line-height: 1.72; color: var(--charcoal-s);
-  max-width: 460px; margin-bottom: 2.2rem;
-  opacity: 0; animation: fadeUp 0.7s 0.3s forwards;
+  font-size:1.05rem; line-height:1.72; color:var(--charcoal-s);
+  max-width:460px; margin-bottom:2.2rem;
+  opacity:0; animation:fadeUp 0.7s 0.3s forwards;
 }
 
 .hero-btns {
-  display: flex; gap: 12px; flex-wrap: wrap;
-  opacity: 0; animation: fadeUp 0.7s 0.42s forwards;
+  display:flex; gap:12px; flex-wrap:wrap;
+  opacity:0; animation:fadeUp 0.7s 0.42s forwards;
 }
-
 .btn-gold {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
-  color: var(--charcoal);
-  padding: 13px 26px; border-radius: 999px;
-  font-size: 0.92rem; font-weight: 700; text-decoration: none;
-  border: none; cursor: pointer;
-  box-shadow: 0 5px 20px rgba(245,166,35,0.35);
-  transition: transform 0.15s, box-shadow 0.15s;
+  display:inline-flex; align-items:center; gap:8px;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-deep) 100%);
+  color:var(--charcoal); padding:13px 26px; border-radius:999px;
+  font-size:0.92rem; font-weight:700; text-decoration:none;
+  border:none; cursor:pointer; box-shadow:0 5px 20px rgba(245,166,35,0.35);
+  transition:transform 0.15s,box-shadow 0.15s;
 }
-.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(245,166,35,0.45); }
-
+.btn-gold:hover { transform:translateY(-2px); box-shadow:0 10px 30px rgba(245,166,35,0.45); }
 .btn-ghost {
-  display: inline-flex; align-items: center; gap: 7px;
-  background: var(--white); color: var(--charcoal);
-  padding: 13px 22px; border-radius: 999px;
-  font-size: 0.92rem; font-weight: 500; text-decoration: none;
-  border: 1.5px solid var(--border); transition: all 0.2s;
+  display:inline-flex; align-items:center; gap:7px;
+  background:var(--white); color:var(--charcoal);
+  padding:13px 22px; border-radius:999px;
+  font-size:0.92rem; font-weight:500; text-decoration:none;
+  border:1.5px solid var(--border); transition:all 0.2s;
 }
-.btn-ghost:hover { border-color: var(--gold); color: var(--gold-deeper); transform: translateY(-1px); }
+.btn-ghost:hover { border-color:var(--gold); transform:translateY(-1px); }
 
 .hero-trust {
-  display: flex; align-items: center; gap: 10px;
-  margin-top: 1.8rem; font-size: 0.8rem; color: var(--charcoal-m);
-  opacity: 0; animation: fadeUp 0.7s 0.52s forwards;
+  display:flex; align-items:center; gap:10px;
+  margin-top:1.8rem; font-size:0.8rem; color:var(--charcoal-m);
+  opacity:0; animation:fadeUp 0.7s 0.52s forwards;
 }
-.trust-avatars { display: flex; }
+.trust-avatars { display:flex; }
 .trust-avatar {
-  width: 30px; height: 30px; border-radius: 50%;
-  background: var(--gold-mid); border: 2px solid var(--gold-pale);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.65rem; font-weight: 700; color: var(--gold-darker);
-  margin-right: -8px;
+  width:30px; height:30px; border-radius:50%;
+  background:var(--gold-mid); border:2px solid var(--gold-pale);
+  display:flex; align-items:center; justify-content:center;
+  font-size:0.65rem; font-weight:700; color:var(--gold-darker);
+  margin-right:-8px;
 }
 
-/* ─── PHONE MOCKUP ───────────────────────────────── */
-.hero-visual { opacity: 0; animation: fadeIn 0.9s 0.5s forwards; }
+/* ─── PHONE MOCKUP ──────────────────────────────── */
+.hero-visual { opacity:0; animation:fadeIn 0.9s 0.5s forwards; }
 
 .phone-wrap {
-  position: relative; display: flex; justify-content: center;
-  filter: drop-shadow(0 30px 60px rgba(28,26,23,0.14)) drop-shadow(0 8px 20px rgba(245,166,35,0.12));
+  position:relative; display:flex; justify-content:center;
+  filter:drop-shadow(0 30px 60px rgba(28,26,23,0.14)) drop-shadow(0 8px 20px rgba(245,166,35,0.12));
 }
-
+.phone-glow {
+  position:absolute; inset:-30px;
+  background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(245,166,35,0.12) 0%,transparent 70%);
+  pointer-events:none; z-index:-1;
+}
 .phone-outer {
-  width: min(320px, 88vw);
-  background: #1C1A17;
-  border-radius: 44px;
-  padding: 10px;
-  position: relative;
-  overflow: hidden;
+  width:min(300px,82vw);
+  background:#1C1A17; border-radius:44px; padding:10px;
+  position:relative; overflow:hidden;
 }
 .phone-outer::before {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(245,166,35,0.18) 0%, transparent 50%);
-  pointer-events: none;
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(135deg,rgba(245,166,35,0.18) 0%,transparent 50%);
+  pointer-events:none;
 }
-.phone-screen {
-  background: var(--white);
-  border-radius: 36px;
-  overflow: hidden;
-  position: relative;
-}
+.phone-screen { background:var(--white); border-radius:36px; overflow:hidden; }
 .phone-notch {
-  width: 90px; height: 26px;
-  background: #1C1A17;
-  border-radius: 0 0 18px 18px;
-  margin: 0 auto 0;
-  position: relative; z-index: 2;
+  width:90px; height:26px; background:#1C1A17;
+  border-radius:0 0 18px 18px; margin:0 auto;
 }
 
-/* App UI */
+/* App UI inside phone */
 .app-header {
-  padding: 12px 16px 8px;
-  background: var(--white);
-  border-bottom: 1px solid rgba(28,26,23,0.07);
-  display: flex; align-items: center; justify-content: space-between;
+  padding:10px 14px 8px; background:var(--white);
+  border-bottom:1px solid rgba(28,26,23,0.07);
+  display:flex; align-items:center; justify-content:space-between;
 }
-.app-header-left { display: flex; align-items: center; gap: 8px; }
+.app-header-left { display:flex; align-items:center; gap:7px; }
 .app-logo-sm {
-  width: 26px; height: 26px; border-radius: 7px;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
-  display: flex; align-items: center; justify-content: center;
+  width:24px; height:24px; border-radius:6px;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-deep) 100%);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
 }
-.app-name { font-size: 0.78rem; font-weight: 700; color: var(--charcoal); letter-spacing: -0.01em; }
+.app-name { font-size:0.75rem; font-weight:700; color:var(--charcoal); letter-spacing:-0.01em; }
 .app-admin-badge {
-  display: flex; align-items: center; gap: 5px;
-  background: var(--gold-mid); border-radius: 999px;
-  padding: 3px 9px 3px 4px;
-  font-size: 0.62rem; font-weight: 700; color: var(--gold-darker);
-  letter-spacing: 0.02em;
+  display:flex; align-items:center; gap:5px;
+  background:var(--gold-mid); border-radius:999px; padding:3px 9px 3px 4px;
+  font-size:0.6rem; font-weight:700; color:var(--gold-darker);
 }
 .admin-av {
-  width: 18px; height: 18px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.55rem; font-weight: 700; color: var(--charcoal);
+  width:16px; height:16px; border-radius:50%;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-deep) 100%);
+  display:flex; align-items:center; justify-content:center;
+  font-size:0.52rem; font-weight:700; color:var(--charcoal);
 }
 
 .app-stats {
-  display: grid; grid-template-columns: repeat(3,1fr);
-  gap: 1px; background: rgba(28,26,23,0.07);
-  margin: 0;
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:1px; background:rgba(28,26,23,0.07);
 }
-.app-stat {
-  background: var(--white); padding: 10px 10px 8px;
-  text-align: center;
-}
-.app-stat strong {
-  display: block; font-size: 1.18rem; font-weight: 700;
-  letter-spacing: -0.05em; line-height: 1; margin-bottom: 2px;
-}
-.app-stat span { font-size: 0.54rem; color: var(--charcoal-m); font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
-.stat-gold strong { color: var(--gold-deep); }
-.stat-green strong { color: var(--green); }
+.app-stat { background:var(--white); padding:9px 8px 7px; text-align:center; }
+.app-stat strong { display:block; font-size:1.1rem; font-weight:700; letter-spacing:-0.05em; line-height:1; margin-bottom:2px; }
+.app-stat span { font-size:0.5rem; color:var(--charcoal-m); font-weight:500; letter-spacing:0.04em; text-transform:uppercase; }
+.stat-gold strong  { color:var(--gold-deep); }
+.stat-green strong { color:var(--green); }
 
 .app-section-label {
-  padding: 10px 14px 4px;
-  font-size: 0.58rem; font-weight: 700;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--charcoal-m);
+  padding:9px 12px 4px;
+  font-size:0.56rem; font-weight:700; letter-spacing:0.1em;
+  text-transform:uppercase; color:var(--charcoal-m);
 }
 
 .app-shift-card {
-  margin: 4px 10px 8px;
-  background: var(--cream); border-radius: 11px;
-  border: 1.5px solid var(--gold-border);
-  overflow: hidden;
+  margin:4px 8px 6px;
+  background:var(--cream); border-radius:10px;
+  border:1.5px solid var(--gold-border); overflow:hidden;
 }
 .shift-header {
-  padding: 10px 12px 8px;
-  display: flex; align-items: center; gap: 8px;
-  border-bottom: 1px solid rgba(245,166,35,0.12);
+  padding:9px 11px 7px; display:flex; align-items:center; gap:7px;
+  border-bottom:1px solid rgba(245,166,35,0.12);
 }
 .shift-avatar {
-  width: 30px; height: 30px; border-radius: 50%;
-  background: linear-gradient(135deg, #e8d5b0 0%, #d4b882 100%);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.62rem; font-weight: 700; color: #7a5a10;
-  flex-shrink: 0;
+  width:28px; height:28px; border-radius:50%;
+  background:linear-gradient(135deg,#e8d5b0 0%,#d4b882 100%);
+  display:flex; align-items:center; justify-content:center;
+  font-size:0.58rem; font-weight:700; color:#7a5a10; flex-shrink:0;
 }
-.shift-name { font-size: 0.78rem; font-weight: 600; color: var(--charcoal); line-height: 1.2; }
-.shift-role { font-size: 0.6rem; color: var(--charcoal-m); margin-top: 1px; }
+.shift-name { font-size:0.72rem; font-weight:600; color:var(--charcoal); line-height:1.2; }
+.shift-role { font-size:0.56rem; color:var(--charcoal-m); margin-top:1px; }
 .shift-status-pill {
-  margin-left: auto;
-  display: inline-flex; align-items: center; gap: 4px;
-  background: rgba(46,204,138,0.13); color: #1a8a5a;
-  border-radius: 999px; padding: 3px 8px;
-  font-size: 0.58rem; font-weight: 700; letter-spacing: 0.03em;
-  white-space: nowrap;
+  margin-left:auto;
+  display:inline-flex; align-items:center; gap:3px;
+  background:rgba(46,204,138,0.13); color:#1a8a5a;
+  border-radius:999px; padding:3px 7px;
+  font-size:0.54rem; font-weight:700; white-space:nowrap;
 }
-.status-dot {
-  width: 5px; height: 5px; border-radius: 50%;
-  background: var(--green); flex-shrink: 0;
-}
+.status-dot { width:5px; height:5px; border-radius:50%; background:var(--green); flex-shrink:0; }
 
-.shift-body { padding: 8px 12px 10px; }
-.shift-row {
-  display: flex; align-items: center; gap: 6px;
-  font-size: 0.63rem; color: var(--charcoal-s); margin-bottom: 5px;
-}
-.shift-row:last-child { margin-bottom: 0; }
-.shift-icon { font-size: 0.75rem; flex-shrink: 0; opacity: 0.7; }
+.shift-body { padding:7px 11px 9px; }
+.shift-row { display:flex; align-items:center; gap:5px; font-size:0.59rem; color:var(--charcoal-s); margin-bottom:4px; }
+.shift-row:last-child { margin-bottom:0; }
+.shift-icon { font-size:0.7rem; flex-shrink:0; opacity:0.7; }
 
 .dap-badge {
-  display: inline-flex; align-items: center; gap: 5px;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
-  color: var(--charcoal); border-radius: 7px;
-  padding: 6px 11px; margin: 8px 10px;
-  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.03em;
+  display:inline-flex; align-items:center; gap:5px;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-deep) 100%);
+  color:var(--charcoal); border-radius:7px; padding:6px 10px; margin:6px 8px;
+  font-size:0.58rem; font-weight:700; letter-spacing:0.02em;
 }
-.dap-badge svg { flex-shrink: 0; }
 
 .app-mini-nav {
-  display: flex; justify-content: space-around;
-  padding: 8px 0 10px;
-  border-top: 1px solid rgba(28,26,23,0.07);
-  background: var(--white);
+  display:flex; justify-content:space-around; padding:7px 0 9px;
+  border-top:1px solid rgba(28,26,23,0.07); background:var(--white);
 }
-.mini-nav-item {
-  display: flex; flex-direction: column; align-items: center; gap: 2px;
-  font-size: 0.52rem; font-weight: 500; color: var(--charcoal-m);
-  letter-spacing: 0.04em;
-}
-.mini-nav-item.active { color: var(--gold-deep); }
-.mini-nav-icon { font-size: 0.9rem; }
+.mini-nav-item { display:flex; flex-direction:column; align-items:center; gap:2px; font-size:0.49rem; font-weight:500; color:var(--charcoal-m); }
+.mini-nav-item.active { color:var(--gold-deep); }
+.mini-nav-icon { font-size:0.85rem; }
 
-/* Phone glow decoration */
-.phone-glow {
-  position: absolute; inset: -30px;
-  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(245,166,35,0.12) 0%, transparent 70%);
-  pointer-events: none; z-index: -1;
-}
-
-/* ═══════════════════════════════════════════════
-   ABOUT SECTION
-═══════════════════════════════════════════════ */
-#about { background: var(--white); }
-.about-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: clamp(2.5rem,5vw,5rem); align-items: start;
-}
-.about-eyebrow { display: flex; align-items: center; gap: 8px; }
+/* ═══════════════════════════════════════
+   ABOUT
+═══════════════════════════════════════ */
+#about { background:var(--white); }
+.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:clamp(2.5rem,5vw,5rem); align-items:start; }
 
 .about-badge {
-  display: inline-flex; align-items: center; gap: 7px;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
-  color: var(--charcoal); border-radius: 999px;
-  padding: 8px 16px; font-size: 0.78rem; font-weight: 700;
-  letter-spacing: 0.03em; margin-bottom: 1.2rem;
-  box-shadow: 0 4px 14px rgba(245,166,35,0.3);
+  display:inline-flex; align-items:center; gap:7px;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-deep) 100%);
+  color:var(--charcoal); border-radius:999px; padding:8px 16px;
+  font-size:0.78rem; font-weight:700; margin-bottom:1.2rem;
+  box-shadow:0 4px 14px rgba(245,166,35,0.3);
 }
-.about-badge svg { flex-shrink: 0; }
-
-.about-body { font-size: 0.95rem; line-height: 1.8; color: var(--charcoal-s); }
-.about-body p { margin-bottom: 1.1rem; }
-.about-body strong { color: var(--charcoal); font-weight: 600; }
+.about-body { font-size:0.95rem; line-height:1.8; color:var(--charcoal-s); }
+.about-body p { margin-bottom:1.1rem; }
+.about-body strong { color:var(--charcoal); font-weight:600; }
 
 .about-quote {
-  margin-top: 2.5rem; padding: 1.6rem 1.8rem;
-  background: var(--gold-pale); border-left: 3px solid var(--gold);
-  border-radius: 0 var(--radius) var(--radius) 0;
+  margin-top:2.5rem; padding:1.6rem 1.8rem;
+  background:var(--gold-pale); border-left:3px solid var(--gold);
+  border-radius:0 var(--radius) var(--radius) 0;
 }
-.about-quote p {
-  font-family: var(--font-d); font-size: 1.02rem; font-style: italic;
-  font-weight: 400; line-height: 1.72; color: var(--charcoal-s); margin-bottom: 0.7rem;
-}
-.about-quote cite { font-size: 0.8rem; font-weight: 700; color: var(--gold-darker); font-style: normal; }
+.about-quote p { font-family:var(--font-d); font-size:1.02rem; font-style:italic; font-weight:400; line-height:1.72; color:var(--charcoal-s); margin-bottom:0.7rem; }
+.about-quote cite { font-size:0.8rem; font-weight:700; color:var(--gold-darker); font-style:normal; }
 
-.about-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.75rem; }
+.about-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:1.75rem; }
 .about-tag {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: var(--gold-pale); color: var(--gold-darker);
-  border: 1.5px solid var(--gold-border);
-  border-radius: 999px; padding: 6px 14px;
-  font-size: 0.78rem; font-weight: 600;
+  display:inline-flex; align-items:center; gap:6px;
+  background:var(--gold-pale); color:var(--gold-darker);
+  border:1.5px solid var(--gold-border); border-radius:999px; padding:6px 14px;
+  font-size:0.78rem; font-weight:600;
 }
 
-.about-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+.about-pillars { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:2rem; }
 .pillar {
-  padding: 1.3rem 1.2rem;
-  background: var(--gold-pale); border-radius: var(--radius);
-  border: 1.5px solid var(--gold-border);
-  transition: transform 0.2s, box-shadow 0.2s;
+  padding:1.3rem 1.2rem; background:var(--gold-pale); border-radius:var(--radius);
+  border:1.5px solid var(--gold-border); transition:transform 0.2s,box-shadow 0.2s;
 }
-.pillar:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(245,166,35,0.14); }
-.pillar-icon { font-size: 1.3rem; margin-bottom: 0.6rem; }
-.pillar h4 { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.3rem; color: var(--charcoal); }
-.pillar p  { font-size: 0.8rem; color: var(--charcoal-m); line-height: 1.55; }
+.pillar:hover { transform:translateY(-3px); box-shadow:0 10px 28px rgba(245,166,35,0.14); }
+.pillar-icon { font-size:1.3rem; margin-bottom:0.6rem; }
+.pillar h4 { font-size:0.88rem; font-weight:700; margin-bottom:0.3rem; }
+.pillar p  { font-size:0.8rem; color:var(--charcoal-m); line-height:1.55; }
 
-/* ═══════════════════════════════════════════════
-   LANGUAGES SECTION
-═══════════════════════════════════════════════ */
-#languages { background: var(--charcoal); color: var(--white); position: relative; overflow: hidden; }
+/* ═══════════════════════════════════════
+   LANGUAGES
+═══════════════════════════════════════ */
+#languages { background:var(--charcoal); color:var(--white); position:relative; overflow:hidden; }
 #languages::before {
-  content: ''; position: absolute; inset: 0;
+  content:''; position:absolute; inset:0;
   background:
-    radial-gradient(ellipse 55% 60% at 90% 10%, rgba(245,166,35,0.14) 0%, transparent 55%),
-    radial-gradient(ellipse 40% 50% at 5% 95%, rgba(232,148,26,0.10) 0%, transparent 55%);
-  pointer-events: none;
+    radial-gradient(ellipse 55% 60% at 90% 10%,rgba(245,166,35,0.14) 0%,transparent 55%),
+    radial-gradient(ellipse 40% 50% at 5% 95%,rgba(232,148,26,0.10) 0%,transparent 55%);
+  pointer-events:none;
 }
-.lang-section-inner { position: relative; z-index: 1; }
-.lang-header { text-align: center; max-width: 680px; margin: 0 auto 3.5rem; }
-.lang-header .tag { color: var(--gold); }
-.lang-header h2.display { color: var(--white); }
-.lang-header h2.display em { color: var(--gold); }
-.lang-header .lead { color: rgba(255,255,255,0.6); margin: 0 auto; }
+.lang-section-inner { position:relative; z-index:1; }
+.lang-header { text-align:center; max-width:680px; margin:0 auto 3.5rem; }
+.lang-header .tag { color:var(--gold); }
+.lang-header h2.display { color:var(--white); }
+.lang-header h2.display em { color:var(--gold); }
+.lang-header .lead { color:rgba(255,255,255,0.6); margin:0 auto; }
 
-.lang-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
-  gap: 1rem;
-}
+.lang-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:1rem; }
 .lang-card {
-  background: rgba(255,255,255,0.055); border: 1px solid rgba(245,166,35,0.18);
-  border-radius: var(--radius); padding: 1.5rem 1.25rem;
-  text-align: center; transition: all 0.22s; cursor: pointer;
-  position: relative; overflow: hidden;
+  background:rgba(255,255,255,0.055); border:1px solid rgba(245,166,35,0.18);
+  border-radius:var(--radius); padding:1.5rem 1.25rem; text-align:center;
+  transition:all 0.22s; cursor:pointer; position:relative; overflow:hidden;
 }
-.lang-card:hover {
-  background: rgba(245,166,35,0.10);
-  border-color: rgba(245,166,35,0.40);
-  transform: translateY(-4px);
-}
-.lang-card::before {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(245,166,35,0.06) 0%, transparent 60%);
-  pointer-events: none;
-}
-.lang-flag { font-size: 2.2rem; margin-bottom: 0.75rem; display: block; }
-.lang-name { font-size: 0.88rem; font-weight: 600; color: var(--white); margin-bottom: 3px; }
-.lang-native { font-size: 0.8rem; color: rgba(255,255,255,0.45); }
-.lang-card.rtl-card .lang-native { direction: rtl; }
+.lang-card:hover { background:rgba(245,166,35,0.10); border-color:rgba(245,166,35,0.40); transform:translateY(-4px); }
+.lang-flag { font-size:2.2rem; margin-bottom:0.75rem; display:block; }
+.lang-name { font-size:0.88rem; font-weight:600; color:var(--white); margin-bottom:3px; }
+.lang-native { font-size:0.8rem; color:rgba(255,255,255,0.45); }
 
-/* ═══════════════════════════════════════════════
-   FEATURES SECTION
-═══════════════════════════════════════════════ */
-#features { background: var(--gold-pale); }
-.features-header { text-align: center; max-width: 600px; margin: 0 auto 3.5rem; }
-.features-header .lead { margin: 0 auto; }
+/* ═══════════════════════════════════════
+   FEATURES
+═══════════════════════════════════════ */
+#features { background:var(--gold-pale); }
+.features-header { text-align:center; max-width:600px; margin:0 auto 3.5rem; }
+.features-header .lead { margin:0 auto; }
+.features-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.25rem; }
 
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.25rem;
-}
 .feat {
-  background: var(--white); border-radius: 18px;
-  padding: 2rem 1.85rem;
-  border: 1.5px solid var(--border);
-  transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
-  position: relative; overflow: hidden;
+  background:var(--white); border-radius:18px; padding:2rem 1.85rem;
+  border:1.5px solid var(--border); position:relative; overflow:hidden;
+  transition:transform 0.22s,box-shadow 0.22s,border-color 0.22s;
 }
-.feat:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 16px 42px rgba(28,26,23,0.08);
-  border-color: var(--gold-border);
-}
-.feat::after {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-deep) 100%);
-  opacity: 0; transition: opacity 0.22s;
-}
-.feat:hover::after { opacity: 1; }
+.feat:hover { transform:translateY(-5px); box-shadow:0 16px 42px rgba(28,26,23,0.08); border-color:var(--gold-border); }
+.feat::after { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--gold) 0%,var(--gold-deep) 100%); opacity:0; transition:opacity 0.22s; }
+.feat:hover::after { opacity:1; }
+.feat-ico { width:46px; height:46px; border-radius:12px; background:var(--gold-pale); border:1.5px solid var(--gold-border); font-size:1.2rem; display:flex; align-items:center; justify-content:center; margin-bottom:1.2rem; }
+.feat h3 { font-size:1rem; font-weight:700; margin-bottom:0.5rem; }
+.feat p  { font-size:0.875rem; color:var(--charcoal-m); line-height:1.68; }
+.feat-tag { display:inline-flex; align-items:center; gap:5px; background:var(--gold-mid); color:var(--gold-darker); border-radius:999px; padding:4px 10px; font-size:0.68rem; font-weight:700; margin-top:1.1rem; }
 
-.feat-ico {
-  width: 46px; height: 46px; border-radius: 12px;
-  background: var(--gold-pale); border: 1.5px solid var(--gold-border);
-  font-size: 1.2rem;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 1.2rem;
-}
-.feat h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--charcoal); }
-.feat p  { font-size: 0.875rem; color: var(--charcoal-m); line-height: 1.68; }
-.feat-tag {
-  display: inline-flex; align-items: center; gap: 5px;
-  background: var(--gold-mid); color: var(--gold-darker);
-  border-radius: 999px; padding: 4px 10px;
-  font-size: 0.68rem; font-weight: 700;
-  letter-spacing: 0.05em; margin-top: 1.1rem;
-}
+/* ═══════════════════════════════════════
+   FOR WORKERS
+═══════════════════════════════════════ */
+#workers { background:var(--white); }
+.workers-grid { display:grid; grid-template-columns:1fr 1fr; gap:clamp(2.5rem,5vw,5rem); align-items:start; }
+.workers-features { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:2.5rem; }
+.worker-feat { padding:1.25rem; background:var(--gold-pale); border-radius:var(--radius); border:1.5px solid var(--gold-border); transition:transform 0.2s,box-shadow 0.2s; }
+.worker-feat:hover { transform:translateY(-3px); box-shadow:0 8px 22px rgba(245,166,35,0.12); }
+.worker-feat .ico { font-size:1.2rem; margin-bottom:0.6rem; }
+.worker-feat h4 { font-size:0.88rem; font-weight:700; margin-bottom:0.3rem; }
+.worker-feat p  { font-size:0.8rem; color:var(--charcoal-m); line-height:1.55; }
 
-/* ═══════════════════════════════════════════════
-   FOR WORKERS / COMPLIANCE
-═══════════════════════════════════════════════ */
-#workers { background: var(--white); }
-.workers-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: clamp(2.5rem,5vw,5rem); align-items: start;
-}
-.workers-features { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2.5rem; }
-.worker-feat {
-  padding: 1.25rem;
-  background: var(--gold-pale); border-radius: var(--radius);
-  border: 1.5px solid var(--gold-border);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.worker-feat:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(245,166,35,0.12); }
-.worker-feat .ico { font-size: 1.2rem; margin-bottom: 0.6rem; }
-.worker-feat h4 { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.3rem; }
-.worker-feat p  { font-size: 0.8rem; color: var(--charcoal-m); line-height: 1.55; }
+.workers-visual { background:var(--charcoal); border-radius:22px; padding:2rem; color:var(--white); position:relative; overflow:hidden; box-shadow:0 20px 50px rgba(28,26,23,0.18); }
+.workers-visual::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 65% 60% at 85% 15%,rgba(245,166,35,0.18) 0%,transparent 60%); pointer-events:none; }
+.wv-label { font-size:0.62rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:1.25rem; }
+.wv-row { display:flex; align-items:center; justify-content:space-between; padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.07); }
+.wv-row:last-of-type { border-bottom:none; }
+.wv-name { font-size:0.88rem; font-weight:500; }
+.wv-sub  { font-size:0.7rem; color:rgba(255,255,255,0.38); margin-top:2px; }
+.wv-chip { font-size:0.65rem; font-weight:700; padding:3px 9px; border-radius:999px; }
+.wv-chip.ok  { background:rgba(46,204,138,0.18); color:#4de4a4; }
+.wv-chip.due { background:rgba(245,166,35,0.22); color:#f5c84d; }
+.wv-summary { margin-top:1.5rem; padding-top:1.25rem; border-top:1px solid rgba(255,255,255,0.08); }
+.wv-summary-label { font-size:0.62rem; color:rgba(255,255,255,0.3); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.75rem; }
+.wv-stats { display:flex; gap:1.5rem; }
+.wv-stat strong { display:block; font-size:1.55rem; font-weight:700; letter-spacing:-0.04em; }
+.wv-stat span   { font-size:0.62rem; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:0.06em; }
+.wv-stat.g strong { color:var(--green); }
+.wv-stat.w strong { color:var(--white); }
 
-.workers-visual {
-  background: var(--charcoal); border-radius: 22px;
-  padding: 2rem; color: var(--white);
-  position: relative; overflow: hidden;
-  box-shadow: 0 20px 50px rgba(28,26,23,0.18);
-}
-.workers-visual::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse 65% 60% at 85% 15%, rgba(245,166,35,0.18) 0%, transparent 60%);
-  pointer-events: none;
-}
-.wv-label {
-  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em;
-  text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 1.25rem;
-}
-.wv-row {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
-}
-.wv-row:last-of-type { border-bottom: none; }
-.wv-name { font-size: 0.88rem; font-weight: 500; }
-.wv-sub  { font-size: 0.7rem; color: rgba(255,255,255,0.38); margin-top: 2px; }
-.wv-chip { font-size: 0.65rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; }
-.wv-chip.ok   { background: rgba(46,204,138,0.18); color: #4de4a4; }
-.wv-chip.due  { background: rgba(245,166,35,0.22); color: #f5c84d; }
-
-.wv-summary {
-  margin-top: 1.5rem; padding-top: 1.25rem;
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-.wv-summary-label {
-  font-size: 0.62rem; color: rgba(255,255,255,0.3);
-  letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.75rem;
-}
-.wv-stats { display: flex; gap: 1.5rem; }
-.wv-stat strong { display: block; font-size: 1.55rem; font-weight: 700; letter-spacing: -0.04em; }
-.wv-stat span   { font-size: 0.62rem; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.06em; }
-.wv-stat.g strong { color: var(--green); }
-.wv-stat.w strong { color: var(--white); }
-
-/* ═══════════════════════════════════════════════
+/* ═══════════════════════════════════════
    FOUNDER'S MESSAGE
-═══════════════════════════════════════════════ */
+═══════════════════════════════════════ */
 #founders {
-  background: linear-gradient(135deg, var(--gold-pale) 0%, #FFF3D8 100%);
-  position: relative; overflow: hidden;
-  border-top: 1px solid var(--gold-border);
-  border-bottom: 1px solid var(--gold-border);
+  background:linear-gradient(135deg,var(--gold-pale) 0%,#FFF3D8 100%);
+  position:relative; overflow:hidden;
+  border-top:1px solid var(--gold-border); border-bottom:1px solid var(--gold-border);
 }
-#founders::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse 50% 60% at 95% 0%, rgba(245,166,35,0.14) 0%, transparent 55%);
-  pointer-events: none;
-}
-.founders-inner { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; text-align: center; }
-.founders-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.13em;
-  text-transform: uppercase; color: var(--gold-darker);
-  margin-bottom: 2rem;
-}
+#founders::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 50% 60% at 95% 0%,rgba(245,166,35,0.14) 0%,transparent 55%); pointer-events:none; }
+.founders-inner { position:relative; z-index:1; max-width:820px; margin:0 auto; text-align:center; }
+
+.founders-eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:0.7rem; font-weight:700; letter-spacing:0.13em; text-transform:uppercase; color:var(--gold-darker); margin-bottom:2rem; }
 .founders-quote {
-  font-family: var(--font-d);
-  font-size: clamp(1.15rem,2.6vw,1.65rem);
-  font-weight: 400; font-style: italic; line-height: 1.72;
-  color: var(--charcoal-s); margin-bottom: 2.5rem;
-  position: relative; padding: 0 0.5rem;
+  font-family:var(--font-d); font-size:clamp(1.15rem,2.6vw,1.65rem);
+  font-weight:400; font-style:italic; line-height:1.72; color:var(--charcoal-s);
+  margin-bottom:2.5rem; position:relative; padding:0 0.5rem;
 }
-.founders-quote::before {
-  content: '\201C'; font-family: var(--font-d);
-  font-size: 8rem; line-height: 1; font-style: normal;
-  color: rgba(245,166,35,0.20);
-  position: absolute; top: -3rem; left: -2rem; pointer-events: none;
-}
-.founders-attr { display: flex; align-items: center; justify-content: center; gap: 14px; }
-.founders-avatars { display: flex; }
-.f-avatar {
-  width: 46px; height: 46px; border-radius: 50%;
-  border: 2.5px solid var(--gold-border);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-d); font-size: 1rem; font-weight: 600;
-  color: var(--charcoal); margin-right: -12px;
-}
-.f-avatar:nth-child(1) { background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%); z-index: 2; }
-.f-avatar:nth-child(2) { background: #d4b882; z-index: 1; }
-.f-name  { font-weight: 700; font-size: 0.95rem; color: var(--charcoal); }
-.f-title { font-size: 0.78rem; color: var(--charcoal-m); margin-top: 2px; }
-.founders-pillars { display: flex; justify-content: center; gap: 1.75rem; margin-top: 3rem; flex-wrap: wrap; }
-.fp {
-  display: flex; align-items: center; gap: 7px;
-  font-size: 0.8rem; color: var(--charcoal-m);
-}
-.fp-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.founders-quote::before { content:'\201C'; font-family:var(--font-d); font-size:8rem; line-height:1; font-style:normal; color:rgba(245,166,35,0.20); position:absolute; top:-3rem; left:-2rem; pointer-events:none; }
+.founders-attr { display:flex; align-items:center; justify-content:center; gap:14px; }
+.founders-avatars { display:flex; }
+.f-avatar { width:46px; height:46px; border-radius:50%; border:2.5px solid var(--gold-border); display:flex; align-items:center; justify-content:center; font-family:var(--font-d); font-size:1rem; font-weight:600; color:var(--charcoal); margin-right:-12px; }
+.f-avatar:nth-child(1) { background:linear-gradient(135deg,var(--gold) 0%,var(--gold-deep) 100%); z-index:2; }
+.f-avatar:nth-child(2) { background:#d4b882; z-index:1; }
+.f-name  { font-weight:700; font-size:0.95rem; color:var(--charcoal); }
+.f-title { font-size:0.78rem; color:var(--charcoal-m); margin-top:2px; }
+.founders-pillars { display:flex; justify-content:center; gap:1.75rem; margin-top:3rem; flex-wrap:wrap; }
+.fp { display:flex; align-items:center; gap:7px; font-size:0.8rem; color:var(--charcoal-m); }
+.fp-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
 
-/* ═══════════════════════════════════════════════
-   CONTACT SECTION
-═══════════════════════════════════════════════ */
-#contact { background: var(--gold-pale); }
-.contact-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: clamp(2.5rem,5vw,5rem); align-items: start;
-}
-.contact-info-block h3 {
-  font-family: var(--font-d); font-size: 2rem; font-weight: 500;
-  letter-spacing: -0.02em; margin-bottom: 0.75rem;
-}
-.contact-info-block h3 em { font-style: italic; color: var(--gold-deep); }
-.contact-info-block > p { font-size: 0.95rem; color: var(--charcoal-s); line-height: 1.72; margin-bottom: 2rem; }
+/* ═══════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════ */
+#contact { background:var(--gold-pale); }
+.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:clamp(2.5rem,5vw,5rem); align-items:start; }
 
-.contact-details { display: flex; flex-direction: column; gap: 1rem; }
-.cd-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 1rem 1.1rem; background: var(--white);
-  border-radius: var(--radius); border: 1.5px solid var(--border);
-  transition: border-color 0.2s;
-}
-.cd-item:hover { border-color: var(--gold-border); }
-.cd-icon {
-  width: 36px; height: 36px; border-radius: 9px;
-  background: var(--gold-pale); border: 1.5px solid var(--gold-border);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1rem; flex-shrink: 0;
-}
-.cd-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--charcoal-m); }
-.cd-value { font-size: 0.9rem; color: var(--charcoal); margin-top: 2px; }
-.cd-value a { color: var(--gold-darker); text-decoration: none; font-weight: 600; }
-.cd-value a:hover { text-decoration: underline; }
+.contact-info-block h3 { font-family:var(--font-d); font-size:2rem; font-weight:500; letter-spacing:-0.02em; margin-bottom:0.75rem; }
+.contact-info-block h3 em { font-style:italic; color:var(--gold-deep); }
+.contact-info-block > p { font-size:0.95rem; color:var(--charcoal-s); line-height:1.72; margin-bottom:2rem; }
 
-.contact-card {
-  background: var(--white); border-radius: 20px;
-  padding: 2.25rem; border: 1.5px solid var(--border);
-  box-shadow: 0 10px 40px rgba(28,26,23,0.06);
-}
-.form-title {
-  font-family: var(--font-d); font-size: 1.4rem; font-weight: 500;
-  margin-bottom: 0.4rem; letter-spacing: -0.015em;
-}
-.form-note { font-size: 0.85rem; color: var(--charcoal-m); margin-bottom: 1.75rem; line-height: 1.5; }
+.contact-details { display:flex; flex-direction:column; gap:1rem; }
+.cd-item { display:flex; align-items:flex-start; gap:12px; padding:1rem 1.1rem; background:var(--white); border-radius:var(--radius); border:1.5px solid var(--border); transition:border-color 0.2s; }
+.cd-item:hover { border-color:var(--gold-border); }
+.cd-icon { width:36px; height:36px; border-radius:9px; background:var(--gold-pale); border:1.5px solid var(--gold-border); display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
+.cd-label { font-size:0.72rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; color:var(--charcoal-m); }
+.cd-value { font-size:0.9rem; color:var(--charcoal); margin-top:2px; }
+.cd-value a { color:var(--gold-darker); text-decoration:none; font-weight:600; }
+.cd-value a:hover { text-decoration:underline; }
 
-.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.fgroup { display: flex; flex-direction: column; gap: 5px; margin-bottom: 1.1rem; }
-.fgroup label { font-size: 0.78rem; font-weight: 700; color: var(--charcoal-s); letter-spacing: 0.02em; }
-.fgroup input, .fgroup select, .fgroup textarea {
-  width: 100%; padding: 10px 13px; border-radius: 10px;
-  border: 1.5px solid var(--border); background: var(--gold-pale);
-  font-family: var(--font-b); font-size: 0.88rem; color: var(--charcoal);
-  outline: none; transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-  -webkit-appearance: none; appearance: none;
+.contact-card { background:var(--white); border-radius:20px; padding:2.25rem; border:1.5px solid var(--border); box-shadow:0 10px 40px rgba(28,26,23,0.06); }
+.form-title { font-family:var(--font-d); font-size:1.4rem; font-weight:500; margin-bottom:0.4rem; }
+.form-note  { font-size:0.85rem; color:var(--charcoal-m); margin-bottom:1.75rem; line-height:1.5; }
+.form-row-2 { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+.fgroup { display:flex; flex-direction:column; gap:5px; margin-bottom:1.1rem; }
+.fgroup label { font-size:0.78rem; font-weight:700; color:var(--charcoal-s); letter-spacing:0.02em; }
+.fgroup input,.fgroup select,.fgroup textarea {
+  width:100%; padding:10px 13px; border-radius:10px;
+  border:1.5px solid var(--border); background:var(--gold-pale);
+  font-family:var(--font-b); font-size:0.88rem; color:var(--charcoal);
+  outline:none; transition:border-color 0.2s,box-shadow 0.2s,background 0.2s;
+  -webkit-appearance:none; appearance:none;
 }
-.fgroup input:focus, .fgroup select:focus, .fgroup textarea:focus {
-  border-color: var(--gold);
-  box-shadow: 0 0 0 4px rgba(245,166,35,0.14);
-  background: var(--white);
+.fgroup input:focus,.fgroup select:focus,.fgroup textarea:focus {
+  border-color:var(--gold); box-shadow:0 0 0 4px rgba(245,166,35,0.14); background:var(--white);
 }
-.fgroup textarea { resize: vertical; min-height: 100px; }
+.fgroup textarea { resize:vertical; min-height:100px; }
 .fgroup select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C97A10' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 13px center; padding-right: 34px;
-  background-color: var(--gold-pale);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C97A10' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 13px center; padding-right:34px; background-color:var(--gold-pale);
 }
 .form-btn {
-  width: 100%; padding: 12px;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
-  color: var(--charcoal); font-family: var(--font-b);
-  font-size: 0.92rem; font-weight: 700;
-  border: none; border-radius: 10px; cursor: pointer;
-  box-shadow: 0 4px 16px rgba(245,166,35,0.30);
-  transition: transform 0.15s, box-shadow 0.15s;
-  letter-spacing: 0.01em;
+  width:100%; padding:12px;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-deep) 100%);
+  color:var(--charcoal); font-family:var(--font-b); font-size:0.92rem; font-weight:700;
+  border:none; border-radius:10px; cursor:pointer;
+  box-shadow:0 4px 16px rgba(245,166,35,0.30); transition:transform 0.15s,box-shadow 0.15s;
 }
-.form-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,166,35,0.40); }
-.form-success {
-  display: none; text-align: center; padding: 2rem;
-  color: var(--charcoal); font-weight: 500;
-}
-.form-success .tick { font-size: 2.5rem; margin-bottom: 0.5rem; }
+.form-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(245,166,35,0.40); }
+.form-success { display:none; text-align:center; padding:2rem; }
+.form-success .tick { font-size:2.5rem; margin-bottom:0.5rem; }
 
-/* ═══════════════════════════════════════════════
+/* ═══════════════════════════════════════
    FOOTER
-═══════════════════════════════════════════════ */
-footer {
-  background: var(--charcoal);
-  color: rgba(255,255,255,0.55);
-  padding: 3rem clamp(1.25rem,5vw,3.5rem);
-}
-.footer-inner {
-  max-width: 1160px; margin: 0 auto;
-  display: flex; flex-wrap: wrap; align-items: center;
-  justify-content: space-between; gap: 1.5rem;
-}
-.footer-logo {
-  display: flex; align-items: center; gap: 10px;
-  font-family: var(--font-d); font-weight: 600; font-size: 1.1rem;
-  color: var(--white); text-decoration: none;
-}
-.footer-logo-mark {
-  width: 30px; height: 30px; border-radius: 8px;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
-  display: flex; align-items: center; justify-content: center;
-}
-.footer-links {
-  display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem;
-  list-style: none;
-}
-.footer-links a { font-size: 0.83rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
-.footer-links a:hover { color: var(--gold); }
-.footer-copy { font-size: 0.78rem; width: 100%; margin-top: 0.25rem; }
-.footer-ndis {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(245,166,35,0.12); border: 1px solid rgba(245,166,35,0.22);
-  border-radius: 999px; padding: 4px 12px;
-  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em;
-  text-transform: uppercase; color: var(--gold);
-}
+═══════════════════════════════════════ */
+footer { background:var(--charcoal); color:rgba(255,255,255,0.55); padding:3rem clamp(1.25rem,5vw,3.5rem); }
+.footer-inner { max-width:1160px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1.5rem; }
+.footer-logo { display:flex; align-items:center; gap:10px; font-family:var(--font-d); font-weight:600; font-size:1.1rem; color:var(--white); text-decoration:none; }
+.footer-logo-mark { width:30px; height:30px; border-radius:8px; background:linear-gradient(135deg,var(--gold) 0%,var(--gold-deep) 100%); display:flex; align-items:center; justify-content:center; }
+.footer-links { display:flex; flex-wrap:wrap; gap:0.5rem 1.75rem; list-style:none; }
+.footer-links a { font-size:0.83rem; color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.2s; }
+.footer-links a:hover { color:var(--gold); }
+.footer-copy { font-size:0.78rem; width:100%; margin-top:0.25rem; }
+.footer-ndis { display:inline-flex; align-items:center; gap:6px; background:rgba(245,166,35,0.12); border:1px solid rgba(245,166,35,0.22); border-radius:999px; padding:4px 12px; font-size:0.7rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold); }
 
-/* ═══════════════════════════════════════════════
-   SCROLL REVEAL ANIMATION
-═══════════════════════════════════════════════ */
-.reveal {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.62s cubic-bezier(0.22,1,0.36,1),
-              transform 0.62s cubic-bezier(0.22,1,0.36,1);
-}
-.reveal.in { opacity: 1; transform: none; }
+/* ═══════════════════════════════════════
+   REVEAL / ANIMATIONS
+═══════════════════════════════════════ */
+.reveal { opacity:0; transform:translateY(22px); transition:opacity 0.62s cubic-bezier(0.22,1,0.36,1),transform 0.62s cubic-bezier(0.22,1,0.36,1); }
+.reveal.in { opacity:1; transform:none; }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(18px); }
-  to   { opacity: 1; transform: none; }
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
+@keyframes fadeUp { from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;} }
+@keyframes fadeIn { from{opacity:0;}to{opacity:1;} }
 
-/* ═══════════════════════════════════════════════
+/* ═══════════════════════════════════════
    RESPONSIVE
-═══════════════════════════════════════════════ */
-@media (max-width: 900px) {
-  .nav-links { display: none; }
-  .hamburger { display: flex; }
-  .hero-grid  { grid-template-columns: 1fr; }
-  .hero-visual { max-width: 340px; margin: 0 auto; }
-  .about-grid, .workers-grid, .contact-grid { grid-template-columns: 1fr; }
-  .about-pillars { grid-template-columns: 1fr; }
-  .workers-features { grid-template-columns: 1fr 1fr; }
-  .phone-wrap { padding: 0 1rem; }
-  .lang-btn-main span.lang-label { display: none; }
+═══════════════════════════════════════ */
+@media(max-width:900px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-visual{max-width:300px;margin:0 auto;}
+  .about-grid,.workers-grid,.contact-grid{grid-template-columns:1fr;}
+  .about-pillars{grid-template-columns:1fr;}
+  .workers-features{grid-template-columns:1fr 1fr;}
 }
-
-@media (max-width: 600px) {
-  .form-row-2 { grid-template-columns: 1fr; }
-  .workers-features { grid-template-columns: 1fr; }
-  .lang-cards { grid-template-columns: repeat(2, 1fr); }
-  .footer-inner { flex-direction: column; align-items: flex-start; }
-  .hero-h1 { font-size: clamp(2.2rem,9vw,3rem); }
+@media(max-width:600px){
+  .form-row-2{grid-template-columns:1fr;}
+  .workers-features{grid-template-columns:1fr;}
+  .lang-cards{grid-template-columns:repeat(2,1fr);}
+  .footer-inner{flex-direction:column;align-items:flex-start;}
 }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════
-     NAVIGATION
-═══════════════════════════════════════════ -->
+<!-- NAV -->
 <nav id="mainNav">
   <a href="#" class="nav-logo" aria-label="With Light Home">
     <span class="logo-mark" aria-hidden="true">
-      <!-- Spark / Light SVG logo -->
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M9 2L10.2 7.8H16L11.4 11.2L13 17L9 13.6L5 17L6.6 11.2L2 7.8H7.8L9 2Z" fill="#1C1A17" stroke="#1C1A17" stroke-width="0.5" stroke-linejoin="round"/>
       </svg>
@@ -943,35 +638,28 @@ footer {
     With Light
   </a>
 
-  <ul class="nav-links" role="list">
+  <ul class="nav-links">
     <li><a href="#about" data-i18n="nav_about">About</a></li>
     <li><a href="#features" data-i18n="nav_features">Features</a></li>
     <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
     <li>
-      <!-- Language selector -->
       <div class="lang-wrap" id="langWrap">
         <button class="lang-btn-main" id="langToggleBtn" aria-haspopup="listbox" aria-expanded="false">
-          <svg class="lang-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-          </svg>
-          <span class="lang-label" id="currentLang">EN</span>
+          <svg class="lang-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span id="currentLang">EN</span>
           <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M1 1l4 4 4-4"/></svg>
         </button>
-        <div class="lang-dropdown" role="listbox" id="langDropdown">
-          <button class="lang-option active" data-lang="en" role="option"><span class="flag">🇦🇺</span> English</button>
-          <button class="lang-option" data-lang="ar" role="option"><span class="flag">🇦🇪</span> عربي</button>
-          <button class="lang-option" data-lang="vi" role="option"><span class="flag">🇻🇳</span> Tiếng Việt</button>
-          <button class="lang-option" data-lang="hi" role="option"><span class="flag">🇮🇳</span> हिन्दी</button>
-          <button class="lang-option" data-lang="sy" role="option"><span class="flag">🇮🇶</span> ܐܬܘܪܝܐ</button>
-          <button class="lang-option" data-lang="yue" role="option"><span class="flag">🇭🇰</span> 廣東話</button>
+        <div class="lang-dropdown" id="langDropdown">
+          <button class="lang-option active" data-lang="en"><span class="flag">🇦🇺</span> English</button>
+          <button class="lang-option" data-lang="ar"><span class="flag">🇦🇪</span> عربي</button>
+          <button class="lang-option" data-lang="vi"><span class="flag">🇻🇳</span> Tiếng Việt</button>
+          <button class="lang-option" data-lang="hi"><span class="flag">🇮🇳</span> हिन्दी</button>
+          <button class="lang-option" data-lang="sy"><span class="flag">🇮🇶</span> ܐܬܘܪܝܐ</button>
+          <button class="lang-option" data-lang="yue"><span class="flag">🇭🇰</span> 廣東話</button>
         </div>
       </div>
     </li>
-    <li>
-      <a href="https://app.withlight.com.au" target="_blank" rel="noopener" class="nav-app" data-i18n="nav_platform">
-        Platform Login →
-      </a>
-    </li>
+    <li><a href="https://app.withlight.com.au" target="_blank" rel="noopener" class="nav-app" data-i18n="nav_platform">Platform Login →</a></li>
   </ul>
 
   <button class="hamburger" id="burger" aria-label="Open navigation" aria-expanded="false">
@@ -980,10 +668,10 @@ footer {
 </nav>
 
 <!-- Mobile drawer -->
-<div class="nav-drawer" id="drawer" aria-label="Mobile navigation">
-  <a href="#about" onclick="closeDrawer()" data-i18n="nav_about">About</a>
+<div class="nav-drawer" id="drawer">
+  <a href="#about"    onclick="closeDrawer()" data-i18n="nav_about">About</a>
   <a href="#features" onclick="closeDrawer()" data-i18n="nav_features">Features</a>
-  <a href="#contact" onclick="closeDrawer()" data-i18n="nav_contact">Contact</a>
+  <a href="#contact"  onclick="closeDrawer()" data-i18n="nav_contact">Contact</a>
   <a href="https://app.withlight.com.au" target="_blank" rel="noopener" class="btn-gold" style="width:fit-content" data-i18n="nav_platform">Platform Login →</a>
   <div class="drawer-lang">
     <button class="drawer-lang-btn active" data-lang="en">🇦🇺 EN</button>
@@ -995,35 +683,23 @@ footer {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     HERO
-═══════════════════════════════════════════ -->
+<!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="inner hero-grid">
-
-    <!-- Text column -->
     <div class="hero-text">
       <div class="hero-kicker">
         <span class="kicker-dot"></span>
         <span data-i18n="hero_kicker">Social Work-Led NDIS Provider · South West Sydney</span>
       </div>
-
-      <h1 class="hero-h1" data-i18n-html="hero_h1">
-        Support that <em>illuminates</em><br/>the path forward.
-      </h1>
-
-      <p class="hero-sub" data-i18n="hero_sub">
-        Specialising in psychosocial disability and culturally safe care in South West Sydney.
-      </p>
-
+      <h1 class="hero-h1" data-i18n-html="hero_h1">Support that <em>illuminates</em><br/>the path forward.</h1>
+      <p class="hero-sub" data-i18n="hero_sub">Specialising in psychosocial disability and culturally safe care in South West Sydney.</p>
       <div class="hero-btns">
         <a href="#contact" class="btn-gold" data-i18n="hero_cta_primary">Get in Touch</a>
         <a href="#about"   class="btn-ghost" data-i18n="hero_cta_secondary">Our Approach</a>
       </div>
-
       <div class="hero-trust">
-        <div class="trust-avatars" aria-hidden="true">
+        <div class="trust-avatars">
           <div class="trust-avatar">T</div>
           <div class="trust-avatar">N</div>
           <div class="trust-avatar">S</div>
@@ -1032,19 +708,18 @@ footer {
       </div>
     </div>
 
-    <!-- Phone visual column -->
+    <!-- Phone mockup — matching real site exactly -->
     <div class="hero-visual">
       <div class="phone-wrap">
         <div class="phone-glow"></div>
-        <div class="phone-outer" role="img" aria-label="With Light app dashboard screenshot">
+        <div class="phone-outer" role="img" aria-label="With Light app dashboard">
           <div class="phone-screen">
             <div class="phone-notch"></div>
 
-            <!-- App header -->
             <div class="app-header">
               <div class="app-header-left">
                 <div class="app-logo-sm" aria-hidden="true">
-                  <svg width="12" height="12" viewBox="0 0 18 18" fill="none">
+                  <svg width="11" height="11" viewBox="0 0 18 18" fill="none">
                     <path d="M9 2L10.2 7.8H16L11.4 11.2L13 17L9 13.6L5 17L6.6 11.2L2 7.8H7.8L9 2Z" fill="#1C1A17" stroke-linejoin="round"/>
                   </svg>
                 </div>
@@ -1056,26 +731,14 @@ footer {
               </div>
             </div>
 
-            <!-- Stats row -->
             <div class="app-stats">
-              <div class="app-stat stat-gold">
-                <strong>12</strong>
-                <span>Active Shifts</span>
-              </div>
-              <div class="app-stat stat-green">
-                <strong>100%</strong>
-                <span>Compliant</span>
-              </div>
-              <div class="app-stat">
-                <strong>8</strong>
-                <span>D.A.P Notes</span>
-              </div>
+              <div class="app-stat stat-gold"><strong>12</strong><span>Active Shifts</span></div>
+              <div class="app-stat stat-green"><strong>100%</strong><span>Compliant</span></div>
+              <div class="app-stat"><strong>8</strong><span>D.A.P Notes</span></div>
             </div>
 
-            <!-- Section label -->
             <div class="app-section-label">Recent Shift</div>
 
-            <!-- Shift card — Michael Smith -->
             <div class="app-shift-card">
               <div class="shift-header">
                 <div class="shift-avatar">MS</div>
@@ -1089,61 +752,34 @@ footer {
                 </div>
               </div>
               <div class="shift-body">
-                <div class="shift-row">
-                  <span class="shift-icon">🕐</span>
-                  <span>09:00 AM — 1:00 PM · 4 hrs</span>
-                </div>
-                <div class="shift-row">
-                  <span class="shift-icon">📍</span>
-                  <span>GPS Verified · Liverpool NSW</span>
-                </div>
-                <div class="shift-row">
-                  <span class="shift-icon">✅</span>
-                  <span>All compliance docs valid</span>
-                </div>
+                <div class="shift-row"><span class="shift-icon">🕐</span><span>09:00 AM — 1:00 PM · 4 hrs</span></div>
+                <div class="shift-row"><span class="shift-icon">📍</span><span>GPS Verified · Liverpool NSW</span></div>
+                <div class="shift-row"><span class="shift-icon">✅</span><span>All compliance docs valid</span></div>
               </div>
             </div>
 
-            <!-- DAP badge -->
             <div class="dap-badge">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
               D.A.P Note Submitted · Clinical Quality ✓
             </div>
 
-            <!-- Mini nav -->
             <div class="app-mini-nav">
-              <div class="mini-nav-item active">
-                <span class="mini-nav-icon">🏠</span>
-                <span>Home</span>
-              </div>
-              <div class="mini-nav-item">
-                <span class="mini-nav-icon">👥</span>
-                <span>Shifts</span>
-              </div>
-              <div class="mini-nav-item">
-                <span class="mini-nav-icon">📋</span>
-                <span>Reports</span>
-              </div>
-              <div class="mini-nav-item">
-                <span class="mini-nav-icon">⚙️</span>
-                <span>Settings</span>
-              </div>
+              <div class="mini-nav-item active"><span class="mini-nav-icon">🏠</span><span>Home</span></div>
+              <div class="mini-nav-item"><span class="mini-nav-icon">👥</span><span>Shifts</span></div>
+              <div class="mini-nav-item"><span class="mini-nav-icon">📋</span><span>Reports</span></div>
+              <div class="mini-nav-item"><span class="mini-nav-icon">⚙️</span><span>Settings</span></div>
             </div>
-          </div><!-- /phone-screen -->
-        </div><!-- /phone-outer -->
-      </div><!-- /phone-wrap -->
-    </div><!-- /hero-visual -->
-
-  </div><!-- /inner -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     ABOUT
-═══════════════════════════════════════════ -->
+<!-- ABOUT -->
 <section id="about">
   <div class="inner">
     <div class="about-grid">
-
       <div class="about-left">
         <div class="about-badge reveal">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -1163,43 +799,23 @@ footer {
           <span class="about-tag">✦ NDIS Registered</span>
         </div>
       </div>
-
       <div class="about-right">
         <div class="about-quote reveal">
           <p data-i18n="about_quote">"We believe that the best support doesn't just respond to needs — it sees the whole person, their story, their family, and their future."</p>
           <cite data-i18n="about_cite">— Taha &amp; Nour, Co-Founders</cite>
         </div>
         <div class="about-pillars reveal">
-          <div class="pillar">
-            <div class="pillar-icon">🧠</div>
-            <h4 data-i18n="pillar1_h">Clinical Depth</h4>
-            <p data-i18n="pillar1_p">Every plan is reviewed and guided by a qualified Social Worker.</p>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">🌍</div>
-            <h4 data-i18n="pillar2_h">Culturally Safe</h4>
-            <p data-i18n="pillar2_p">Support delivered in your language, respecting your values.</p>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">🤝</div>
-            <h4 data-i18n="pillar3_h">Human Connection</h4>
-            <p data-i18n="pillar3_p">Real relationships — not just a rostered shift.</p>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">📍</div>
-            <h4 data-i18n="pillar4_h">Local Roots</h4>
-            <p data-i18n="pillar4_p">Built in &amp; for South West Sydney communities.</p>
-          </div>
+          <div class="pillar"><div class="pillar-icon">🧠</div><h4 data-i18n="pillar1_h">Clinical Depth</h4><p data-i18n="pillar1_p">Every plan is reviewed and guided by a qualified Social Worker.</p></div>
+          <div class="pillar"><div class="pillar-icon">🌍</div><h4 data-i18n="pillar2_h">Culturally Safe</h4><p data-i18n="pillar2_p">Support delivered in your language, respecting your values.</p></div>
+          <div class="pillar"><div class="pillar-icon">🤝</div><h4 data-i18n="pillar3_h">Human Connection</h4><p data-i18n="pillar3_p">Real relationships — not just a rostered shift.</p></div>
+          <div class="pillar"><div class="pillar-icon">📍</div><h4 data-i18n="pillar4_h">Local Roots</h4><p data-i18n="pillar4_p">Built in &amp; for South West Sydney communities.</p></div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     LANGUAGES
-═══════════════════════════════════════════ -->
+<!-- LANGUAGES -->
 <section id="languages">
   <div class="inner lang-section-inner">
     <div class="lang-header">
@@ -1208,43 +824,17 @@ footer {
       <p class="lead reveal" data-i18n="lang_lead">South West Sydney is one of Australia's most culturally diverse regions. We are proud to provide care, communication, and documentation in six community languages.</p>
     </div>
     <div class="lang-cards">
-      <div class="lang-card reveal" onclick="setLang('en')">
-        <span class="lang-flag">🇦🇺</span>
-        <div class="lang-name">English</div>
-        <div class="lang-native">Australian English</div>
-      </div>
-      <div class="lang-card reveal" onclick="setLang('ar')">
-        <span class="lang-flag">🇦🇪</span>
-        <div class="lang-name">Arabic</div>
-        <div class="lang-native rtl-card">العربية</div>
-      </div>
-      <div class="lang-card reveal" onclick="setLang('vi')">
-        <span class="lang-flag">🇻🇳</span>
-        <div class="lang-name">Vietnamese</div>
-        <div class="lang-native">Tiếng Việt</div>
-      </div>
-      <div class="lang-card reveal" onclick="setLang('hi')">
-        <span class="lang-flag">🇮🇳</span>
-        <div class="lang-name">Hindi</div>
-        <div class="lang-native">हिन्दी</div>
-      </div>
-      <div class="lang-card reveal" onclick="setLang('sy')">
-        <span class="lang-flag">🇮🇶</span>
-        <div class="lang-name">Assyrian</div>
-        <div class="lang-native rtl-card" style="direction:rtl">ܐܬܘܪܝܐ</div>
-      </div>
-      <div class="lang-card reveal" onclick="setLang('yue')">
-        <span class="lang-flag">🇭🇰</span>
-        <div class="lang-name">Cantonese</div>
-        <div class="lang-native">廣東話</div>
-      </div>
+      <div class="lang-card reveal" onclick="setLang('en')"><span class="lang-flag">🇦🇺</span><div class="lang-name">English</div><div class="lang-native">Australian English</div></div>
+      <div class="lang-card reveal" onclick="setLang('ar')"><span class="lang-flag">🇦🇪</span><div class="lang-name">Arabic</div><div class="lang-native" style="direction:rtl">العربية</div></div>
+      <div class="lang-card reveal" onclick="setLang('vi')"><span class="lang-flag">🇻🇳</span><div class="lang-name">Vietnamese</div><div class="lang-native">Tiếng Việt</div></div>
+      <div class="lang-card reveal" onclick="setLang('hi')"><span class="lang-flag">🇮🇳</span><div class="lang-name">Hindi</div><div class="lang-native">हिन्दी</div></div>
+      <div class="lang-card reveal" onclick="setLang('sy')"><span class="lang-flag">🇮🇶</span><div class="lang-name">Assyrian</div><div class="lang-native" style="direction:rtl">ܐܬܘܪܝܐ</div></div>
+      <div class="lang-card reveal" onclick="setLang('yue')"><span class="lang-flag">🇭🇰</span><div class="lang-name">Cantonese</div><div class="lang-native">廣東話</div></div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     FEATURES
-═══════════════════════════════════════════ -->
+<!-- FEATURES -->
 <section id="features">
   <div class="inner">
     <div class="features-header">
@@ -1252,58 +842,18 @@ footer {
       <h2 class="display reveal" data-i18n-html="feat_h2">Built for the <em>real work</em><br/>of NDIS support.</h2>
       <p class="lead reveal" data-i18n="feat_lead">Our platform was designed by support workers, for support workers — with the clinical oversight that families and coordinators can trust.</p>
     </div>
-
     <div class="features-grid">
-
-      <div class="feat reveal">
-        <div class="feat-ico">📝</div>
-        <h3 data-i18n="feat1_h">Clinical D.A.P Reporting</h3>
-        <p data-i18n="feat1_p">Structured Data, Action, Plan notes submitted digitally after every shift. Each note is reviewed within our social work quality framework — ensuring meaningful, auditable records.</p>
-        <div class="feat-tag">✦ <span data-i18n="feat1_tag">NDIS Audit Ready</span></div>
-      </div>
-
-      <div class="feat reveal">
-        <div class="feat-ico">📍</div>
-        <h3 data-i18n="feat2_h">Real-Time GPS Logs</h3>
-        <p data-i18n="feat2_p">Automatic shift start and end verification via GPS. Families and coordinators get transparent, timestamped location records — building trust through verified accountability.</p>
-        <div class="feat-tag">✦ <span data-i18n="feat2_tag">Live Verification</span></div>
-      </div>
-
-      <div class="feat reveal">
-        <div class="feat-ico">🌐</div>
-        <h3 data-i18n="feat3_h">Multi-Language Portal</h3>
-        <p data-i18n="feat3_p">The participant portal and all communications are available in English, Arabic, Vietnamese, Hindi, Assyrian, and Cantonese — removing language as a barrier to understanding your own plan.</p>
-        <div class="feat-tag">✦ <span data-i18n="feat3_tag">6 Languages</span></div>
-      </div>
-
-      <div class="feat reveal">
-        <div class="feat-ico">🚦</div>
-        <h3 data-i18n="feat4_h">Traffic Light Compliance</h3>
-        <p data-i18n="feat4_p">A simple green–amber–red system tracks worker document compliance in real time. Expiring certifications surface automatically — no manual chasing required.</p>
-        <div class="feat-tag">✦ <span data-i18n="feat4_tag">Automated Alerts</span></div>
-      </div>
-
-      <div class="feat reveal">
-        <div class="feat-ico">👨‍👩‍👧</div>
-        <h3 data-i18n="feat5_h">Family Transparency Dashboard</h3>
-        <p data-i18n="feat5_p">Families can securely view shift summaries, notes, and GPS check-ins through a dedicated portal — fostering confidence and open communication at every stage of care.</p>
-        <div class="feat-tag">✦ <span data-i18n="feat5_tag">Real-Time Access</span></div>
-      </div>
-
-      <div class="feat reveal">
-        <div class="feat-ico">📊</div>
-        <h3 data-i18n="feat6_h">Social Work Case Review</h3>
-        <p data-i18n="feat6_p">Monthly progress reviews conducted by our qualified Social Worker ensure your goals remain current, your plan is working, and adjustments are made proactively — not reactively.</p>
-        <div class="feat-tag">✦ <span data-i18n="feat6_tag">Qualifications-Led</span></div>
-      </div>
-
+      <div class="feat reveal"><div class="feat-ico">📝</div><h3 data-i18n="feat1_h">Clinical D.A.P Reporting</h3><p data-i18n="feat1_p">Structured Data, Action, Plan notes submitted digitally after every shift. Each note is reviewed within our social work quality framework — ensuring meaningful, auditable records.</p><div class="feat-tag">✦ <span data-i18n="feat1_tag">NDIS Audit Ready</span></div></div>
+      <div class="feat reveal"><div class="feat-ico">📍</div><h3 data-i18n="feat2_h">Real-Time GPS Logs</h3><p data-i18n="feat2_p">Automatic shift start and end verification via GPS. Families and coordinators get transparent, timestamped location records — building trust through verified accountability.</p><div class="feat-tag">✦ <span data-i18n="feat2_tag">Live Verification</span></div></div>
+      <div class="feat reveal"><div class="feat-ico">🌐</div><h3 data-i18n="feat3_h">Multi-Language Portal</h3><p data-i18n="feat3_p">The participant portal and all communications are available in English, Arabic, Vietnamese, Hindi, Assyrian, and Cantonese — removing language as a barrier to understanding your own plan.</p><div class="feat-tag">✦ <span data-i18n="feat3_tag">6 Languages</span></div></div>
+      <div class="feat reveal"><div class="feat-ico">🚦</div><h3 data-i18n="feat4_h">Traffic Light Compliance</h3><p data-i18n="feat4_p">A simple green–amber–red system tracks worker document compliance in real time. Expiring certifications surface automatically — no manual chasing required.</p><div class="feat-tag">✦ <span data-i18n="feat4_tag">Automated Alerts</span></div></div>
+      <div class="feat reveal"><div class="feat-ico">👨‍👩‍👧</div><h3 data-i18n="feat5_h">Family Transparency Dashboard</h3><p data-i18n="feat5_p">Families can securely view shift summaries, notes, and GPS check-ins through a dedicated portal — fostering confidence and open communication at every stage of care.</p><div class="feat-tag">✦ <span data-i18n="feat5_tag">Real-Time Access</span></div></div>
+      <div class="feat reveal"><div class="feat-ico">📊</div><h3 data-i18n="feat6_h">Social Work Case Review</h3><p data-i18n="feat6_p">Monthly progress reviews conducted by our qualified Social Worker ensure your goals remain current, your plan is working, and adjustments are made proactively — not reactively.</p><div class="feat-tag">✦ <span data-i18n="feat6_tag">Qualifications-Led</span></div></div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     FOR WORKERS
-═══════════════════════════════════════════ -->
+<!-- FOR WORKERS -->
 <section id="workers">
   <div class="inner">
     <div class="workers-grid">
@@ -1311,93 +861,42 @@ footer {
         <span class="tag reveal"><span class="tag-dot"></span><span data-i18n="workers_tag">For Support Workers</span></span>
         <h2 class="display reveal" data-i18n-html="workers_h2">Work with <em>clarity</em><br/>and confidence.</h2>
         <p class="lead reveal" data-i18n="workers_lead">With Light gives your team the tools, clinical supervision, and documentation support they need to do their best work — and stay compliant doing it.</p>
-
         <div class="workers-features reveal">
-          <div class="worker-feat">
-            <div class="ico">📱</div>
-            <h4 data-i18n="wf1_h">Easy Shift App</h4>
-            <p data-i18n="wf1_p">Clock in, log notes, and submit your D.A.P from your phone in minutes.</p>
-          </div>
-          <div class="worker-feat">
-            <div class="ico">🧭</div>
-            <h4 data-i18n="wf2_h">GPS Check-In</h4>
-            <p data-i18n="wf2_p">One-tap location verification keeps your shifts protected and documented.</p>
-          </div>
-          <div class="worker-feat">
-            <div class="ico">🎓</div>
-            <h4 data-i18n="wf3_h">Clinical Supervision</h4>
-            <p data-i18n="wf3_p">Regular supervision sessions led by our Social Worker — supporting your professional growth.</p>
-          </div>
-          <div class="worker-feat">
-            <div class="ico">🔔</div>
-            <h4 data-i18n="wf4_h">Doc Expiry Alerts</h4>
-            <p data-i18n="wf4_p">Automated reminders before your WWCC, police check, or certifications expire.</p>
-          </div>
+          <div class="worker-feat"><div class="ico">📱</div><h4 data-i18n="wf1_h">Easy Shift App</h4><p data-i18n="wf1_p">Clock in, log notes, and submit your D.A.P from your phone in minutes.</p></div>
+          <div class="worker-feat"><div class="ico">🧭</div><h4 data-i18n="wf2_h">GPS Check-In</h4><p data-i18n="wf2_p">One-tap location verification keeps your shifts protected and documented.</p></div>
+          <div class="worker-feat"><div class="ico">🎓</div><h4 data-i18n="wf3_h">Clinical Supervision</h4><p data-i18n="wf3_p">Regular supervision sessions led by our Social Worker — supporting your professional growth.</p></div>
+          <div class="worker-feat"><div class="ico">🔔</div><h4 data-i18n="wf4_h">Doc Expiry Alerts</h4><p data-i18n="wf4_p">Automated reminders before your WWCC, police check, or certifications expire.</p></div>
         </div>
       </div>
-
       <div class="workers-visual reveal">
         <div class="wv-label">Worker Compliance · Live</div>
-        <div class="wv-row">
-          <div><div class="wv-name">Ahmad R.</div><div class="wv-sub">Support Worker · Liverpool</div></div>
-          <span class="wv-chip ok">All Docs Valid</span>
-        </div>
-        <div class="wv-row">
-          <div><div class="wv-name">Sarah J.</div><div class="wv-sub">Support Worker · Fairfield</div></div>
-          <span class="wv-chip ok">All Docs Valid</span>
-        </div>
-        <div class="wv-row">
-          <div><div class="wv-name">Jordan Smith</div><div class="wv-sub">Support Worker · Bankstown</div></div>
-          <span class="wv-chip due">WWCC Due Soon</span>
-        </div>
+        <div class="wv-row"><div><div class="wv-name">Ahmad R.</div><div class="wv-sub">Support Worker · Liverpool</div></div><span class="wv-chip ok">All Docs Valid</span></div>
+        <div class="wv-row"><div><div class="wv-name">Sarah J.</div><div class="wv-sub">Support Worker · Fairfield</div></div><span class="wv-chip ok">All Docs Valid</span></div>
+        <div class="wv-row"><div><div class="wv-name">Jordan Smith</div><div class="wv-sub">Support Worker · Bankstown</div></div><span class="wv-chip due">WWCC Due Soon</span></div>
         <div class="wv-summary">
           <div class="wv-summary-label">Compliance Summary</div>
           <div class="wv-stats">
-            <div class="wv-stat g">
-              <strong>100%</strong>
-              <span>Docs Valid</span>
-            </div>
-            <div class="wv-stat w">
-              <strong>0</strong>
-              <span>Incidents</span>
-            </div>
-            <div class="wv-stat g">
-              <strong>✓</strong>
-              <span>NDIS Ready</span>
-            </div>
+            <div class="wv-stat g"><strong>100%</strong><span>Docs Valid</span></div>
+            <div class="wv-stat w"><strong>0</strong><span>Incidents</span></div>
+            <div class="wv-stat g"><strong>✓</strong><span>NDIS Ready</span></div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     FOUNDER'S MESSAGE
-═══════════════════════════════════════════ -->
+<!-- FOUNDER'S MESSAGE -->
 <section id="founders">
   <div class="inner founders-inner">
-    <div class="founders-eyebrow reveal">
-      <span class="tag-dot"></span>
-      <span data-i18n="founders_eyebrow">Why We Built With Light</span>
-    </div>
-
+    <div class="founders-eyebrow reveal"><span class="tag-dot"></span><span data-i18n="founders_eyebrow">Why We Built With Light</span></div>
     <blockquote class="founders-quote reveal" data-i18n="founders_quote">
       As NDIS providers ourselves, we saw a gap between complex, clunky software and the actual needs of families in South West Sydney. We didn't just want a database; we wanted a bridge. With Light was born from a need for bilingual transparency, GPS-verified safety, and a simple 'Traffic Light' system that keeps compliance from becoming a headache. We built it to support our team — and now we've built it to support yours.
     </blockquote>
-
     <div class="founders-attr reveal">
-      <div class="founders-avatars">
-        <div class="f-avatar">T</div>
-        <div class="f-avatar">N</div>
-      </div>
-      <div>
-        <div class="f-name" data-i18n="founders_name">Taha &amp; Nour</div>
-        <div class="f-title" data-i18n="founders_title">Co-Founders, With Light</div>
-      </div>
+      <div class="founders-avatars"><div class="f-avatar">T</div><div class="f-avatar">N</div></div>
+      <div><div class="f-name" data-i18n="founders_name">Taha &amp; Nour</div><div class="f-title" data-i18n="founders_title">Co-Founders, With Light</div></div>
     </div>
-
     <div class="founders-pillars reveal">
       <div class="fp"><span class="fp-dot" style="background:var(--green)"></span><span data-i18n="fp1">Bilingual Transparency</span></div>
       <div class="fp"><span class="fp-dot" style="background:var(--gold)"></span><span data-i18n="fp2">GPS-Verified Safety</span></div>
@@ -1406,61 +905,29 @@ footer {
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     CONTACT
-═══════════════════════════════════════════ -->
+<!-- CONTACT -->
 <section id="contact">
   <div class="inner">
     <div class="contact-grid">
-
       <div class="contact-info-block">
         <span class="tag reveal"><span class="tag-dot"></span><span data-i18n="contact_tag">Get In Touch</span></span>
         <h3 class="reveal" data-i18n-html="contact_h3">Ready to get <em>started?</em></h3>
         <p class="reveal" data-i18n="contact_lead">Whether you're a participant, family member, or support coordinator — we'd love to hear from you.</p>
-
         <div class="contact-details">
-          <div class="cd-item reveal">
-            <div class="cd-icon">✉️</div>
-            <div>
-              <div class="cd-label" data-i18n="contact_email_label">Email</div>
-              <div class="cd-value"><a href="mailto:hello@withlight.com.au">hello@withlight.com.au</a></div>
-            </div>
-          </div>
-          <div class="cd-item reveal">
-            <div class="cd-icon">📍</div>
-            <div>
-              <div class="cd-label" data-i18n="contact_location_label">Location</div>
-              <div class="cd-value">Liverpool, NSW 2170</div>
-            </div>
-          </div>
-          <div class="cd-item reveal">
-            <div class="cd-icon">💻</div>
-            <div>
-              <div class="cd-label" data-i18n="contact_platform_label">Platform</div>
-              <div class="cd-value"><a href="https://app.withlight.com.au" target="_blank" rel="noopener">app.withlight.com.au</a></div>
-            </div>
-          </div>
+          <div class="cd-item reveal"><div class="cd-icon">✉️</div><div><div class="cd-label" data-i18n="contact_email_label">Email</div><div class="cd-value"><a href="mailto:hello@withlight.com.au">hello@withlight.com.au</a></div></div></div>
+          <div class="cd-item reveal"><div class="cd-icon">📍</div><div><div class="cd-label" data-i18n="contact_location_label">Location</div><div class="cd-value">Liverpool, NSW 2170</div></div></div>
+          <div class="cd-item reveal"><div class="cd-icon">💻</div><div><div class="cd-label" data-i18n="contact_platform_label">Platform</div><div class="cd-value"><a href="https://app.withlight.com.au" target="_blank" rel="noopener">app.withlight.com.au</a></div></div></div>
         </div>
       </div>
-
       <div class="contact-card reveal">
         <h2 class="form-title" data-i18n="form_title">Send us a message</h2>
         <p class="form-note" data-i18n="form_note">We usually respond within one business day.</p>
         <form id="contactForm" onsubmit="handleForm(event)" novalidate>
           <div class="form-row-2">
-            <div class="fgroup">
-              <label for="fn" data-i18n="form_fn">First Name</label>
-              <input type="text" id="fn" placeholder="Nour" autocomplete="given-name" required/>
-            </div>
-            <div class="fgroup">
-              <label for="ln" data-i18n="form_ln">Last Name</label>
-              <input type="text" id="ln" placeholder="Ladkani" autocomplete="family-name" required/>
-            </div>
+            <div class="fgroup"><label for="fn" data-i18n="form_fn">First Name</label><input type="text" id="fn" placeholder="Nour" autocomplete="given-name" required/></div>
+            <div class="fgroup"><label for="ln" data-i18n="form_ln">Last Name</label><input type="text" id="ln" placeholder="Ladkani" autocomplete="family-name" required/></div>
           </div>
-          <div class="fgroup">
-            <label for="em" data-i18n="form_email">Email</label>
-            <input type="email" id="em" placeholder="you@email.com" autocomplete="email" required/>
-          </div>
+          <div class="fgroup"><label for="em" data-i18n="form_email">Email</label><input type="email" id="em" placeholder="you@email.com" autocomplete="email" required/></div>
           <div class="fgroup">
             <label for="role" data-i18n="form_role">I am a…</label>
             <select id="role" required>
@@ -1471,10 +938,7 @@ footer {
               <option data-i18n="form_role_4">Other</option>
             </select>
           </div>
-          <div class="fgroup">
-            <label for="msg" data-i18n="form_msg">Message</label>
-            <textarea id="msg" placeholder="How can we help?" required></textarea>
-          </div>
+          <div class="fgroup"><label for="msg" data-i18n="form_msg">Message</label><textarea id="msg" placeholder="How can we help?" required></textarea></div>
           <button type="submit" class="form-btn" id="formBtn" data-i18n="form_submit">Send Message</button>
         </form>
         <div class="form-success" id="formSuccess">
@@ -1483,25 +947,20 @@ footer {
           <p data-i18n="form_thanks_p">We'll be in touch within one business day.</p>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════════ -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <a href="#" class="footer-logo">
-      <span class="footer-logo-mark" aria-hidden="true">
-        <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
-          <path d="M9 2L10.2 7.8H16L11.4 11.2L13 17L9 13.6L5 17L6.6 11.2L2 7.8H7.8L9 2Z" fill="#1C1A17"/>
-        </svg>
+      <span class="footer-logo-mark">
+        <svg width="14" height="14" viewBox="0 0 18 18" fill="none"><path d="M9 2L10.2 7.8H16L11.4 11.2L13 17L9 13.6L5 17L6.6 11.2L2 7.8H7.8L9 2Z" fill="#1C1A17"/></svg>
       </span>
       With Light
     </a>
-    <ul class="footer-links" role="list">
+    <ul class="footer-links">
       <li><a href="#about" data-i18n="nav_about">About</a></li>
       <li><a href="#features" data-i18n="nav_features">Features</a></li>
       <li><a href="#workers">For Workers</a></li>
@@ -1517,428 +976,174 @@ footer {
   </div>
 </footer>
 
-<!-- ═══════════════════════════════════════════
-     JAVASCRIPT
-═══════════════════════════════════════════ -->
 <script>
-/* ─── i18n TRANSLATIONS ─────────────────────────────── */
+/* ─── TRANSLATIONS (full 6-language set) ─────────── */
 const TRANSLATIONS = {
   en: {
-    nav_about: "About",
-    nav_features: "Features",
-    nav_contact: "Contact",
-    nav_platform: "Platform Login →",
-    hero_kicker: "Social Work-Led NDIS Provider · South West Sydney",
-    hero_h1: "Support that <em>illuminates</em><br/>the path forward.",
-    hero_sub: "Specialising in psychosocial disability and culturally safe care in South West Sydney.",
-    hero_cta_primary: "Get in Touch",
-    hero_cta_secondary: "Our Approach",
-    hero_trust: "Trusted by participants & families across Liverpool & Fairfield",
-    about_tag: "About With Light",
-    about_h2: "Personalised care<br/>with <em>clinical depth.</em>",
-    about_p1: "With Light is an NDIS provider rooted in Social Work values — where every decision is guided by a qualified social worker who understands the full context of a person's life, not just their support plan.",
-    about_p2: "We specialise in psychosocial disability: the intersection of mental health, day-to-day function, and community connection. Our approach is trauma-informed, strengths-based, and deeply respectful of each person's cultural identity.",
-    about_p3: "Based in South West Sydney — Liverpool, Fairfield, Bankstown, Campbelltown — we bring culturally safe, bilingual support directly into the communities we serve.",
-    about_quote: '"We believe that the best support doesn\'t just respond to needs — it sees the whole person, their story, their family, and their future."',
-    about_cite: "— Taha & Nour, Co-Founders",
-    pillar1_h: "Clinical Depth", pillar1_p: "Every plan is reviewed and guided by a qualified Social Worker.",
-    pillar2_h: "Culturally Safe", pillar2_p: "Support delivered in your language, respecting your values.",
-    pillar3_h: "Human Connection", pillar3_p: "Real relationships — not just a rostered shift.",
-    pillar4_h: "Local Roots", pillar4_p: "Built in & for South West Sydney communities.",
-    lang_tag: "Our Community",
-    lang_h2: "Support in <em>your language,</em><br/>for your community.",
-    lang_lead: "South West Sydney is one of Australia's most culturally diverse regions. We are proud to provide care, communication, and documentation in six community languages.",
-    feat_tag: "Platform Features",
-    feat_h2: "Built for the <em>real work</em><br/>of NDIS support.",
-    feat_lead: "Our platform was designed by support workers, for support workers — with the clinical oversight that families and coordinators can trust.",
-    feat1_h: "Clinical D.A.P Reporting", feat1_p: "Structured Data, Action, Plan notes submitted digitally after every shift. Each note is reviewed within our social work quality framework — ensuring meaningful, auditable records.", feat1_tag: "NDIS Audit Ready",
-    feat2_h: "Real-Time GPS Logs", feat2_p: "Automatic shift start and end verification via GPS. Families and coordinators get transparent, timestamped location records — building trust through verified accountability.", feat2_tag: "Live Verification",
-    feat3_h: "Multi-Language Portal", feat3_p: "The participant portal and all communications are available in English, Arabic, Vietnamese, Hindi, Assyrian, and Cantonese — removing language as a barrier to understanding your own plan.", feat3_tag: "6 Languages",
-    feat4_h: "Traffic Light Compliance", feat4_p: "A simple green–amber–red system tracks worker document compliance in real time. Expiring certifications surface automatically — no manual chasing required.", feat4_tag: "Automated Alerts",
-    feat5_h: "Family Transparency Dashboard", feat5_p: "Families can securely view shift summaries, notes, and GPS check-ins through a dedicated portal — fostering confidence and open communication at every stage of care.", feat5_tag: "Real-Time Access",
-    feat6_h: "Social Work Case Review", feat6_p: "Monthly progress reviews conducted by our qualified Social Worker ensure your goals remain current, your plan is working, and adjustments are made proactively — not reactively.", feat6_tag: "Qualifications-Led",
-    workers_tag: "For Support Workers",
-    workers_h2: "Work with <em>clarity</em><br/>and confidence.",
-    workers_lead: "With Light gives your team the tools, clinical supervision, and documentation support they need to do their best work — and stay compliant doing it.",
-    wf1_h: "Easy Shift App", wf1_p: "Clock in, log notes, and submit your D.A.P from your phone in minutes.",
-    wf2_h: "GPS Check-In", wf2_p: "One-tap location verification keeps your shifts protected and documented.",
-    wf3_h: "Clinical Supervision", wf3_p: "Regular supervision sessions led by our Social Worker — supporting your professional growth.",
-    wf4_h: "Doc Expiry Alerts", wf4_p: "Automated reminders before your WWCC, police check, or certifications expire.",
-    founders_eyebrow: "Why We Built With Light",
-    founders_quote: "As NDIS providers ourselves, we saw a gap between complex, clunky software and the actual needs of families in South West Sydney. We didn't just want a database; we wanted a bridge. With Light was born from a need for bilingual transparency, GPS-verified safety, and a simple 'Traffic Light' system that keeps compliance from becoming a headache. We built it to support our team — and now we've built it to support yours.",
-    founders_name: "Taha & Nour", founders_title: "Co-Founders, With Light",
-    fp1: "Bilingual Transparency", fp2: "GPS-Verified Safety", fp3: "Compliance Without Headaches",
-    contact_tag: "Get In Touch",
-    contact_h3: "Ready to get <em>started?</em>",
-    contact_lead: "Whether you're a participant, family member, or support coordinator — we'd love to hear from you.",
-    contact_email_label: "Email", contact_location_label: "Location", contact_platform_label: "Platform",
-    form_title: "Send us a message", form_note: "We usually respond within one business day.",
-    form_fn: "First Name", form_ln: "Last Name", form_email: "Email",
-    form_role: "I am a…", form_role_placeholder: "Select one",
-    form_role_1: "Participant or Family Member", form_role_2: "Support Coordinator",
-    form_role_3: "Prospective Support Worker", form_role_4: "Other",
-    form_msg: "Message", form_submit: "Send Message",
-    form_thanks: "Thank you!", form_thanks_p: "We'll be in touch within one business day.",
+    nav_about:"About",nav_features:"Features",nav_contact:"Contact",nav_platform:"Platform Login →",
+    hero_kicker:"Social Work-Led NDIS Provider · South West Sydney",
+    hero_h1:"Support that <em>illuminates</em><br/>the path forward.",
+    hero_sub:"Specialising in psychosocial disability and culturally safe care in South West Sydney.",
+    hero_cta_primary:"Get in Touch",hero_cta_secondary:"Our Approach",
+    hero_trust:"Trusted by participants & families across Liverpool & Fairfield",
+    about_tag:"About With Light",about_h2:"Personalised care<br/>with <em>clinical depth.</em>",
+    about_p1:"With Light is an NDIS provider rooted in Social Work values — where every decision is guided by a qualified social worker who understands the full context of a person's life, not just their support plan.",
+    about_p2:"We specialise in psychosocial disability: the intersection of mental health, day-to-day function, and community connection. Our approach is trauma-informed, strengths-based, and deeply respectful of each person's cultural identity.",
+    about_p3:"Based in South West Sydney — Liverpool, Fairfield, Bankstown, Campbelltown — we bring culturally safe, bilingual support directly into the communities we serve.",
+    about_quote:'"We believe that the best support doesn\'t just respond to needs — it sees the whole person, their story, their family, and their future."',
+    about_cite:"— Taha & Nour, Co-Founders",
+    pillar1_h:"Clinical Depth",pillar1_p:"Every plan is reviewed and guided by a qualified Social Worker.",
+    pillar2_h:"Culturally Safe",pillar2_p:"Support delivered in your language, respecting your values.",
+    pillar3_h:"Human Connection",pillar3_p:"Real relationships — not just a rostered shift.",
+    pillar4_h:"Local Roots",pillar4_p:"Built in & for South West Sydney communities.",
+    lang_tag:"Our Community",lang_h2:"Support in <em>your language,</em><br/>for your community.",
+    lang_lead:"South West Sydney is one of Australia's most culturally diverse regions. We are proud to provide care, communication, and documentation in six community languages.",
+    feat_tag:"Platform Features",feat_h2:"Built for the <em>real work</em><br/>of NDIS support.",
+    feat_lead:"Our platform was designed by support workers, for support workers — with the clinical oversight that families and coordinators can trust.",
+    feat1_h:"Clinical D.A.P Reporting",feat1_p:"Structured Data, Action, Plan notes submitted digitally after every shift. Each note is reviewed within our social work quality framework — ensuring meaningful, auditable records.",feat1_tag:"NDIS Audit Ready",
+    feat2_h:"Real-Time GPS Logs",feat2_p:"Automatic shift start and end verification via GPS. Families and coordinators get transparent, timestamped location records — building trust through verified accountability.",feat2_tag:"Live Verification",
+    feat3_h:"Multi-Language Portal",feat3_p:"The participant portal and all communications are available in English, Arabic, Vietnamese, Hindi, Assyrian, and Cantonese — removing language as a barrier to understanding your own plan.",feat3_tag:"6 Languages",
+    feat4_h:"Traffic Light Compliance",feat4_p:"A simple green–amber–red system tracks worker document compliance in real time. Expiring certifications surface automatically — no manual chasing required.",feat4_tag:"Automated Alerts",
+    feat5_h:"Family Transparency Dashboard",feat5_p:"Families can securely view shift summaries, notes, and GPS check-ins through a dedicated portal — fostering confidence and open communication at every stage of care.",feat5_tag:"Real-Time Access",
+    feat6_h:"Social Work Case Review",feat6_p:"Monthly progress reviews conducted by our qualified Social Worker ensure your goals remain current, your plan is working, and adjustments are made proactively — not reactively.",feat6_tag:"Qualifications-Led",
+    workers_tag:"For Support Workers",workers_h2:"Work with <em>clarity</em><br/>and confidence.",
+    workers_lead:"With Light gives your team the tools, clinical supervision, and documentation support they need to do their best work — and stay compliant doing it.",
+    wf1_h:"Easy Shift App",wf1_p:"Clock in, log notes, and submit your D.A.P from your phone in minutes.",
+    wf2_h:"GPS Check-In",wf2_p:"One-tap location verification keeps your shifts protected and documented.",
+    wf3_h:"Clinical Supervision",wf3_p:"Regular supervision sessions led by our Social Worker — supporting your professional growth.",
+    wf4_h:"Doc Expiry Alerts",wf4_p:"Automated reminders before your WWCC, police check, or certifications expire.",
+    founders_eyebrow:"Why We Built With Light",
+    founders_quote:"As NDIS providers ourselves, we saw a gap between complex, clunky software and the actual needs of families in South West Sydney. We didn't just want a database; we wanted a bridge. With Light was born from a need for bilingual transparency, GPS-verified safety, and a simple 'Traffic Light' system that keeps compliance from becoming a headache. We built it to support our team — and now we've built it to support yours.",
+    founders_name:"Taha & Nour",founders_title:"Co-Founders, With Light",
+    fp1:"Bilingual Transparency",fp2:"GPS-Verified Safety",fp3:"Compliance Without Headaches",
+    contact_tag:"Get In Touch",contact_h3:"Ready to get <em>started?</em>",
+    contact_lead:"Whether you're a participant, family member, or support coordinator — we'd love to hear from you.",
+    contact_email_label:"Email",contact_location_label:"Location",contact_platform_label:"Platform",
+    form_title:"Send us a message",form_note:"We usually respond within one business day.",
+    form_fn:"First Name",form_ln:"Last Name",form_email:"Email",
+    form_role:"I am a…",form_role_placeholder:"Select one",
+    form_role_1:"Participant or Family Member",form_role_2:"Support Coordinator",
+    form_role_3:"Prospective Support Worker",form_role_4:"Other",
+    form_msg:"Message",form_submit:"Send Message",
+    form_thanks:"Thank you!",form_thanks_p:"We'll be in touch within one business day.",
   },
   ar: {
-    nav_about: "عن المنظمة",
-    nav_features: "المميزات",
-    nav_contact: "اتصل بنا",
-    nav_platform: "تسجيل الدخول للمنصة ←",
-    hero_kicker: "مزود NDIS بقيادة أخصائية اجتماعية · جنوب غرب سيدني",
-    hero_h1: "دعم يُنير<br/><em>الطريق إلى الأمام.</em>",
-    hero_sub: "متخصصون في الإعاقة النفسية الاجتماعية والرعاية الآمنة ثقافيًا في جنوب غرب سيدني.",
-    hero_cta_primary: "تواصل معنا",
-    hero_cta_secondary: "نهجنا",
-    hero_trust: "موثوق به من قِبل المشاركين والعائلات في ليفربول وفيرفيلد",
-    about_tag: "عن With Light",
-    about_h2: "رعاية <em>شخصية</em><br/>بعمق سريري.",
-    about_p1: "With Light مزود NDIS متجذر في قيم الخدمة الاجتماعية — حيث يسترشد كل قرار بأخصائي اجتماعي مؤهل يفهم السياق الكامل لحياة الشخص.",
-    about_p2: "نتخصص في الإعاقة النفسية الاجتماعية: التقاطع بين الصحة النفسية والوظيفة اليومية والتواصل المجتمعي.",
-    about_p3: "مقرنا في جنوب غرب سيدني — ليفربول، فيرفيلد، بانكستاون، كامبلتاون.",
-    about_quote: '"نؤمن بأن أفضل دعم لا يستجيب فقط للاحتياجات — بل يرى الشخص بأكمله."',
-    about_cite: "— طه ونور، المؤسسان",
-    pillar1_h: "العمق السريري", pillar1_p: "كل خطة يراجعها أخصائي اجتماعي مؤهل.",
-    pillar2_h: "آمن ثقافيًا", pillar2_p: "دعم بلغتك واحترام قيمك.",
-    pillar3_h: "التواصل الإنساني", pillar3_p: "علاقات حقيقية — ليس مجرد وردية عمل.",
-    pillar4_h: "جذور محلية", pillar4_p: "مبني من أجل مجتمعات جنوب غرب سيدني.",
-    lang_tag: "مجتمعنا",
-    lang_h2: "دعم <em>بلغتك</em><br/>لمجتمعك.",
-    lang_lead: "جنوب غرب سيدني من أكثر المناطق تنوعًا ثقافيًا في أستراليا. نفخر بتقديم الرعاية والتواصل بست لغات.",
-    feat_tag: "مميزات المنصة",
-    feat_h2: "مبني للعمل <em>الحقيقي</em><br/>لدعم NDIS.",
-    feat_lead: "صُممت منصتنا من قِبل عمال الدعم، لعمال الدعم.",
-    feat1_h: "تقارير D.A.P السريرية", feat1_p: "ملاحظات منظمة تُقدَّم رقميًا بعد كل وردية.", feat1_tag: "جاهز للمراجعة",
-    feat2_h: "سجلات GPS الفورية", feat2_p: "التحقق التلقائي من بدء الوردية وانتهائها عبر GPS.", feat2_tag: "تحقق فوري",
-    feat3_h: "بوابة متعددة اللغات", feat3_p: "بوابة المشاركين وجميع الاتصالات متاحة بست لغات.", feat3_tag: "٦ لغات",
-    feat4_h: "امتثال إشارة المرور", feat4_p: "نظام أخضر-أصفر-أحمر بسيط لتتبع امتثال الوثائق.", feat4_tag: "تنبيهات آلية",
-    feat5_h: "لوحة شفافية العائلة", feat5_p: "يمكن للعائلات عرض ملخصات الورديات وملاحظات GPS.", feat5_tag: "وصول فوري",
-    feat6_h: "مراجعة حالة الخدمة الاجتماعية", feat6_p: "مراجعات تقدم شهرية من قِبل أخصائي اجتماعي مؤهل.", feat6_tag: "بقيادة مؤهلة",
-    workers_tag: "لعمال الدعم",
-    workers_h2: "اعمل <em>بوضوح</em><br/>وثقة.",
-    workers_lead: "With Light يزود فريقك بالأدوات والإشراف السريري الذي يحتاجه للقيام بأفضل عمل.",
-    wf1_h: "تطبيق الوردية السهل", wf1_p: "سجّل الحضور وقدّم ملاحظات D.A.P من هاتفك في دقائق.",
-    wf2_h: "تسجيل GPS", wf2_p: "التحقق من الموقع بنقرة واحدة.",
-    wf3_h: "الإشراف السريري", wf3_p: "جلسات إشراف منتظمة بقيادة أخصائينا الاجتماعي.",
-    wf4_h: "تنبيهات انتهاء الوثائق", wf4_p: "تذكيرات آلية قبل انتهاء صلاحية شهاداتك.",
-    founders_eyebrow: "لماذا بنينا With Light",
-    founders_quote: "كمزودي NDIS بأنفسنا، رأينا فجوة بين البرمجيات المعقدة والاحتياجات الفعلية للعائلات في جنوب غرب سيدني. لم نرد مجرد قاعدة بيانات؛ أردنا جسرًا.",
-    founders_name: "طه ونور", founders_title: "المؤسسان، With Light",
-    fp1: "الشفافية ثنائية اللغة", fp2: "سلامة مُتحقق منها GPS", fp3: "امتثال بدون صداع",
-    contact_tag: "تواصل معنا",
-    contact_h3: "مستعد <em>للبدء؟</em>",
-    contact_lead: "سواء كنت مشاركًا أو فردًا من العائلة أو منسق دعم — يسعدنا سماعك.",
-    contact_email_label: "البريد الإلكتروني", contact_location_label: "الموقع", contact_platform_label: "المنصة",
-    form_title: "أرسل لنا رسالة", form_note: "نرد عادةً خلال يوم عمل واحد.",
-    form_fn: "الاسم الأول", form_ln: "اسم العائلة", form_email: "البريد الإلكتروني",
-    form_role: "أنا…", form_role_placeholder: "اختر",
-    form_role_1: "مشارك أو أحد أفراد الأسرة", form_role_2: "منسق دعم",
-    form_role_3: "عامل دعم محتمل", form_role_4: "أخرى",
-    form_msg: "الرسالة", form_submit: "إرسال الرسالة",
-    form_thanks: "شكرًا لك!", form_thanks_p: "سنتواصل معك خلال يوم عمل واحد.",
+    nav_about:"عن المنظمة",nav_features:"المميزات",nav_contact:"اتصل بنا",nav_platform:"تسجيل الدخول للمنصة ←",
+    hero_kicker:"مزود NDIS بقيادة أخصائية اجتماعية · جنوب غرب سيدني",
+    hero_h1:"دعم يُنير<br/><em>الطريق إلى الأمام.</em>",
+    hero_sub:"متخصصون في الإعاقة النفسية الاجتماعية والرعاية الآمنة ثقافيًا في جنوب غرب سيدني.",
+    hero_cta_primary:"تواصل معنا",hero_cta_secondary:"نهجنا",
+    hero_trust:"موثوق به من قِبل المشاركين والعائلات في ليفربول وفيرفيلد",
+    about_tag:"عن With Light",about_h2:"رعاية <em>شخصية</em><br/>بعمق سريري.",
+    about_p1:"With Light مزود NDIS متجذر في قيم الخدمة الاجتماعية — حيث يسترشد كل قرار بأخصائي اجتماعي مؤهل.",
+    about_p2:"نتخصص في الإعاقة النفسية الاجتماعية: التقاطع بين الصحة النفسية والوظيفة اليومية والتواصل المجتمعي.",
+    about_p3:"مقرنا في جنوب غرب سيدني — ليفربول، فيرفيلد، بانكستاون، كامبلتاون.",
+    about_quote:'"نؤمن بأن أفضل دعم لا يستجيب فقط للاحتياجات — بل يرى الشخص بأكمله."',
+    about_cite:"— طه ونور، المؤسسان",
+    pillar1_h:"العمق السريري",pillar1_p:"كل خطة يراجعها أخصائي اجتماعي مؤهل.",
+    pillar2_h:"آمن ثقافيًا",pillar2_p:"دعم بلغتك واحترام قيمك.",
+    pillar3_h:"التواصل الإنساني",pillar3_p:"علاقات حقيقية — ليس مجرد وردية عمل.",
+    pillar4_h:"جذور محلية",pillar4_p:"مبني من أجل مجتمعات جنوب غرب سيدني.",
+    lang_tag:"مجتمعنا",lang_h2:"دعم <em>بلغتك</em><br/>لمجتمعك.",
+    lang_lead:"جنوب غرب سيدني من أكثر المناطق تنوعًا ثقافيًا في أستراليا.",
+    feat_tag:"مميزات المنصة",feat_h2:"مبني للعمل <em>الحقيقي</em><br/>لدعم NDIS.",
+    feat_lead:"صُممت منصتنا من قِبل عمال الدعم، لعمال الدعم.",
+    feat1_h:"تقارير D.A.P السريرية",feat1_p:"ملاحظات منظمة تُقدَّم رقميًا بعد كل وردية.",feat1_tag:"جاهز للمراجعة",
+    feat2_h:"سجلات GPS الفورية",feat2_p:"التحقق التلقائي من بدء الوردية وانتهائها عبر GPS.",feat2_tag:"تحقق فوري",
+    feat3_h:"بوابة متعددة اللغات",feat3_p:"بوابة المشاركين وجميع الاتصالات متاحة بست لغات.",feat3_tag:"٦ لغات",
+    feat4_h:"امتثال إشارة المرور",feat4_p:"نظام أخضر-أصفر-أحمر بسيط لتتبع امتثال الوثائق.",feat4_tag:"تنبيهات آلية",
+    feat5_h:"لوحة شفافية العائلة",feat5_p:"يمكن للعائلات عرض ملخصات الورديات وملاحظات GPS.",feat5_tag:"وصول فوري",
+    feat6_h:"مراجعة حالة الخدمة الاجتماعية",feat6_p:"مراجعات تقدم شهرية من قِبل أخصائي اجتماعي مؤهل.",feat6_tag:"بقيادة مؤهلة",
+    workers_tag:"لعمال الدعم",workers_h2:"اعمل <em>بوضوح</em><br/>وثقة.",
+    workers_lead:"With Light يزود فريقك بالأدوات والإشراف السريري الذي يحتاجه.",
+    wf1_h:"تطبيق الوردية السهل",wf1_p:"سجّل الحضور وقدّم ملاحظات D.A.P من هاتفك في دقائق.",
+    wf2_h:"تسجيل GPS",wf2_p:"التحقق من الموقع بنقرة واحدة.",
+    wf3_h:"الإشراف السريري",wf3_p:"جلسات إشراف منتظمة بقيادة أخصائينا الاجتماعي.",
+    wf4_h:"تنبيهات انتهاء الوثائق",wf4_p:"تذكيرات آلية قبل انتهاء صلاحية شهاداتك.",
+    founders_eyebrow:"لماذا بنينا With Light",
+    founders_quote:"كمزودي NDIS بأنفسنا، رأينا فجوة بين البرمجيات المعقدة والاحتياجات الفعلية للعائلات في جنوب غرب سيدني. لم نرد مجرد قاعدة بيانات؛ أردنا جسرًا.",
+    founders_name:"طه ونور",founders_title:"المؤسسان، With Light",
+    fp1:"الشفافية ثنائية اللغة",fp2:"سلامة مُتحقق منها GPS",fp3:"امتثال بدون صداع",
+    contact_tag:"تواصل معنا",contact_h3:"مستعد <em>للبدء؟</em>",
+    contact_lead:"سواء كنت مشاركًا أو فردًا من العائلة أو منسق دعم — يسعدنا سماعك.",
+    contact_email_label:"البريد الإلكتروني",contact_location_label:"الموقع",contact_platform_label:"المنصة",
+    form_title:"أرسل لنا رسالة",form_note:"نرد عادةً خلال يوم عمل واحد.",
+    form_fn:"الاسم الأول",form_ln:"اسم العائلة",form_email:"البريد الإلكتروني",
+    form_role:"أنا…",form_role_placeholder:"اختر",
+    form_role_1:"مشارك أو أحد أفراد الأسرة",form_role_2:"منسق دعم",
+    form_role_3:"عامل دعم محتمل",form_role_4:"أخرى",
+    form_msg:"الرسالة",form_submit:"إرسال الرسالة",
+    form_thanks:"شكرًا لك!",form_thanks_p:"سنتواصل معك خلال يوم عمل واحد.",
   },
-  vi: {
-    nav_about: "Giới thiệu", nav_features: "Tính năng", nav_contact: "Liên hệ", nav_platform: "Đăng nhập nền tảng →",
-    hero_kicker: "Nhà cung cấp NDIS do Công tác Xã hội dẫn đầu · Tây Nam Sydney",
-    hero_h1: "Hỗ trợ <em>soi sáng</em><br/>con đường phía trước.",
-    hero_sub: "Chuyên về khuyết tật tâm lý xã hội và chăm sóc an toàn văn hóa tại Tây Nam Sydney.",
-    hero_cta_primary: "Liên hệ", hero_cta_secondary: "Phương pháp của chúng tôi",
-    hero_trust: "Được tin tưởng bởi người tham gia & gia đình tại Liverpool & Fairfield",
-    about_tag: "Về With Light",
-    about_h2: "Chăm sóc <em>cá nhân hóa</em><br/>với chiều sâu lâm sàng.",
-    about_p1: "With Light là nhà cung cấp NDIS bắt nguồn từ các giá trị Công tác Xã hội.",
-    about_p2: "Chúng tôi chuyên về khuyết tật tâm lý xã hội với cách tiếp cận dựa trên điểm mạnh.",
-    about_p3: "Đặt tại Tây Nam Sydney — Liverpool, Fairfield, Bankstown, Campbelltown.",
-    about_quote: '"Chúng tôi tin rằng sự hỗ trợ tốt nhất không chỉ đáp ứng nhu cầu — mà còn nhìn thấy toàn bộ con người."',
-    about_cite: "— Taha & Nour, Đồng sáng lập",
-    pillar1_h: "Chiều sâu lâm sàng", pillar1_p: "Mỗi kế hoạch được xem xét bởi Nhân viên Xã hội đủ tiêu chuẩn.",
-    pillar2_h: "An toàn văn hóa", pillar2_p: "Hỗ trợ bằng ngôn ngữ của bạn.",
-    pillar3_h: "Kết nối con người", pillar3_p: "Mối quan hệ thực sự.",
-    pillar4_h: "Gốc rễ địa phương", pillar4_p: "Xây dựng cho cộng đồng Tây Nam Sydney.",
-    lang_tag: "Cộng đồng của chúng tôi",
-    lang_h2: "Hỗ trợ <em>bằng ngôn ngữ của bạn,</em><br/>cho cộng đồng của bạn.",
-    lang_lead: "Tây Nam Sydney là một trong những khu vực đa văn hóa nhất của Úc.",
-    feat_tag: "Tính năng nền tảng",
-    feat_h2: "Xây dựng cho <em>công việc thực tế</em><br/>của hỗ trợ NDIS.",
-    feat_lead: "Nền tảng của chúng tôi được thiết kế bởi nhân viên hỗ trợ.",
-    feat1_h: "Báo cáo D.A.P Lâm sàng", feat1_p: "Ghi chú Dữ liệu, Hành động, Kế hoạch được nộp kỹ thuật số sau mỗi ca.", feat1_tag: "Sẵn sàng kiểm toán NDIS",
-    feat2_h: "Nhật ký GPS thời gian thực", feat2_p: "Xác minh tự động khi bắt đầu và kết thúc ca qua GPS.", feat2_tag: "Xác minh trực tiếp",
-    feat3_h: "Cổng đa ngôn ngữ", feat3_p: "Cổng người tham gia có sẵn bằng sáu ngôn ngữ.", feat3_tag: "6 ngôn ngữ",
-    feat4_h: "Tuân thủ đèn giao thông", feat4_p: "Hệ thống đơn giản theo dõi tuân thủ tài liệu.", feat4_tag: "Cảnh báo tự động",
-    feat5_h: "Bảng minh bạch gia đình", feat5_p: "Gia đình có thể xem tóm tắt ca và GPS.", feat5_tag: "Truy cập thời gian thực",
-    feat6_h: "Đánh giá trường hợp công tác xã hội", feat6_p: "Đánh giá tiến độ hàng tháng.", feat6_tag: "Dẫn đầu bởi bằng cấp",
-    workers_tag: "Cho nhân viên hỗ trợ",
-    workers_h2: "Làm việc <em>rõ ràng</em><br/>và tự tin.",
-    workers_lead: "With Light cung cấp cho nhóm của bạn các công cụ cần thiết.",
-    wf1_h: "Ứng dụng ca làm việc dễ dàng", wf1_p: "Điểm danh và nộp D.A.P từ điện thoại trong vài phút.",
-    wf2_h: "Điểm danh GPS", wf2_p: "Xác minh vị trí một chạm.",
-    wf3_h: "Giám sát lâm sàng", wf3_p: "Các buổi giám sát thường xuyên.",
-    wf4_h: "Cảnh báo hết hạn tài liệu", wf4_p: "Nhắc nhở tự động trước khi chứng chỉ hết hạn.",
-    founders_eyebrow: "Tại sao chúng tôi xây dựng With Light",
-    founders_quote: "Là những nhà cung cấp NDIS, chúng tôi thấy khoảng cách giữa phần mềm phức tạp và nhu cầu thực tế của các gia đình ở Tây Nam Sydney.",
-    founders_name: "Taha & Nour", founders_title: "Đồng sáng lập, With Light",
-    fp1: "Minh bạch song ngữ", fp2: "An toàn xác minh GPS", fp3: "Tuân thủ không đau đầu",
-    contact_tag: "Liên hệ", contact_h3: "Sẵn sàng <em>bắt đầu?</em>",
-    contact_lead: "Dù bạn là người tham gia, thành viên gia đình hay điều phối viên hỗ trợ.",
-    contact_email_label: "Email", contact_location_label: "Địa điểm", contact_platform_label: "Nền tảng",
-    form_title: "Gửi tin nhắn cho chúng tôi", form_note: "Chúng tôi thường trả lời trong một ngày làm việc.",
-    form_fn: "Tên", form_ln: "Họ", form_email: "Email",
-    form_role: "Tôi là…", form_role_placeholder: "Chọn một",
-    form_role_1: "Người tham gia hoặc thành viên gia đình", form_role_2: "Điều phối viên hỗ trợ",
-    form_role_3: "Nhân viên hỗ trợ tiềm năng", form_role_4: "Khác",
-    form_msg: "Tin nhắn", form_submit: "Gửi tin nhắn",
-    form_thanks: "Cảm ơn bạn!", form_thanks_p: "Chúng tôi sẽ liên hệ trong một ngày làm việc.",
-  },
-  hi: {
-    nav_about: "हमारे बारे में", nav_features: "विशेषताएं", nav_contact: "संपर्क", nav_platform: "प्लेटफ़ॉर्म लॉगिन →",
-    hero_kicker: "सोशल वर्क नेतृत्व NDIS प्रदाता · दक्षिण पश्चिम सिडनी",
-    hero_h1: "सहायता जो <em>रोशन करती है</em><br/>आगे का रास्ता।",
-    hero_sub: "दक्षिण पश्चिम सिडनी में मनोसामाजिक विकलांगता और सांस्कृतिक रूप से सुरक्षित देखभाल में विशेषज्ञता।",
-    hero_cta_primary: "संपर्क करें", hero_cta_secondary: "हमारा दृष्टिकोण",
-    hero_trust: "लिवरपूल और फेयरफील्ड में प्रतिभागियों और परिवारों द्वारा विश्वसनीय",
-    about_tag: "With Light के बारे में",
-    about_h2: "व्यक्तिगत देखभाल<br/><em>नैदानिक गहराई</em> के साथ।",
-    about_p1: "With Light एक NDIS प्रदाता है जो सामाजिक कार्य मूल्यों पर आधारित है।",
-    about_p2: "हम मनोसामाजिक विकलांगता में विशेषज्ञ हैं।",
-    about_p3: "दक्षिण पश्चिम सिडनी में आधारित — लिवरपूल, फेयरफील्ड, बैंकस्टाउन, कैम्पबेलटाउन।",
-    about_quote: '"हम मानते हैं कि सर्वोत्तम सहायता केवल जरूरतों का जवाब नहीं देती — यह पूरे व्यक्ति को देखती है।"',
-    about_cite: "— ताहा और नूर, सह-संस्थापक",
-    pillar1_h: "नैदानिक गहराई", pillar1_p: "प्रत्येक योजना योग्य सामाजिक कार्यकर्ता द्वारा समीक्षित।",
-    pillar2_h: "सांस्कृतिक सुरक्षा", pillar2_p: "आपकी भाषा में सहायता।",
-    pillar3_h: "मानवीय संबंध", pillar3_p: "वास्तविक संबंध।",
-    pillar4_h: "स्थानीय जड़ें", pillar4_p: "दक्षिण पश्चिम सिडनी समुदायों के लिए।",
-    lang_tag: "हमारा समुदाय",
-    lang_h2: "<em>आपकी भाषा</em> में सहायता,<br/>आपके समुदाय के लिए।",
-    lang_lead: "दक्षिण पश्चिम सिडनी ऑस्ट्रेलिया के सबसे सांस्कृतिक रूप से विविध क्षेत्रों में से एक है।",
-    feat_tag: "प्लेटफ़ॉर्म विशेषताएं",
-    feat_h2: "NDIS सहायता के <em>वास्तविक कार्य</em> के लिए निर्मित।",
-    feat_lead: "हमारा प्लेटफ़ॉर्म सहायता कर्मचारियों द्वारा डिज़ाइन किया गया था।",
-    feat1_h: "नैदानिक D.A.P रिपोर्टिंग", feat1_p: "प्रत्येक शिफ्ट के बाद डिजिटल रूप से नोट्स जमा किए जाते हैं।", feat1_tag: "NDIS ऑडिट तैयार",
-    feat2_h: "रियल-टाइम GPS लॉग", feat2_p: "GPS के माध्यम से स्वचालित सत्यापन।", feat2_tag: "लाइव सत्यापन",
-    feat3_h: "बहुभाषी पोर्टल", feat3_p: "छह भाषाओं में उपलब्ध।", feat3_tag: "6 भाषाएं",
-    feat4_h: "ट्रैफिक लाइट अनुपालन", feat4_p: "दस्तावेज़ अनुपालन की रियल-टाइम ट्रैकिंग।", feat4_tag: "स्वचालित अलर्ट",
-    feat5_h: "परिवार पारदर्शिता डैशबोर्ड", feat5_p: "परिवार शिफ्ट सारांश देख सकते हैं।", feat5_tag: "रियल-टाइम एक्सेस",
-    feat6_h: "सामाजिक कार्य केस समीक्षा", feat6_p: "मासिक प्रगति समीक्षा।", feat6_tag: "योग्यता-नेतृत्व",
-    workers_tag: "सहायता कर्मचारियों के लिए",
-    workers_h2: "<em>स्पष्टता</em> और आत्मविश्वास के साथ काम करें।",
-    workers_lead: "With Light आपकी टीम को आवश्यक उपकरण प्रदान करता है।",
-    wf1_h: "आसान शिफ्ट ऐप", wf1_p: "मिनटों में फोन से D.A.P जमा करें।",
-    wf2_h: "GPS चेक-इन", wf2_p: "एक टैप से स्थान सत्यापन।",
-    wf3_h: "नैदानिक पर्यवेक्षण", wf3_p: "नियमित पर्यवेक्षण सत्र।",
-    wf4_h: "दस्तावेज़ समाप्ति अलर्ट", wf4_p: "प्रमाणपत्र समाप्ति से पहले स्वचालित अनुस्मारक।",
-    founders_eyebrow: "हमने With Light क्यों बनाया",
-    founders_quote: "NDIS प्रदाताओं के रूप में, हमने जटिल सॉफ़्टवेयर और दक्षिण पश्चिम सिडनी परिवारों की वास्तविक जरूरतों के बीच एक अंतर देखा।",
-    founders_name: "ताहा और नूर", founders_title: "सह-संस्थापक, With Light",
-    fp1: "द्विभाषी पारदर्शिता", fp2: "GPS-सत्यापित सुरक्षा", fp3: "बिना सिरदर्द के अनुपालन",
-    contact_tag: "संपर्क करें", contact_h3: "शुरू करने के लिए <em>तैयार?</em>",
-    contact_lead: "चाहे आप प्रतिभागी हों, परिवार के सदस्य हों, या सहायता समन्वयक हों।",
-    contact_email_label: "ईमेल", contact_location_label: "स्थान", contact_platform_label: "प्लेटफ़ॉर्म",
-    form_title: "हमें संदेश भेजें", form_note: "हम आमतौर पर एक कार्यदिवस के भीतर जवाब देते हैं।",
-    form_fn: "पहला नाम", form_ln: "उपनाम", form_email: "ईमेल",
-    form_role: "मैं हूं…", form_role_placeholder: "एक चुनें",
-    form_role_1: "प्रतिभागी या परिवार का सदस्य", form_role_2: "सहायता समन्वयक",
-    form_role_3: "संभावित सहायता कर्मचारी", form_role_4: "अन्य",
-    form_msg: "संदेश", form_submit: "संदेश भेजें",
-    form_thanks: "धन्यवाद!", form_thanks_p: "हम एक कार्यदिवस के भीतर संपर्क करेंगे।",
-  },
-  sy: {
-    nav_about: "ܥܠ ܡܢ ܚܢܢ", nav_features: "ܨܘܪ̈ܬܐ", nav_contact: "ܡܫܬܒܩܢܘܬܐ", nav_platform: "ܥܠ ܦܠܛܦܘܪܡܐ ←",
-    hero_kicker: "ܡܙܘܕܢܐ ܕ NDIS ܒܪܝܫܝܘܬ ܦܘܠܚܢܐ ܟܢܫܝܐ · ܕܪܘܡ ܡܥܪܒ ܣܝܕܢܝ",
-    hero_h1: "ܣܢܕܬܐ ܕ<em>ܡܢܗܪܐ</em><br/>ܐܘܪܚܐ ܕܩܕܡ.",
-    hero_sub: "ܡܬܚܡܢܐ ܒܡܚܝܠܘܬܐ ܢܦܫܢܝܬ ܟܢܫܝܬܐ ܘܒܛܝܠܘܬܐ ܕܫܘܦܪ ܬܘܕܝܬܢܝ.",
-    hero_cta_primary: "ܐܙܠ ܒܬܘܩܦܐ", hero_cta_secondary: "ܛܟܣܢ",
-    hero_trust: "ܡܗܝܡܢ ܥܠܘܗܝ ܡܢ ܡܫܬܬܦ̈ܐ ܘܒ̈ܝܬܐ",
-    about_tag: "ܥܠ With Light",
-    about_h2: "ܒܛܝܠܘܬܐ <em>ܡܢ̈ܗܝܬܐ</em><br/>ܥܡ ܥܘܡܩܐ ܩܠܝܢܝܐ.",
-    about_p1: "With Light ܡܙܘܕܢܐ ܕ NDIS ܕܡܫܬܬܐ ܒܛܟ̈ܣܐ ܕܦܘܠܚܢܐ ܟܢܫܝܐ.",
-    about_p2: "ܡܬܚܡܢܐ ܒܡܚܝܠܘܬܐ ܢܦܫܢܝܬ ܟܢܫܝܬܐ.",
-    about_p3: "ܒܕܪܘܡ ܡܥܪܒ ܣܝܕܢܝ — ܠܝܒܪܦܘܠ، ܦܝܪܦܝܠܕ، ܒܢܟܣܬܘܢ.",
-    about_quote: '"ܡܗܝܡܢܢ ܕܣܢܕܬܐ ܕ̈ܒܝܫܬܐ ܠܐ ܣܢܕܐ ܒܠܚܘܕ ܥܠ ܣܢܝܩ̈ܘܬܐ — ܡܚܙܐ ܠܟܠܗ ܐܢܫܐ."',
-    about_cite: "— ܬܗܐ ܘܢܘܪ، ܡܫ̈ܬܐܣܢܐ",
-    pillar1_h: "ܥܘܡܩܐ ܩܠܝܢܝܐ", pillar1_p: "ܟܠ ܬܚܡܢܬܐ ܒܕܩܐ ܡܢ ܦܠܚܐ ܟܢܫܝܐ.",
-    pillar2_h: "ܫܘܦܪ ܬܘܕܝܬܢܝ", pillar2_p: "ܣܢܕܬܐ ܒܠܫܢܟ.",
-    pillar3_h: "ܩܘܫܪܐ ܐܢܫܝܐ", pillar3_p: "ܐܣܘ̈ܬܐ ܫܪ̈ܝܪܬܐ.",
-    pillar4_h: "ܥܩ̈ܪܐ ܡܩ̈ܘܡܝܐ", pillar4_p: "ܒܢܐ ܠܟܢ̈ܫܐ ܕܕܪܘܡ ܡܥܪܒ ܣܝܕܢܝ.",
-    lang_tag: "ܟܢܫܢ",
-    lang_h2: "ܣܢܕܬܐ <em>ܒܠܫܢܟ</em><br/>ܠܟܢܫܟ.",
-    lang_lead: "ܕܪܘܡ ܡܥܪܒ ܣܝܕܢܝ ܐܝܬܘܗܝ ܡܢ ܩܛ̈ܥܐ ܕܡܪ̈ܒܝܢܐ ܬܘܕܝܬܢܐܝܬ ܒܐܘܣܛܪܠܝܐ.",
-    feat_tag: "ܨܘܪ̈ܬܐ ܕܦܠܛܦܘܪܡܐ",
-    feat_h2: "ܒܢܝܐ ܠ<em>ܦܘܠܚܢܐ ܫܪܝܪܐ</em><br/>ܕܣܢܕ NDIS.",
-    feat_lead: "ܦܠܛܦܘܪܡܢ ܦܣܩ ܡܢ ܦ̈ܠܚܐ ܕܣܢܕܬܐ.",
-    feat1_h: "ܟܬܝܒܬܐ ܩܠܝܢܝܬܐ D.A.P", feat1_p: "ܪ̈ܫܘܡܐ ܫܘ̈ܪܝܬ ܒܬܪ ܟܠ ܡܫܡܫܬܐ.", feat1_tag: "ܡܥܬܕ ܠܒܕܩܬܐ",
-    feat2_h: "ܣܗ̈ܕܐ GPS ܚܝ̈ܐ", feat2_p: "ܫܘܪܬܐ ܡܢ GPS.", feat2_tag: "ܫܘܪܬܐ ܚܝܬܐ",
-    feat3_h: "ܦܘܪܬܐ ܕܣ̈ܓܝ ܠܫ̈ܢܐ", feat3_p: "ܒܫܬ ܠܫ̈ܢܐ.", feat3_tag: "٦ ܠܫ̈ܢܐ",
-    feat4_h: "ܙܒ̈ܢܐ ܕܦܪܕܘܣ ܐܣܬܗ", feat4_p: "ܢܛܪܬܐ ܕܦܘ̈ܩܕܢܐ.", feat4_tag: "ܫܘܚܠ̈ܦܐ ܗܘܓ̈ܝܐ",
-    feat5_h: "ܠܘ̈ܚܐ ܕܓܠܝܘܬܐ ܕܒ̈ܝܬܐ", feat5_p: "ܒ̈ܝܬܐ ܡܫܟܚܝܢ ܕܚܙܝܢ.", feat5_tag: "ܡܣܒܢܘܬܐ ܚܝܬܐ",
-    feat6_h: "ܒܕܩܬܐ ܕܟ̈ܐܣܐ ܟܢ̈ܫܝܐ", feat6_p: "ܒܕ̈ܩܬܐ ܝܪ̈ܚܝܬܐ.", feat6_tag: "ܪ̈ܝܫܢ ܒܕܡܝ̈ܘܬܐ",
-    workers_tag: "ܠܦ̈ܠܚܐ ܕܣܢܕܬܐ",
-    workers_h2: "ܦܠܚ ܒ<em>ܦܫܝܩܘܬܐ</em><br/>ܘܬܘܟܠܢܐ.",
-    workers_lead: "With Light ܝܗܒ ܠܣ̈ܝܦܐ ܕܣܢܕܬܐ ܥܣ̈ܩܐ.",
-    wf1_h: "ܦܪ̈ܡܬ ܡܫܡܫܬܐ", wf1_p: "ܫܘܕܪ D.A.P ܡܢ ܣܐܡܪܬܟ ܒܩ̈ܛܝ̈ܐ.",
-    wf2_h: "ܥܠ GPS", wf2_p: "ܫܘܪܬܐ ܕܐܬܪܐ.",
-    wf3_h: "ܪ̈ܝܫ ܩܠܝܢܝ", wf3_p: "ܟܢ̈ܘܫܝܐ ܕ̈ܩܢܛ ܡܢ ܐܟ̈ܝܠ ܟܢܫܝܐ.",
-    wf4_h: "ܫܘܚ̈ܠܦܐ ܕܡܘ̈ܦܐ", wf4_p: "ܕܟ̈ܪ̈ܐ ܗܘ̈ܓܝܐ.",
-    founders_eyebrow: "ܠܡܢܐ ܒܢܝܢ With Light",
-    founders_quote: "ܐܝܟ ܡܙ̈ܘܕܢܐ ܕ NDIS، ܚܙܝܢ ܦܘܪܫܢܐ ܒܝܬ ܦܪ̈ܡܬ ܫ̈ܘ̈ܠܛܢܐ ܘܣ̈ܢܝܩ̈ܘܬܐ ܕܒ̈ܝܬܐ.",
-    founders_name: "ܬܗܐ ܘܢܘܪ", founders_title: "ܡܫ̈ܬܐܣܢܐ، With Light",
-    fp1: "ܓܠܝܘܬܐ ܕ̈ܡܠܠ ܬܪ̈ܝܢ", fp2: "ܒܛܝܠܘܬܐ GPS", fp3: "ܦܘ̈ܩܕܢܐ ܕܠܐ ܦܘ̈ܠܚܢܐ",
-    contact_tag: "ܡܫܬܒܩܢܘܬܐ", contact_h3: "ܡܥܬܕ <em>ܕܫܪܝ?</em>",
-    contact_lead: "ܐܢ ܡܫܬܬܦܐ ܐܢܬ، ܡܢ ܒ̈ܝܬܐ، ܐܘ ܡܡܕܡ.",
-    contact_email_label: "ܐܝܡܝܠ", contact_location_label: "ܐܬܪܐ", contact_platform_label: "ܦܠܛܦܘܪܡܐ",
-    form_title: "ܫܠܚ ܒܣܝܡܘܬܐ", form_note: "ܡܙܕܩܐ ܝܘ̈ܡܐ ܕܦܘܠܚܢܐ.",
-    form_fn: "ܫܡܐ ܩܕܡܝܐ", form_ln: "ܫܡܐ ܕܒ̈ܝܬܐ", form_email: "ܐܝܡܝܠ",
-    form_role: "ܐܝܬܝ…", form_role_placeholder: "ܓܒܝ ܚܕ",
-    form_role_1: "ܡܫܬܬܦܐ ܐܘ ܡܢ ܒ̈ܝܬܐ", form_role_2: "ܡܡܕܡ ܕܣܢܕܬܐ",
-    form_role_3: "ܦܠܚܐ ܕܣܢܕܬܐ ܡܣܬܟܐ", form_role_4: "ܐ̈ܚܪ̈ܝܢ",
-    form_msg: "ܒܣܝܡܘܬܐ", form_submit: "ܫܠܚ ܒܣܝܡܘܬܐ",
-    form_thanks: "ܫܘܟܪܐ!", form_thanks_p: "ܢܒܥܐ ܒܝܘ̈ܡܐ ܕܦܘܠܚܢܐ.",
-  },
-  yue: {
-    nav_about: "關於我們", nav_features: "功能", nav_contact: "聯絡", nav_platform: "平台登入 →",
-    hero_kicker: "由社會工作者主導的NDIS提供商 · 悉尼西南區",
-    hero_h1: "照亮<em>前行</em>之路<br/>的支援。",
-    hero_sub: "專注於悉尼西南區的心理社會殘障及文化安全護理。",
-    hero_cta_primary: "聯絡我們", hero_cta_secondary: "我們的方針",
-    hero_trust: "深受利物浦及費爾菲爾德參與者和家庭信任",
-    about_tag: "關於 With Light",
-    about_h2: "具有<em>臨床深度</em>的<br/>個性化護理。",
-    about_p1: "With Light 是一家植根於社會工作價值觀的NDIS提供商。",
-    about_p2: "我們專注於心理社會殘障：心理健康、日常功能和社區聯繫的交匯點。",
-    about_p3: "總部位於悉尼西南區——利物浦、費爾菲爾德、班克斯鎮、坎貝爾頓。",
-    about_quote: '"我們相信最好的支援不只是回應需求——而是看到整個人。"',
-    about_cite: "— Taha 和 Nour，共同創辦人",
-    pillar1_h: "臨床深度", pillar1_p: "每個計劃都由合格的社會工作者審查。",
-    pillar2_h: "文化安全", pillar2_p: "用您的語言提供支援。",
-    pillar3_h: "人際聯繫", pillar3_p: "真實的關係。",
-    pillar4_h: "本地根基", pillar4_p: "為悉尼西南區社區而建。",
-    lang_tag: "我們的社區",
-    lang_h2: "以<em>您的語言</em><br/>為您的社區提供支援。",
-    lang_lead: "悉尼西南區是澳大利亞文化最多元化的地區之一。",
-    feat_tag: "平台功能",
-    feat_h2: "為NDIS支援的<em>實際工作</em><br/>而建。",
-    feat_lead: "我們的平台由支援工作者設計，為支援工作者服務。",
-    feat1_h: "臨床D.A.P報告", feat1_p: "每次輪班後以數字方式提交結構化記錄。", feat1_tag: "NDIS審計就緒",
-    feat2_h: "實時GPS日誌", feat2_p: "通過GPS自動驗證輪班開始和結束。", feat2_tag: "實時驗證",
-    feat3_h: "多語言門戶", feat3_p: "以六種語言提供。", feat3_tag: "6種語言",
-    feat4_h: "紅綠燈合規", feat4_p: "簡單的綠-黃-紅系統實時跟蹤合規性。", feat4_tag: "自動提醒",
-    feat5_h: "家庭透明儀表板", feat5_p: "家庭可以安全查看輪班摘要。", feat5_tag: "實時訪問",
-    feat6_h: "社會工作案例審查", feat6_p: "每月由我們的社會工作者進行進度審查。", feat6_tag: "資質主導",
-    workers_tag: "支援工作者",
-    workers_h2: "以<em>清晰</em>和信心<br/>工作。",
-    workers_lead: "With Light 為您的團隊提供所需工具。",
-    wf1_h: "簡易輪班應用", wf1_p: "在幾分鐘內從手機提交D.A.P。",
-    wf2_h: "GPS簽到", wf2_p: "一鍵位置驗證。",
-    wf3_h: "臨床督導", wf3_p: "定期督導課程。",
-    wf4_h: "文件到期提醒", wf4_p: "證書到期前自動提醒。",
-    founders_eyebrow: "我們為什麼建立 With Light",
-    founders_quote: "作為NDIS提供商，我們看到了複雜軟件與悉尼西南區家庭實際需求之間的差距。",
-    founders_name: "Taha 和 Nour", founders_title: "共同創辦人，With Light",
-    fp1: "雙語透明度", fp2: "GPS驗證安全", fp3: "無憂合規",
-    contact_tag: "聯絡我們", contact_h3: "準備好<em>開始了嗎？</em>",
-    contact_lead: "無論您是參與者、家庭成員還是支援協調員。",
-    contact_email_label: "電郵", contact_location_label: "地址", contact_platform_label: "平台",
-    form_title: "發送訊息給我們", form_note: "我們通常在一個工作日內回覆。",
-    form_fn: "名字", form_ln: "姓氏", form_email: "電郵",
-    form_role: "我是…", form_role_placeholder: "請選擇",
-    form_role_1: "參與者或家庭成員", form_role_2: "支援協調員",
-    form_role_3: "潛在支援工作者", form_role_4: "其他",
-    form_msg: "訊息", form_submit: "發送訊息",
-    form_thanks: "謝謝您！", form_thanks_p: "我們將在一個工作日內與您聯繫。",
-  }
+  vi:{nav_about:"Giới thiệu",nav_features:"Tính năng",nav_contact:"Liên hệ",nav_platform:"Đăng nhập nền tảng →",hero_kicker:"Nhà cung cấp NDIS do Công tác Xã hội dẫn đầu · Tây Nam Sydney",hero_h1:"Hỗ trợ <em>soi sáng</em><br/>con đường phía trước.",hero_sub:"Chuyên về khuyết tật tâm lý xã hội và chăm sóc an toàn văn hóa tại Tây Nam Sydney.",hero_cta_primary:"Liên hệ",hero_cta_secondary:"Phương pháp của chúng tôi",hero_trust:"Được tin tưởng bởi người tham gia & gia đình tại Liverpool & Fairfield",about_tag:"Về With Light",about_h2:"Chăm sóc <em>cá nhân hóa</em><br/>với chiều sâu lâm sàng.",about_p1:"With Light là nhà cung cấp NDIS bắt nguồn từ các giá trị Công tác Xã hội.",about_p2:"Chúng tôi chuyên về khuyết tật tâm lý xã hội với cách tiếp cận dựa trên điểm mạnh.",about_p3:"Đặt tại Tây Nam Sydney — Liverpool, Fairfield, Bankstown, Campbelltown.",about_quote:'"Chúng tôi tin rằng sự hỗ trợ tốt nhất không chỉ đáp ứng nhu cầu — mà còn nhìn thấy toàn bộ con người."',about_cite:"— Taha & Nour, Đồng sáng lập",pillar1_h:"Chiều sâu lâm sàng",pillar1_p:"Mỗi kế hoạch được xem xét bởi Nhân viên Xã hội.",pillar2_h:"An toàn văn hóa",pillar2_p:"Hỗ trợ bằng ngôn ngữ của bạn.",pillar3_h:"Kết nối con người",pillar3_p:"Mối quan hệ thực sự.",pillar4_h:"Gốc rễ địa phương",pillar4_p:"Xây dựng cho cộng đồng Tây Nam Sydney.",lang_tag:"Cộng đồng của chúng tôi",lang_h2:"Hỗ trợ <em>bằng ngôn ngữ của bạn,</em><br/>cho cộng đồng của bạn.",lang_lead:"Tây Nam Sydney là một trong những khu vực đa văn hóa nhất của Úc.",feat_tag:"Tính năng nền tảng",feat_h2:"Xây dựng cho <em>công việc thực tế</em><br/>của hỗ trợ NDIS.",feat_lead:"Nền tảng của chúng tôi được thiết kế bởi nhân viên hỗ trợ.",feat1_h:"Báo cáo D.A.P Lâm sàng",feat1_p:"Ghi chú được nộp kỹ thuật số sau mỗi ca.",feat1_tag:"Sẵn sàng kiểm toán NDIS",feat2_h:"Nhật ký GPS thời gian thực",feat2_p:"Xác minh tự động qua GPS.",feat2_tag:"Xác minh trực tiếp",feat3_h:"Cổng đa ngôn ngữ",feat3_p:"Có sẵn bằng sáu ngôn ngữ.",feat3_tag:"6 ngôn ngữ",feat4_h:"Tuân thủ đèn giao thông",feat4_p:"Hệ thống đơn giản theo dõi tuân thủ.",feat4_tag:"Cảnh báo tự động",feat5_h:"Bảng minh bạch gia đình",feat5_p:"Gia đình có thể xem tóm tắt ca.",feat5_tag:"Truy cập thời gian thực",feat6_h:"Đánh giá trường hợp công tác xã hội",feat6_p:"Đánh giá tiến độ hàng tháng.",feat6_tag:"Dẫn đầu bởi bằng cấp",workers_tag:"Cho nhân viên hỗ trợ",workers_h2:"Làm việc <em>rõ ràng</em><br/>và tự tin.",workers_lead:"With Light cung cấp cho nhóm của bạn các công cụ cần thiết.",wf1_h:"Ứng dụng ca làm việc",wf1_p:"Điểm danh và nộp D.A.P từ điện thoại.",wf2_h:"Điểm danh GPS",wf2_p:"Xác minh vị trí một chạm.",wf3_h:"Giám sát lâm sàng",wf3_p:"Các buổi giám sát thường xuyên.",wf4_h:"Cảnh báo hết hạn",wf4_p:"Nhắc nhở tự động trước khi chứng chỉ hết hạn.",founders_eyebrow:"Tại sao chúng tôi xây dựng With Light",founders_quote:"Là những nhà cung cấp NDIS, chúng tôi thấy khoảng cách giữa phần mềm phức tạp và nhu cầu thực tế của các gia đình ở Tây Nam Sydney.",founders_name:"Taha & Nour",founders_title:"Đồng sáng lập, With Light",fp1:"Minh bạch song ngữ",fp2:"An toàn xác minh GPS",fp3:"Tuân thủ không đau đầu",contact_tag:"Liên hệ",contact_h3:"Sẵn sàng <em>bắt đầu?</em>",contact_lead:"Dù bạn là người tham gia, thành viên gia đình hay điều phối viên.",contact_email_label:"Email",contact_location_label:"Địa điểm",contact_platform_label:"Nền tảng",form_title:"Gửi tin nhắn",form_note:"Chúng tôi thường trả lời trong một ngày làm việc.",form_fn:"Tên",form_ln:"Họ",form_email:"Email",form_role:"Tôi là…",form_role_placeholder:"Chọn một",form_role_1:"Người tham gia hoặc gia đình",form_role_2:"Điều phối viên hỗ trợ",form_role_3:"Nhân viên hỗ trợ tiềm năng",form_role_4:"Khác",form_msg:"Tin nhắn",form_submit:"Gửi tin nhắn",form_thanks:"Cảm ơn bạn!",form_thanks_p:"Chúng tôi sẽ liên hệ trong một ngày làm việc."},
+  hi:{nav_about:"हमारे बारे में",nav_features:"विशेषताएं",nav_contact:"संपर्क",nav_platform:"प्लेटफ़ॉर्म लॉगिन →",hero_kicker:"सोशल वर्क नेतृत्व NDIS प्रदाता · दक्षिण पश्चिम सिडनी",hero_h1:"सहायता जो <em>रोशन करती है</em><br/>आगे का रास्ता।",hero_sub:"दक्षिण पश्चिम सिडनी में मनोसामाजिक विकलांगता में विशेषज्ञता।",hero_cta_primary:"संपर्क करें",hero_cta_secondary:"हमारा दृष्टिकोण",hero_trust:"लिवरपूल और फेयरफील्ड में प्रतिभागियों और परिवारों द्वारा विश्वसनीय",about_tag:"With Light के बारे में",about_h2:"व्यक्तिगत देखभाल<br/><em>नैदानिक गहराई</em> के साथ।",about_p1:"With Light एक NDIS प्रदाता है जो सामाजिक कार्य मूल्यों पर आधारित है।",about_p2:"हम मनोसामाजिक विकलांगता में विशेषज्ञ हैं।",about_p3:"दक्षिण पश्चिम सिडनी में आधारित।",about_quote:'"हम मानते हैं कि सर्वोत्तम सहायता पूरे व्यक्ति को देखती है।"',about_cite:"— ताहा और नूर, सह-संस्थापक",pillar1_h:"नैदानिक गहराई",pillar1_p:"प्रत्येक योजना सामाजिक कार्यकर्ता द्वारा समीक्षित।",pillar2_h:"सांस्कृतिक सुरक्षा",pillar2_p:"आपकी भाषा में सहायता।",pillar3_h:"मानवीय संबंध",pillar3_p:"वास्तविक संबंध।",pillar4_h:"स्थानीय जड़ें",pillar4_p:"दक्षिण पश्चिम सिडनी समुदायों के लिए।",lang_tag:"हमारा समुदाय",lang_h2:"<em>आपकी भाषा</em> में सहायता।",lang_lead:"दक्षिण पश्चिम सिडनी ऑस्ट्रेलिया के सबसे विविध क्षेत्रों में से एक है।",feat_tag:"प्लेटफ़ॉर्म विशेषताएं",feat_h2:"NDIS के <em>वास्तविक कार्य</em> के लिए।",feat_lead:"हमारा प्लेटफ़ॉर्म सहायता कर्मचारियों द्वारा डिज़ाइन किया गया।",feat1_h:"D.A.P रिपोर्टिंग",feat1_p:"प्रत्येक शिफ्ट के बाद नोट्स जमा।",feat1_tag:"NDIS ऑडिट तैयार",feat2_h:"GPS लॉग",feat2_p:"GPS के माध्यम से सत्यापन।",feat2_tag:"लाइव सत्यापन",feat3_h:"बहुभाषी पोर्टल",feat3_p:"छह भाषाओं में उपलब्ध।",feat3_tag:"6 भाषाएं",feat4_h:"ट्रैफिक लाइट",feat4_p:"अनुपालन की रियल-टाइम ट्रैकिंग।",feat4_tag:"स्वचालित अलर्ट",feat5_h:"परिवार डैशबोर्ड",feat5_p:"परिवार शिफ्ट सारांश देख सकते हैं।",feat5_tag:"रियल-टाइम",feat6_h:"केस समीक्षा",feat6_p:"मासिक प्रगति समीक्षा।",feat6_tag:"योग्यता-नेतृत्व",workers_tag:"सहायता कर्मचारियों के लिए",workers_h2:"<em>स्पष्टता</em> और आत्मविश्वास के साथ।",workers_lead:"With Light आपकी टीम को आवश्यक उपकरण प्रदान करता है।",wf1_h:"शिफ्ट ऐप",wf1_p:"फोन से D.A.P जमा करें।",wf2_h:"GPS चेक-इन",wf2_p:"एक टैप से सत्यापन।",wf3_h:"नैदानिक पर्यवेक्षण",wf3_p:"नियमित पर्यवेक्षण सत्र।",wf4_h:"अलर्ट",wf4_p:"प्रमाणपत्र समाप्ति से पहले अनुस्मारक।",founders_eyebrow:"हमने With Light क्यों बनाया",founders_quote:"NDIS प्रदाताओं के रूप में, हमने जटिल सॉफ़्टवेयर और परिवारों की वास्तविक जरूरतों के बीच एक अंतर देखा।",founders_name:"ताहा और नूर",founders_title:"सह-संस्थापक, With Light",fp1:"द्विभाषी पारदर्शिता",fp2:"GPS-सत्यापित सुरक्षा",fp3:"बिना सिरदर्द के अनुपालन",contact_tag:"संपर्क करें",contact_h3:"शुरू करने के लिए <em>तैयार?</em>",contact_lead:"चाहे आप प्रतिभागी हों या परिवार के सदस्य।",contact_email_label:"ईमेल",contact_location_label:"स्थान",contact_platform_label:"प्लेटफ़ॉर्म",form_title:"संदेश भेजें",form_note:"हम एक कार्यदिवस के भीतर जवाब देते हैं।",form_fn:"पहला नाम",form_ln:"उपनाम",form_email:"ईमेल",form_role:"मैं हूं…",form_role_placeholder:"एक चुनें",form_role_1:"प्रतिभागी या परिवार",form_role_2:"सहायता समन्वयक",form_role_3:"संभावित कर्मचारी",form_role_4:"अन्य",form_msg:"संदेश",form_submit:"संदेश भेजें",form_thanks:"धन्यवाद!",form_thanks_p:"हम एक कार्यदिवस के भीतर संपर्क करेंगे।"},
+  sy:{nav_about:"ܥܠ ܡܢ ܚܢܢ",nav_features:"ܨܘܪ̈ܬܐ",nav_contact:"ܡܫܬܒܩܢܘܬܐ",nav_platform:"ܥܠ ܦܠܛܦܘܪܡܐ ←",hero_kicker:"ܡܙܘܕܢܐ ܕ NDIS · ܕܪܘܡ ܡܥܪܒ ܣܝܕܢܝ",hero_h1:"ܣܢܕܬܐ ܕ<em>ܡܢܗܪܐ</em><br/>ܐܘܪܚܐ ܕܩܕܡ.",hero_sub:"ܡܬܚܡܢܐ ܒܡܚܝܠܘܬܐ ܢܦܫܢܝܬ ܟܢܫܝܬܐ.",hero_cta_primary:"ܐܙܠ ܒܬܘܩܦܐ",hero_cta_secondary:"ܛܟܣܢ",hero_trust:"ܡܗܝܡܢ ܥܠܘܗܝ ܡܢ ܡܫܬܬܦ̈ܐ ܘܒ̈ܝܬܐ",about_tag:"ܥܠ With Light",about_h2:"ܒܛܝܠܘܬܐ <em>ܡܢ̈ܗܝܬܐ</em>.",about_p1:"With Light ܡܙܘܕܢܐ ܕ NDIS.",about_p2:"ܡܬܚܡܢܐ ܒܡܚܝܠܘܬܐ ܢܦܫܢܝܬ ܟܢܫܝܬܐ.",about_p3:"ܒܕܪܘܡ ܡܥܪܒ ܣܝܕܢܝ.",about_quote:'"ܡܗܝܡܢܢ ܕܣܢܕܬܐ ܕ̈ܒܝܫܬܐ ܡܚܙܐ ܠܟܠܗ ܐܢܫܐ."',about_cite:"— ܬܗܐ ܘܢܘܪ، ܡܫ̈ܬܐܣܢܐ",pillar1_h:"ܥܘܡܩܐ ܩܠܝܢܝܐ",pillar1_p:"ܟܠ ܬܚܡܢܬܐ ܒܕܩܐ ܡܢ ܦܠܚܐ ܟܢܫܝܐ.",pillar2_h:"ܫܘܦܪ ܬܘܕܝܬܢܝ",pillar2_p:"ܣܢܕܬܐ ܒܠܫܢܟ.",pillar3_h:"ܩܘܫܪܐ ܐܢܫܝܐ",pillar3_p:"ܐܣܘ̈ܬܐ ܫܪ̈ܝܪܬܐ.",pillar4_h:"ܥܩ̈ܪܐ ܡܩ̈ܘܡܝܐ",pillar4_p:"ܒܢܐ ܠܟܢ̈ܫܐ ܕܕܪܘܡ ܡܥܪܒ ܣܝܕܢܝ.",lang_tag:"ܟܢܫܢ",lang_h2:"ܣܢܕܬܐ <em>ܒܠܫܢܟ</em>.",lang_lead:"ܕܪܘܡ ܡܥܪܒ ܣܝܕܢܝ ܡܢ ܩܛ̈ܥܐ ܕܡܪ̈ܒܝܢܐ ܬܘܕܝܬܢܐܝܬ.",feat_tag:"ܨܘܪ̈ܬܐ",feat_h2:"ܒܢܝܐ ܠ<em>ܦܘܠܚܢܐ ܫܪܝܪܐ</em>.",feat_lead:"ܦܠܛܦܘܪܡܢ ܦܣܩ ܡܢ ܦ̈ܠܚܐ.",feat1_h:"ܟܬܝܒܬܐ D.A.P",feat1_p:"ܪ̈ܫܘܡܐ ܒܬܪ ܟܠ ܡܫܡܫܬܐ.",feat1_tag:"ܡܥܬܕ",feat2_h:"GPS",feat2_p:"ܫܘܪܬܐ ܡܢ GPS.",feat2_tag:"ܫܘܪܬܐ ܚܝܬܐ",feat3_h:"ܦܘܪܬܐ ܕܣ̈ܓܝ ܠܫ̈ܢܐ",feat3_p:"ܒܫܬ ܠܫ̈ܢܐ.",feat3_tag:"٦ ܠܫ̈ܢܐ",feat4_h:"ܙܒ̈ܢܐ ܕܦܪܕܘܣ",feat4_p:"ܢܛܪܬܐ ܕܦܘ̈ܩܕܢܐ.",feat4_tag:"ܫܘܚܠ̈ܦܐ ܗܘܓ̈ܝܐ",feat5_h:"ܠܘ̈ܚܐ ܕܒ̈ܝܬܐ",feat5_p:"ܒ̈ܝܬܐ ܡܫܟܚܝܢ ܕܚܙܝܢ.",feat5_tag:"ܡܣܒܢܘܬܐ ܚܝܬܐ",feat6_h:"ܒܕܩܬܐ ܕܟ̈ܐܣܐ",feat6_p:"ܒܕ̈ܩܬܐ ܝܪ̈ܚܝܬܐ.",feat6_tag:"ܪ̈ܝܫܢ",workers_tag:"ܠܦ̈ܠܚܐ",workers_h2:"ܦܠܚ ܒ<em>ܦܫܝܩܘܬܐ</em>.",workers_lead:"With Light ܝܗܒ ܥܣ̈ܩܐ.",wf1_h:"ܦܪ̈ܡܬ",wf1_p:"ܫܘܕܪ D.A.P ܡܢ ܣܐܡܪܬܟ.",wf2_h:"GPS",wf2_p:"ܫܘܪܬܐ ܕܐܬܪܐ.",wf3_h:"ܪ̈ܝܫ ܩܠܝܢܝ",wf3_p:"ܟܢ̈ܘܫܝܐ ܕ̈ܩܢܛ.",wf4_h:"ܫܘܚ̈ܠܦܐ",wf4_p:"ܕܟ̈ܪ̈ܐ ܗܘ̈ܓܝܐ.",founders_eyebrow:"ܠܡܢܐ ܒܢܝܢ With Light",founders_quote:"ܐܝܟ ܡܙ̈ܘܕܢܐ ܕ NDIS، ܚܙܝܢ ܦܘܪܫܢܐ ܒܝܬ ܦܪ̈ܡܬ ܘܣ̈ܢܝܩ̈ܘܬܐ ܕܒ̈ܝܬܐ.",founders_name:"ܬܗܐ ܘܢܘܪ",founders_title:"ܡܫ̈ܬܐܣܢܐ، With Light",fp1:"ܓܠܝܘܬܐ ܕ̈ܡܠܠ ܬܪ̈ܝܢ",fp2:"ܒܛܝܠܘܬܐ GPS",fp3:"ܦܘ̈ܩܕܢܐ ܕܠܐ ܦܘ̈ܠܚܢܐ",contact_tag:"ܡܫܬܒܩܢܘܬܐ",contact_h3:"ܡܥܬܕ <em>ܕܫܪܝ?</em>",contact_lead:"ܐܢ ܡܫܬܬܦܐ ܐܢܬ ܐܘ ܡܢ ܒ̈ܝܬܐ.",contact_email_label:"ܐܝܡܝܠ",contact_location_label:"ܐܬܪܐ",contact_platform_label:"ܦܠܛܦܘܪܡܐ",form_title:"ܫܠܚ ܒܣܝܡܘܬܐ",form_note:"ܡܙܕܩܐ ܝܘ̈ܡܐ.",form_fn:"ܫܡܐ ܩܕܡܝܐ",form_ln:"ܫܡܐ ܕܒ̈ܝܬܐ",form_email:"ܐܝܡܝܠ",form_role:"ܐܝܬܝ…",form_role_placeholder:"ܓܒܝ",form_role_1:"ܡܫܬܬܦܐ ܐܘ ܡܢ ܒ̈ܝܬܐ",form_role_2:"ܡܡܕܡ",form_role_3:"ܦܠܚܐ ܡܣܬܟܐ",form_role_4:"ܐ̈ܚܪ̈ܝܢ",form_msg:"ܒܣܝܡܘܬܐ",form_submit:"ܫܠܚ",form_thanks:"ܫܘܟܪܐ!",form_thanks_p:"ܢܒܥܐ ܒܝܘ̈ܡܐ."},
+  yue:{nav_about:"關於我們",nav_features:"功能",nav_contact:"聯絡",nav_platform:"平台登入 →",hero_kicker:"由社會工作者主導的NDIS提供商 · 悉尼西南區",hero_h1:"照亮<em>前行</em>之路<br/>的支援。",hero_sub:"專注於悉尼西南區的心理社會殘障及文化安全護理。",hero_cta_primary:"聯絡我們",hero_cta_secondary:"我們的方針",hero_trust:"深受利物浦及費爾菲爾德參與者和家庭信任",about_tag:"關於 With Light",about_h2:"具有<em>臨床深度</em>的<br/>個性化護理。",about_p1:"With Light 是一家植根於社會工作價值觀的NDIS提供商。",about_p2:"我們專注於心理社會殘障。",about_p3:"總部位於悉尼西南區。",about_quote:'"我們相信最好的支援能看到整個人。"',about_cite:"— Taha 和 Nour，共同創辦人",pillar1_h:"臨床深度",pillar1_p:"每個計劃都由社會工作者審查。",pillar2_h:"文化安全",pillar2_p:"用您的語言提供支援。",pillar3_h:"人際聯繫",pillar3_p:"真實的關係。",pillar4_h:"本地根基",pillar4_p:"為悉尼西南區社區而建。",lang_tag:"我們的社區",lang_h2:"以<em>您的語言</em><br/>為您的社區提供支援。",lang_lead:"悉尼西南區是澳大利亞文化最多元化的地區之一。",feat_tag:"平台功能",feat_h2:"為NDIS支援的<em>實際工作</em><br/>而建。",feat_lead:"我們的平台由支援工作者設計。",feat1_h:"D.A.P報告",feat1_p:"每次輪班後提交記錄。",feat1_tag:"NDIS審計就緒",feat2_h:"GPS日誌",feat2_p:"通過GPS自動驗證。",feat2_tag:"實時驗證",feat3_h:"多語言門戶",feat3_p:"以六種語言提供。",feat3_tag:"6種語言",feat4_h:"紅綠燈合規",feat4_p:"實時跟蹤合規性。",feat4_tag:"自動提醒",feat5_h:"家庭透明儀表板",feat5_p:"家庭可以查看輪班摘要。",feat5_tag:"實時訪問",feat6_h:"社會工作案例審查",feat6_p:"每月進度審查。",feat6_tag:"資質主導",workers_tag:"支援工作者",workers_h2:"以<em>清晰</em>和信心<br/>工作。",workers_lead:"With Light 為您的團隊提供所需工具。",wf1_h:"簡易輪班應用",wf1_p:"在幾分鐘內提交D.A.P。",wf2_h:"GPS簽到",wf2_p:"一鍵位置驗證。",wf3_h:"臨床督導",wf3_p:"定期督導課程。",wf4_h:"文件到期提醒",wf4_p:"證書到期前自動提醒。",founders_eyebrow:"我們為什麼建立 With Light",founders_quote:"作為NDIS提供商，我們看到了複雜軟件與家庭實際需求之間的差距。",founders_name:"Taha 和 Nour",founders_title:"共同創辦人，With Light",fp1:"雙語透明度",fp2:"GPS驗證安全",fp3:"無憂合規",contact_tag:"聯絡我們",contact_h3:"準備好<em>開始了嗎？</em>",contact_lead:"無論您是參與者、家庭成員還是支援協調員。",contact_email_label:"電郵",contact_location_label:"地址",contact_platform_label:"平台",form_title:"發送訊息給我們",form_note:"我們通常在一個工作日內回覆。",form_fn:"名字",form_ln:"姓氏",form_email:"電郵",form_role:"我是…",form_role_placeholder:"請選擇",form_role_1:"參與者或家庭成員",form_role_2:"支援協調員",form_role_3:"潛在支援工作者",form_role_4:"其他",form_msg:"訊息",form_submit:"發送訊息",form_thanks:"謝謝您！",form_thanks_p:"我們將在一個工作日內與您聯繫。"}
 };
 
-/* ─── LANGUAGE ENGINE ───────────────────────────── */
+/* ─── LANGUAGE ENGINE ─────────────────────────── */
 let currentLang = 'en';
 
 function setLang(lang) {
   currentLang = lang;
-  const T = TRANSLATIONS[lang] || TRANSLATIONS['en'];
-  const isRTL = (lang === 'ar' || lang === 'sy');
-
-  // Set document dir / lang
+  const T = TRANSLATIONS[lang] || TRANSLATIONS.en;
+  const isRTL = lang === 'ar' || lang === 'sy';
   document.documentElement.lang = lang;
   document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
   document.body.classList.toggle('rtl', isRTL);
 
-  // Update all data-i18n text elements
   document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (T[key] !== undefined) el.textContent = T[key];
+    const k = el.getAttribute('data-i18n');
+    if (T[k] !== undefined) el.textContent = T[k];
   });
-
-  // Update all data-i18n-html elements (allow <em> and <br/>)
   document.querySelectorAll('[data-i18n-html]').forEach(el => {
-    const key = el.getAttribute('data-i18n-html');
-    if (T[key] !== undefined) el.innerHTML = T[key];
+    const k = el.getAttribute('data-i18n-html');
+    if (T[k] !== undefined) el.innerHTML = T[k];
   });
 
-  // Update current language display
-  const labels = { en:'EN', ar:'AR', vi:'VI', hi:'HI', sy:'SY', yue:'粵' };
+  const labels = {en:'EN',ar:'AR',vi:'VI',hi:'HI',sy:'SY',yue:'粵'};
   const el = document.getElementById('currentLang');
   if (el) el.textContent = labels[lang] || lang.toUpperCase();
 
-  // Update active states in dropdown
-  document.querySelectorAll('.lang-option').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.lang === lang);
-  });
-  document.querySelectorAll('.drawer-lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.lang === lang);
-  });
-
-  // Close dropdown
+  document.querySelectorAll('.lang-option').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  document.querySelectorAll('.drawer-lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
   closeLangDropdown();
-
-  // Google Analytics event
-  if (typeof gtag === 'function') gtag('event', 'language_change', { language: lang });
 }
 
-/* ─── LANGUAGE DROPDOWN ─────────────────────────── */
+/* ─── LANGUAGE DROPDOWN ───────────────────────── */
 const langWrap = document.getElementById('langWrap');
 const langToggleBtn = document.getElementById('langToggleBtn');
 
 function closeLangDropdown() {
   langWrap.classList.remove('open');
-  langToggleBtn.setAttribute('aria-expanded', 'false');
+  langToggleBtn.setAttribute('aria-expanded','false');
 }
-
-langToggleBtn.addEventListener('click', (e) => {
+langToggleBtn.addEventListener('click', e => {
   e.stopPropagation();
-  const isOpen = langWrap.classList.toggle('open');
-  langToggleBtn.setAttribute('aria-expanded', String(isOpen));
+  const open = langWrap.classList.toggle('open');
+  langToggleBtn.setAttribute('aria-expanded', String(open));
 });
+document.querySelectorAll('.lang-option').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+document.addEventListener('click', e => { if (!langWrap.contains(e.target)) closeLangDropdown(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLangDropdown(); });
 
-document.querySelectorAll('.lang-option').forEach(btn => {
-  btn.addEventListener('click', () => setLang(btn.dataset.lang));
-});
-
-document.addEventListener('click', (e) => {
-  if (!langWrap.contains(e.target)) closeLangDropdown();
-});
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeLangDropdown();
-});
-
-/* ─── MOBILE NAV ─────────────────────────────────── */
+/* ─── MOBILE NAV ──────────────────────────────── */
 const burger = document.getElementById('burger');
 const drawer = document.getElementById('drawer');
-
 burger.addEventListener('click', () => {
   const open = drawer.classList.toggle('open');
   burger.classList.toggle('open', open);
   burger.setAttribute('aria-expanded', String(open));
 });
+function closeDrawer() { drawer.classList.remove('open'); burger.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+document.querySelectorAll('.drawer-lang-btn').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', closeDrawer));
 
-function closeDrawer() {
-  drawer.classList.remove('open');
-  burger.classList.remove('open');
-  burger.setAttribute('aria-expanded', 'false');
-}
+/* ─── NAV SCROLL ──────────────────────────────── */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), {passive:true});
 
-document.querySelectorAll('.drawer-lang-btn').forEach(btn => {
-  btn.addEventListener('click', () => setLang(btn.dataset.lang));
-});
-
-/* ─── SCROLL REVEAL ──────────────────────────────── */
+/* ─── SCROLL REVEAL ───────────────────────────── */
 const io = new IntersectionObserver((entries) => {
   entries.forEach((e, i) => {
     if (e.isIntersecting) {
@@ -1946,40 +1151,25 @@ const io = new IntersectionObserver((entries) => {
       io.unobserve(e.target);
     }
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
+}, {threshold:0.1, rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-/* ─── NAV SCROLL GLASS ──────────────────────────── */
-const nav = document.getElementById('mainNav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 40);
-}, { passive: true });
-
-/* ─── FORM ───────────────────────────────────────── */
+/* ─── FORM ────────────────────────────────────── */
 function handleForm(e) {
   e.preventDefault();
   const btn = document.getElementById('formBtn');
-  const T = TRANSLATIONS[currentLang] || TRANSLATIONS['en'];
+  const T = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
   btn.textContent = '✓ ' + (T.form_thanks || 'Sent!');
-  btn.style.background = 'linear-gradient(135deg, #2ECC8A 0%, #1aaa6e 100%)';
+  btn.style.background = 'linear-gradient(135deg,#2ECC8A 0%,#1aaa6e 100%)';
   btn.disabled = true;
-
   setTimeout(() => {
     document.getElementById('contactForm').style.display = 'none';
-    const success = document.getElementById('formSuccess');
-    success.style.display = 'block';
-    success.querySelector('strong').textContent = T.form_thanks || 'Thank you!';
-    success.querySelector('p').textContent = T.form_thanks_p || "We'll be in touch within one business day.";
+    const s = document.getElementById('formSuccess');
+    s.style.display = 'block';
+    s.querySelector('strong').textContent = T.form_thanks || 'Thank you!';
+    s.querySelector('p').textContent = T.form_thanks_p || "We'll be in touch within one business day.";
   }, 600);
-
-  if (typeof gtag === 'function') gtag('event', 'form_submit', { form_name: 'contact' });
 }
-
-/* ─── SMOOTH ANCHOR NAV CLOSE ───────────────────── */
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', closeDrawer);
-});
 </script>
 </body>
 </html>
