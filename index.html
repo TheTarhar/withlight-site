@@ -67,7 +67,6 @@ h2.display {
   margin-bottom: 1.5rem;
 }
 h2.display em { font-style: italic; color: var(--gold); font-weight: 400; }
-
 .lead { font-size: 1.05rem; line-height: 1.7; color: var(--warm-gray); }
 
 /* ─── NAV ────────────────────────────────────────── */
@@ -81,11 +80,8 @@ nav {
   border-bottom: 1px solid var(--border);
 }
 .nav-logo { font-family: var(--font-d); font-weight: 700; font-size: 1.3rem; text-decoration: none; color: var(--dark); }
-
 .nav-links { display: flex; align-items: center; gap: 1.5rem; list-style: none; }
 .nav-links a { font-size: 0.88rem; font-weight: 600; color: var(--warm-gray); text-decoration: none; transition: 0.2s; }
-.nav-links a:hover { color: var(--gold); }
-
 .lang-selector-wrapper { position: relative; }
 .lang-select {
   appearance: none; background: var(--gold-pale); border: 1.5px solid var(--border);
@@ -95,14 +91,12 @@ nav {
 .lang-selector-wrapper::after {
   content: '▼'; font-size: 0.5rem; position: absolute; right: 14px; top: 52%; transform: translateY(-50%); pointer-events: none;
 }
-
 .btn-nav-app {
   background: var(--gold); color: white; padding: 9px 20px; border-radius: 999px;
   text-decoration: none; font-size: 0.82rem; font-weight: 600; transition: transform 0.2s;
 }
-.btn-nav-app:hover { transform: translateY(-1px); background: var(--gold-deep); }
 
-/* ─── HERO & PHONE DOCK ─────────────────────────── */
+/* ─── HERO ──────────────────────────────────────── */
 #hero {
   min-height: 100dvh; display: flex; align-items: center;
   padding-top: var(--nav-h); position: relative; overflow: hidden;
@@ -112,61 +106,66 @@ nav {
   background: radial-gradient(circle at 80% 20%, rgba(245,166,35,0.08) 0%, transparent 50%);
 }
 .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center; }
-
-.hero-h1 {
-  font-family: var(--font-d); font-size: clamp(2.8rem, 5.5vw, 4.2rem);
-  font-weight: 700; line-height: 1.05; margin-bottom: 1.5rem;
-}
+.hero-h1 { font-family: var(--font-d); font-size: clamp(2.8rem, 5.5vw, 4.2rem); font-weight: 700; line-height: 1.05; margin-bottom: 1.5rem; }
 .hero-h1 em { font-style: normal; color: var(--gold); }
 .hero-sub { max-width: 480px; margin-bottom: 2.5rem; }
 
-/* Phone Mockup Dashboard */
-.phone-dock {
-  background: var(--white); border-radius: 24px;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.12); border: 6px solid #F8F9FA;
-  overflow: hidden; position: relative;
+/* ─── PHONE APP VISUAL ──────────────────────────── */
+.hero-visual { position: relative; display: flex; justify-content: center; }
+.phone-outer {
+  width: 280px; height: 580px; background: var(--dark); border-radius: 44px; padding: 12px;
+  box-shadow: 0 40px 80px rgba(28,26,23,0.25); position: relative; z-index: 2;
 }
-.phone-header { background: #fff; padding: 20px 20px 10px; border-bottom: 1px solid #f0f0f0; }
-.phone-title { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; color: #ADB5BD; letter-spacing: 0.1em; }
-.phone-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px 20px; background: var(--gold-pale); }
-.p-stat { text-align: center; }
-.p-stat strong { display: block; font-size: 1.5rem; color: var(--gold-deep); }
-.p-stat span { font-size: 0.6rem; font-weight: 700; color: var(--warm-gray); text-transform: uppercase; }
+.phone-screen {
+  width: 100%; height: 100%; background: #F8F6F2; border-radius: 34px; overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.phone-header { background: linear-gradient(135deg, #1C1A17, #3D3525); padding: 32px 20px 20px; color: white; }
+.p-header-tag { font-size: 9px; font-weight: 600; text-transform: uppercase; opacity: 0.5; margin-bottom: 4px; }
+.p-header-title { font-family: var(--font-d); font-size: 18px; font-weight: 600; }
+.phone-body { flex: 1; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
 
-.p-row { display: flex; align-items: center; justify-content: space-between; padding: 15px 20px; border-bottom: 1px solid #f8f9fa; }
-.p-row:last-child { border: none; }
-.p-info { display: flex; flex-direction: column; }
-.p-name { font-size: 0.85rem; font-weight: 700; color: var(--dark); }
-.p-meta { font-size: 0.7rem; color: var(--warm-gray); }
-.p-status { width: 10px; height: 10px; border-radius: 50%; }
-.p-status.g { background: var(--green); box-shadow: 0 0 8px var(--green); }
-.p-status.a { background: var(--amber); }
+.p-card { background: white; border-radius: 14px; padding: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.p-card-label { font-size: 9px; font-weight: 700; color: #9CA3AF; text-transform: uppercase; margin-bottom: 6px; }
+.p-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.p-stat { background: white; border-radius: 12px; padding: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+.p-stat-num { font-size: 20px; font-weight: 700; color: var(--gold); }
+.p-stat-label { font-size: 9px; color: #9CA3AF; font-weight: 600; margin-top: 2px; }
+.p-badge { font-size: 9px; font-weight: 700; background: #DCFCE7; color: #16A34A; padding: 4px 8px; border-radius: 6px; }
+
+.phone-nav { background: white; padding: 10px 16px; display: flex; justify-content: space-around; border-top: 1px solid #F3F4F6; }
+.p-nav-dot { width: 20px; height: 20px; border-radius: 6px; background: #F3F4F6; margin-bottom: 4px; }
+.p-nav-dot.active { background: var(--gold-light); }
+.p-nav-label { font-size: 8px; font-weight: 700; color: #9CA3AF; text-align: center; }
+
+/* Floating Status Cards */
+.float-card {
+  position: absolute; background: white; border-radius: 16px; padding: 12px 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12); z-index: 3; animation: float 4s ease-in-out infinite;
+}
+.float-1 { right: -20px; top: 15%; }
+.float-2 { left: -24px; bottom: 20%; animation-delay: 2s; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.f-label { font-size: 10px; font-weight: 700; color: var(--warm-gray); }
+.f-val { font-size: 13px; font-weight: 800; color: var(--dark); margin: 2px 0; }
+.f-tag { font-size: 9px; background: #DCFCE7; color: #16A34A; padding: 2px 8px; border-radius: 100px; font-weight: 700; }
 
 /* ─── SECTIONS ──────────────────────────────────── */
 section { padding: 6rem 1.5rem; }
 .inner { max-width: 1160px; margin: 0 auto; }
-
 #languages { background: var(--gold-pale); text-align: center; }
 .lang-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
-.lang-card {
-  background: white; padding: 2rem 1rem; border-radius: var(--radius);
-  border: 1.5px solid var(--border); transition: 0.3s;
-}
-.lang-card:hover { transform: translateY(-5px); border-color: var(--gold); }
+.lang-card { background: white; padding: 2rem 1rem; border-radius: var(--radius); border: 1.5px solid var(--border); transition: 0.3s; }
 .l-native { display: block; font-size: 1.25rem; font-weight: 600; color: var(--gold-deep); margin-bottom: 0.4rem; }
-.l-en { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--warm-gray); letter-spacing: 0.05em; }
+.l-en { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--warm-gray); }
 
-.feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
-.feat-card { padding: 2.5rem; border-radius: var(--radius); border: 1.5px solid var(--border); transition: 0.3s; }
-.feat-card:hover { border-color: var(--gold); background: var(--gold-pale); }
-.feat-card h3 { font-size: 1.1rem; margin-bottom: 0.75rem; }
-.feat-card p { font-size: 0.9rem; line-height: 1.6; color: var(--warm-gray); }
-
-/* ─── RTL / ARABIC SUPPORT ───────────────────────── */
+/* ─── RTL SUPPORT ───────────────────────────────── */
 body.rtl { direction: rtl; text-align: right; }
-body.rtl .hero-h1, body.rtl h2.display { font-family: var(--font-ar); }
-body.rtl .lang-selector-wrapper::after { right: auto; left: 14px; }
+body.rtl .hero-h1, body.rtl h2.display, body.rtl .p-header-title { font-family: var(--font-ar); }
 body.rtl .lang-select { padding: 6px 16px 6px 32px; }
+body.rtl .lang-selector-wrapper::after { right: auto; left: 14px; }
+body.rtl .float-1 { right: auto; left: -20px; }
+body.rtl .float-2 { left: auto; right: -24px; }
 
 /* ─── ANIMATIONS ────────────────────────────────── */
 .reveal { opacity: 0; transform: translateY(25px); transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
@@ -175,7 +174,7 @@ body.rtl .lang-select { padding: 6px 16px 6px 32px; }
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr; text-align: center; }
   .hero-sub { margin: 0 auto 2.5rem; }
-  .nav-links { display: none; }
+  .float-card { display: none; }
 }
 </style>
 </head>
@@ -185,7 +184,7 @@ body.rtl .lang-select { padding: 6px 16px 6px 32px; }
   <a href="#" class="nav-logo">With Light</a>
   <ul class="nav-links">
     <li><a href="#about" id="nav-about">About</a></li>
-    <li><a href="#features" id="nav-features">Features</a></li>
+    <li><a href="#languages" id="nav-lang">Languages</a></li>
     <li>
       <div class="lang-selector-wrapper">
         <select class="lang-select" onchange="switchLang(this.value)">
@@ -208,41 +207,62 @@ body.rtl .lang-select { padding: 6px 16px 6px 32px; }
     <div class="hero-grid">
       <div class="reveal">
         <span class="tag" id="hero-tag">NDIS Registered Provider</span>
-        <h1 class="hero-h1" id="hero-title">Support that <br/><em>illuminates</em><br/>the path.</h1>
+        <h1 class="hero-h1" id="hero-title">Support that <br/><em>illuminates</em><br/>the path forward.</h1>
         <p class="lead hero-sub" id="hero-sub">Specializing in psychosocial disability and culturally safe care in South West Sydney.</p>
-        <a href="#contact" class="btn-nav-app" style="padding: 14px 32px; font-size: 0.9rem;" id="hero-cta">Get Started</a>
+        <a href="#contact" class="btn-nav-app" style="padding: 14px 32px; font-size: 0.9rem;" id="hero-cta">Get in Touch</a>
       </div>
-      <div class="reveal">
-        <div class="phone-dock">
-          <div class="phone-header"><span class="phone-title">Compliance Dashboard</span></div>
-          <div class="phone-stats">
-            <div class="p-stat"><strong>12</strong><span>Active</span></div>
-            <div class="p-stat"><strong>100%</strong><span>Audit</span></div>
+      
+      <div class="reveal hero-visual">
+        <div class="phone-outer">
+          <div class="phone-screen">
+            <div class="phone-header">
+              <div class="p-header-tag">With Light</div>
+              <div class="p-header-title" id="p-admin">Admin — Nour</div>
+            </div>
+            <div class="phone-body">
+              <div class="p-card">
+                <div class="p-card-label" id="p-ov">Overview</div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <div>
+                    <div style="font-size:22px; font-weight:700; color:var(--dark);">12</div>
+                    <div style="font-size:10px; color:#9CA3AF; font-weight:600;" id="p-part">Active participants</div>
+                  </div>
+                  <span class="p-badge" id="p-comp">✓ Compliant</span>
+                </div>
+              </div>
+              <div class="p-grid">
+                <div class="p-stat"><div class="p-stat-num">8</div><div class="p-stat-label" id="p-s1">Shifts Today</div></div>
+                <div class="p-stat"><div class="p-stat-num">5</div><div class="p-stat-label" id="p-s2">Workers Active</div></div>
+                <div class="p-stat"><div class="p-stat-num">100%</div><div class="p-stat-label" id="p-s3">Docs Valid</div></div>
+                <div class="p-stat"><div class="p-stat-num">0</div><div class="p-stat-label" id="p-s4">Incidents</div></div>
+              </div>
+              <div class="p-card">
+                <div class="p-card-label" id="p-recent">Recent Shift</div>
+                <div style="font-size:12px; font-weight:700; color:var(--dark);">Kelly A. MacDonald</div>
+                <div style="font-size:10px; color:#9CA3AF; margin-top:2px;" id="p-note">D.A.P note submitted</div>
+                <span class="p-badge" style="margin-top:6px; display:inline-block;" id="p-sub">✓ Submitted</span>
+              </div>
+            </div>
+            <div class="phone-nav">
+              <div class="p-nav-item"><div class="p-nav-dot active"></div><div class="p-nav-label" id="p-n1">Dashboard</div></div>
+              <div class="p-nav-item"><div class="p-nav-dot"></div><div class="p-nav-label" id="p-n2">Shifts</div></div>
+              <div class="p-nav-item"><div class="p-nav-dot"></div><div class="p-nav-label" id="p-n3">Team</div></div>
+            </div>
           </div>
-          <div class="p-row">
-            <div class="p-info"><span class="p-name">Ahmad R.</span><span class="p-meta">Liverpool · On Shift</span></div>
-            <div class="p-status g"></div>
-          </div>
-          <div class="p-row">
-            <div class="p-info"><span class="p-name">Sarah J.</span><span class="p-meta">D.A.P Note Pending</span></div>
-            <div class="p-status a"></div>
-          </div>
-          <div class="p-row" style="background: #fdfdfd; padding-top: 10px; padding-bottom: 20px; text-align: center; display: block; font-size: 0.65rem; color: var(--gold-deep); font-weight: 700;">
-            SECURE PORTAL: APP.WITHLIGHT.COM.AU
-          </div>
+        </div>
+        
+        <div class="float-card float-1">
+          <div class="f-label" id="f1-l">GPS Verified</div>
+          <div class="f-val">📍 Liverpool NSW</div>
+          <div class="f-tag" id="f1-t">Location Confirmed</div>
+        </div>
+        <div class="float-card float-2">
+          <div class="f-label" id="f2-l">NDIS Compliance</div>
+          <div class="f-val">🟢 All Clear</div>
+          <div class="f-tag" id="f2-t">Audit Ready</div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<section id="about">
-  <div class="inner">
-    <span class="tag reveal" id="about-tag">Social Work Led</span>
-    <h2 class="display reveal" id="about-title">Personalized care with <em>clinical depth.</em></h2>
-    <p class="lead reveal" style="max-width: 700px;" id="about-body">
-      Founded by qualified social workers, we provide recovery-oriented support that respects your culture, your language, and your goals. We aren't just a service; we are a community bridge.
-    </p>
   </div>
 </section>
 
@@ -261,93 +281,72 @@ body.rtl .lang-select { padding: 6px 16px 6px 32px; }
   </div>
 </section>
 
-<section id="features">
-  <div class="inner">
-    <span class="tag reveal" id="feat-tag">Technology</span>
-    <h2 class="display reveal" id="feat-title">A <em>smarter</em> platform.</h2>
-    <div class="feat-grid">
-      <div class="feat-card reveal">
-        <h3 id="f1-t">D.A.P Clinical Notes</h3>
-        <p id="f1-d">Ensuring every shift is documented with professional clinical standards for NDIS audits.</p>
-      </div>
-      <div class="feat-card reveal">
-        <h3 id="f2-t">GPS Verification</h3>
-        <p id="f2-d">Total transparency for families with location-verified shift starts and ends.</p>
-      </div>
-      <div class="feat-card reveal">
-        <h3 id="f3-t">Arabic Toggle</h3>
-        <p id="f3-d">Designed for the community, our platform switches languages instantly for families.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <script>
 const i18n = {
   en: {
-    navAbout: 'About', navFeatures: 'Features', navLogin: 'Platform Login',
-    heroTag: 'NDIS Registered Provider', heroTitle: 'Support that <br/><em>illuminates</em><br/>the path.', heroSub: 'Specializing in psychosocial disability and culturally safe care in South West Sydney.', heroCta: 'Get Started',
-    aboutTag: 'Social Work Led', aboutTitle: 'Personalized care with <em>clinical depth.</em>', aboutBody: 'Founded by qualified social workers, we provide recovery-oriented support that respects your culture, your language, and your goals. We aren\'t just a service; we are a community bridge.',
+    navAbout: 'About', navLang: 'Languages', navLogin: 'Platform Login',
+    heroTag: 'NDIS Registered Provider', heroTitle: 'Support that <br/><em>illuminates</em><br/>the path forward.', heroSub: 'Specializing in psychosocial disability and culturally safe care in South West Sydney.', heroCta: 'Get in Touch',
+    pAdmin: 'Admin — Nour', pOv: 'Overview', pPart: 'Active participants', pComp: '✓ Compliant',
+    ps1: 'Shifts Today', ps2: 'Workers Active', ps3: 'Docs Valid', ps4: 'Incidents',
+    pRecent: 'Recent Shift', pNote: 'D.A.P note submitted', pSub: '✓ Submitted',
+    pn1: 'Dashboard', pn2: 'Shifts', pn3: 'Team',
+    f1l: 'GPS Verified', f1t: 'Location Confirmed', f2l: 'NDIS Compliance', f2t: 'Audit Ready',
     langTag: 'South West Sydney', langTitle: 'Support in <em>your language.</em>',
-    featTag: 'Technology', featTitle: 'A <em>smarter</em> platform.',
-    f1t: 'D.A.P Clinical Notes', f1d: 'Ensuring every shift is documented with professional clinical standards for NDIS audits.',
-    f2t: 'GPS Verification', f2d: 'Total transparency for families with location-verified shift starts and ends.',
-    f3t: 'Arabic Toggle', f3d: 'Designed for the community, our platform switches languages instantly for families.',
     rtl: false
   },
   ar: {
-    navAbout: 'حولنا', navFeatures: 'خدماتنا', navLogin: 'تسجيل الدخول',
-    heroTag: 'مزود NDIS مسجل', heroTitle: 'الدعم الذي <br/><em>ينير</em><br/>الطريق.', heroSub: 'متخصصون في الإعاقة النفسية والاجتماعية والرعاية الآمنة ثقافياً في جنوب غرب سيدني.', heroCta: 'ابدأ الآن',
-    aboutTag: 'بإدارة أخصائيين اجتماعيين', aboutTitle: 'رعاية شخصية ذات <em>عمق سريري.</em>', aboutBody: 'تأسست الشركة على يد أخصائيين اجتماعيين مؤهلين، ونقدم دعماً يركز على التعافي ويحترم ثقافتكم ولغتكم وأهدافكم.',
-    langTag: 'جنوب غرب سيدني', langTitle: 'الدعم <em>بلُغتك.</em>',
-    featTag: 'التكنولوجيا', featTitle: 'منصة <em>أكثر ذكاءً.</em>',
-    f1t: 'ملاحظات D.A.P السريرية', f1d: 'ضمان توثيق كل نوبة عمل بمعايير سريرية احترافية لعمليات تدقيق NDIS.',
-    f2t: 'تحقق GPS', f2d: 'شفافية كاملة للعائلات من خلال التحقق من الموقع عند بداية ونهاية المناوبات.',
-    f3t: 'التبديل للعربية', f3d: 'منصتنا مصممة للمجتمع، وتغير اللغات فوراً للعائلات.',
+    navAbout: 'حولنا', navLang: 'اللغات', navLogin: 'دخول المنصة',
+    heroTag: 'مزود NDIS مسجل', heroTitle: 'الدعم الذي <br/><em>ينير</em><br/>الطريق للأمام.', heroSub: 'متخصصون في الإعاقة النفسية والاجتماعية والرعاية الآمنة ثقافياً في جنوب غرب سيدني.', heroCta: 'تواصل معنا',
+    pAdmin: 'المسؤول — نور', pOv: 'نظرة عامة', pPart: 'المشاركين النشطين', pComp: '✓ ممتثل',
+    ps1: 'نوبات اليوم', ps2: 'عمال نشطون', ps3: 'وثائق صالحة', ps4: 'حوادث',
+    pRecent: 'آخر نوبة', pNote: 'تم تقديم ملاحظة D.A.P', pSub: '✓ تم التقديم',
+    pn1: 'الرئيسية', pn2: 'النوبات', pn3: 'الفريق',
+    f1l: 'تم التحقق من الموقع', f1t: 'تم تأكيد الموقع', f2l: 'امتثال NDIS', f2t: 'جاهز للتدقيق',
+    langTag: 'جنوب غرب سيدني', langTitle: 'الدعم <em>بلغتك.</em>',
     rtl: true
   },
   vi: {
-    navAbout: 'Giới thiệu', navFeatures: 'Tính năng', navLogin: 'Đăng nhập',
-    heroTag: 'Đơn vị NDIS đã đăng ký', heroTitle: 'Sự hỗ trợ <br/><em>soi sáng</em><br/>con đường.', heroSub: 'Chuyên về khuyết tật tâm lý xã hội và chăm sóc an toàn văn hóa tại Tây Nam Sydney.', heroCta: 'Bắt đầu ngay',
-    aboutTag: 'Dẫn dắt bởi nhân viên xã hội', aboutTitle: 'Chăm sóc cá nhân hóa <em>chuyên sâu.</em>', aboutBody: 'Được thành lập bởi các nhân viên xã hội có trình độ, chúng tôi hỗ trợ phục hồi, tôn trọng văn hóa và ngôn ngữ của bạn.',
+    navAbout: 'Giới thiệu', navLang: 'Ngôn ngữ', navLogin: 'Đăng nhập',
+    heroTag: 'Đơn vị NDIS đã đăng ký', heroTitle: 'Sự hỗ trợ <br/><em>soi sáng</em><br/>con đường phía trước.', heroSub: 'Chuyên về khuyết tật tâm lý xã hội và chăm sóc an toàn văn hóa tại Tây Nam Sydney.', heroCta: 'Liên hệ ngay',
+    pAdmin: 'Quản trị — Nour', pOv: 'Tổng quan', pPart: 'Người tham gia', pComp: '✓ Tuân thủ',
+    ps1: 'Ca làm hôm nay', ps2: 'Nhân viên', ps3: 'Hồ sơ hợp lệ', ps4: 'Sự cố',
+    pRecent: 'Ca gần nhất', pNote: 'Đã nộp ghi chú D.A.P', pSub: '✓ Đã nộp',
+    pn1: 'Bảng điều khiển', pn2: 'Ca làm', pn3: 'Đội ngũ',
+    f1l: 'Đã xác minh GPS', f1t: 'Vị trí xác nhận', f2l: 'Tuân thủ NDIS', f2t: 'Sẵn sàng kiểm toán',
     langTag: 'Tây Nam Sydney', langTitle: 'Hỗ trợ bằng <em>ngôn ngữ của bạn.</em>',
-    featTag: 'Công nghệ', featTitle: 'Nền tảng <em>thông minh hơn.</em>',
-    f1t: 'Ghi chú lâm sàng D.A.P', f1d: 'Đảm bảo mỗi ca làm việc được ghi chép chuyên nghiệp cho việc kiểm tra NDIS.',
-    f2t: 'Xác minh GPS', f2d: 'Minh bạch hoàn toàn với việc xác minh vị trí khi bắt đầu và kết thúc ca làm việc.',
-    f3t: 'Chuyển đổi ngôn ngữ', f3d: 'Nền tảng của chúng tôi thay đổi ngôn ngữ ngay lập tức cho các gia đình.',
     rtl: false
   },
   hi: {
-    navAbout: 'के बारे में', navFeatures: 'विशेषताएं', navLogin: 'लॉगिन',
-    heroTag: 'NDIS पंजीकृत प्रदाता', heroTitle: 'सहयोग जो <br/><em>रास्ता</em><br/>रोशन करता है।', heroSub: 'दक्षिण पश्चिम सिडनी में मनोसामाजिक विकलांगता और सांस्कृतिक रूप से सुरक्षित देखभाल में विशेषज्ञता।', heroCta: 'शुरू करें',
-    aboutTag: 'सोशल वर्क के नेतृत्व में', aboutTitle: 'नैदानिक गहराई के साथ <em>व्यक्तिगत देखभाल।</em>', aboutBody: 'योग्य सामाजिक कार्यकर्ताओं द्वारा स्थापित, हम रिकवरी-उन्मुख सहायता प्रदान करते हैं जो आपकी संस्कृति का सम्मान करती है।',
+    navAbout: 'विवरण', navLang: 'भाषाएं', navLogin: 'लॉगिन',
+    heroTag: 'NDIS पंजीकृत प्रदाता', heroTitle: 'सहयोग जो <br/><em>आगे का रास्ता</em><br/>रोशन करता है।', heroSub: 'दक्षिण पश्चिम सिडनी में मनोसामाजिक विकलांगता और सांस्कृतिक रूप से सुरक्षित देखभाल में विशेषज्ञता।', heroCta: 'संपर्क करें',
+    pAdmin: 'एडमिन — नूर', pOv: 'अवलोकन', pPart: 'सक्रिय प्रतिभागी', pComp: '✓ अनुपालन',
+    ps1: 'आज की शिफ्ट', ps2: 'सक्रिय कार्यकर्ता', ps3: 'दस्तावेज मान्य', ps4: 'घटनाएं',
+    pRecent: 'हालिया शिफ्ट', pNote: 'D.A.P नोट जमा किया गया', pSub: '✓ जमा किया गया',
+    pn1: 'डैशबोर्ड', pn2: 'शिफ्ट', pn3: 'टीम',
+    f1l: 'GPS सत्यापित', f1t: 'स्थान की पुष्टि', f2l: 'NDIS अनुपालन', f2t: 'ऑडिट तैयार',
     langTag: 'दक्षिण पश्चिम सिडनी', langTitle: 'आपकी <em>भाषा में सहयोग।</em>',
-    featTag: 'तकनीकी', featTitle: 'एक <em>बेहतर</em> प्लेटफॉर्म।',
-    f1t: 'D.A.P क्लिनिकल नोट्स', f1d: 'यह सुनिश्चित करना कि NDIS ऑडिट के लिए हर शिफ्ट का दस्तावेजीकरण पेशेवर मानकों के साथ किया जाए।',
-    f2t: 'GPS सत्यापन', f2d: 'शिफ्ट शुरू और खत्म होने के स्थान-सत्यापित डेटा के साथ परिवारों के लिए पूर्ण पारदर्शिता।',
-    f3t: 'भाषा विकल्प', f3d: 'समुदाय के लिए डिज़ाइन किया गया, हमारा प्लेटफ़ॉर्म परिवारों के लिए तुरंत भाषा बदलता है।',
     rtl: false
   },
   as: {
-    navAbout: 'ܡܢܘ ܐܚܢܢ', navFeatures: 'ܚܠܡܢܘܬܐ', navLogin: 'ܥܒܪܬܐ',
-    heroTag: 'ܦܘܠܚܢܐ ܕ NDIS ܪܫܝܡܐ', heroTitle: 'ܥܘܕܪܢܐ ܕܡܢܗܪ <br/><em>ܠܐܘܪܚܐ</em><br/>.', heroSub: 'ܡܕܒܪܢܘܬܐ ܕܚܠܡܢܘܬܐ ܐܢܫܝܬܐ ܓܘ ܡܥܪܒܐ ܕܣܝܕܢܝ܄ ܡܕܒܪܢܐ ܕܦܘܠܚܢܐ ܕ NDIS.', heroCta: 'ܫܪܝ ܡܨܠܝܐ',
-    aboutTag: 'ܡܕܒܪܢܘܬܐ ܐܢܫܝܬܐ', aboutTitle: 'ܚܠܡܢܘܬܐ ܦܪܨܘܦܝܬܐ <em>ܒܥܘܡܩܐ.</em>', aboutBody: 'ܥܘܕܪܢܐ ܕܡܝܩܪ ܠܡܪܕܘܬܘܟܘܢ ܘܠܠܫܢܘܟܘܢ ܘܠܢܝܫ̈ܘܟܘܢ.',
+    navAbout: 'حولنا', navLang: 'لغات', navLogin: 'ܥܒܪܬܐ',
+    heroTag: 'ܦܘܠܚܢܐ ܕ NDIS ܪܫܝܡܐ', heroTitle: 'ܥܘܕܪܢܐ ܕܡܢܗܪ <br/><em>ܠܐܘܪܚܐ</em><br/>ܠܩܕܡܐ', heroSub: 'ܡܕܒܪܢܘܬܐ ܕܚܠܡܢܘܬܐ ܐܢܫܝܬܐ ܓܘ ܡܥܪܒܐ ܕܣܝܕܢܝ܄ ܡܕܒܪܢܐ ܕܦܘܠܚܢܐ ܕ NDIS.', heroCta: 'ܫܪܝ ܡܨܠܝܐ',
+    pAdmin: 'ܡܕܒܪܢܐ — ܢܘܪ', pOv: 'ܚܙܝܬܐ', pPart: 'ܡܫܬܘܬܦܢܐ', pComp: '✓ ܬܪܝܨܐ',
+    ps1: 'ܫܦܬ̈ܐ ܕܝܘܡܐ', ps2: 'ܦܠܚ̈ܐ', ps3: 'ܟܬܒܝ̈ܐ', ps4: 'ܓܕܫ̈ܐ',
+    pRecent: 'ܫܦܬܐ ܐܚܪܝܬܐ', pNote: 'D.A.P ܦܪܝܣܐ', pSub: '✓ ܦܪܝܣܐ',
+    pn1: 'ܠܘܚܐ', pn2: 'ܫܦܬ̈ܐ', pn3: 'ܓܘܕܐ',
+    f1l: 'GPS ܚܘܬܡܐ', f1t: 'ܚܘܬܡܐ ܕܕܘܟܐ', f2l: 'NDIS ܩܢܘܢܐ', f2t: 'ܙܡܝܢܐ ܠܚܙܝܬܐ',
     langTag: 'ܡܥܪܒܐ ܕܣܝܕܢܝ', langTitle: 'ܥܘܕܪܢܐ <em>ܒܠܫܢܘܟܘܢ.</em>',
-    featTag: 'ܛܟܢܘܠܘܓܝܐ', featTitle: 'ܐܣܛܪܛܝܓܝܐ <em>ܚܟܝܡܬܐ.</em>',
-    f1t: 'D.A.P ܟܬܒܝ̈ܐ', f1d: 'ܟܬܒܬܐ ܕܟܠ ܫܦܬܐ ܒܛܟܣܐ ܡܗܝܪܐ ܠܦܘܬ ܩܢܘܢ̈ܐ ܕ NDIS.',
-    f2t: 'GPS ܚܘܬܡܐ', f2d: 'ܚܙܝܬܐ ܕܫܥܬ̈ܐ ܕܦܘܠܚܢܐ ܒܐܝܕܐ ܕܝܡܐ ܠܡܫܦܚܬܐ.',
-    f3t: 'ܫܘܚܠܦܐ ܕܠܫܢܐ', f3d: 'ܡܨܝܬܐ ܠܡܫܚܠܦܐ ܠܫܢܐ ܒܟܠ ܥܕܢܐ ܠܡܫܦܚܬܐ.',
     rtl: true
   },
   zh: {
-    navAbout: '關於我們', navFeatures: '功能', navLogin: '平台登錄',
-    heroTag: 'NDIS 註冊服務商', heroTitle: '指引前路的 <br/><em>光明支援</em>', heroSub: '專注於悉尼西南區的心理社會障礙及具備文化安全意識的護理服務。', heroCta: '立即開始',
-    aboutTag: '社工領導', aboutTitle: '具備臨床深度的 <em>個性化護理。</em>', aboutBody: '由合格社工創立，我們提供尊重您的文化、語言和目標的康復導向支持。',
+    navAbout: '關於我們', navLang: '語言選擇', navLogin: '平台登錄',
+    heroTag: 'NDIS 註冊服務商', heroTitle: '指引前路的 <br/><em>光明支援</em>', heroSub: '專注於悉尼西南區的心理社會障礙及具備文化安全意識的護理服務。', heroCta: '立即聯繫',
+    pAdmin: '管理員 — Nour', pOv: '概覽', pPart: '活躍參與者', pComp: '✓ 合規',
+    ps1: '今日班次', ps2: '活躍員工', ps3: '文件有效', ps4: '事件',
+    pRecent: '最近班次', pNote: '已提交 D.A.P 記錄', pSub: '✓ 已提交',
+    pn1: '儀表板', pn2: '班次', pn3: '團隊',
+    f1l: 'GPS 已驗證', f1t: '位置已確認', f2l: 'NDIS 合規', f2t: '審核就緒',
     langTag: '悉尼西南區', langTitle: '您的 <em>語言支援。</em>',
-    featTag: '科技技術', featTitle: '更 <em>智能</em> 的平台。',
-    f1t: 'D.A.P 臨床記錄', f1d: '確保每一班次都符合 NDIS 審核的專業臨床標準記錄。',
-    f2t: 'GPS 定位驗證', f2d: '通過位置驗證的上下班記錄，為家庭提供完全透明的服務。',
-    f3t: '語言切換', f3d: '專為社區設計，我們的平台可為家庭即時切換語言。',
     rtl: false
   }
 };
@@ -355,25 +354,36 @@ const i18n = {
 function switchLang(lang) {
   const t = i18n[lang];
   document.getElementById('nav-about').textContent = t.navAbout;
-  document.getElementById('nav-features').textContent = t.navFeatures;
+  document.getElementById('nav-lang').textContent = t.navLang;
   document.getElementById('nav-login').textContent = t.navLogin;
   document.getElementById('hero-tag').textContent = t.heroTag;
   document.getElementById('hero-title').innerHTML = t.heroTitle;
   document.getElementById('hero-sub').textContent = t.heroSub;
   document.getElementById('hero-cta').textContent = t.heroCta;
-  document.getElementById('about-tag').textContent = t.aboutTag;
-  document.getElementById('about-title').innerHTML = t.aboutTitle;
-  document.getElementById('about-body').textContent = t.aboutBody;
   document.getElementById('lang-tag').textContent = t.langTag;
   document.getElementById('lang-title').innerHTML = t.langTitle;
-  document.getElementById('feat-tag').textContent = t.featTag;
-  document.getElementById('feat-title').innerHTML = t.featTitle;
+  
+  // Phone Elements
+  document.getElementById('p-admin').textContent = t.pAdmin;
+  document.getElementById('p-ov').textContent = t.pOv;
+  document.getElementById('p-part').textContent = t.pPart;
+  document.getElementById('p-comp').textContent = t.pComp;
+  document.getElementById('p-s1').textContent = t.ps1;
+  document.getElementById('p-s2').textContent = t.ps2;
+  document.getElementById('p-s3').textContent = t.ps3;
+  document.getElementById('p-s4').textContent = t.ps4;
+  document.getElementById('p-recent').textContent = t.pRecent;
+  document.getElementById('p-note').textContent = t.pNote;
+  document.getElementById('p-sub').textContent = t.pSub;
+  document.getElementById('p-n1').textContent = t.pn1;
+  document.getElementById('p-n2').textContent = t.pn2;
+  document.getElementById('p-n3').textContent = t.pn3;
+  
+  // Floating Card Elements
+  document.getElementById('f1-l').textContent = t.f1l;
   document.getElementById('f1-t').textContent = t.f1t;
-  document.getElementById('f1-d').textContent = t.f1d;
+  document.getElementById('f2-l').textContent = t.f2l;
   document.getElementById('f2-t').textContent = t.f2t;
-  document.getElementById('f2-d').textContent = t.f2d;
-  document.getElementById('f3-t').textContent = t.f3t;
-  document.getElementById('f3-d').textContent = t.f3d;
 
   if (t.rtl) {
     document.body.classList.add('rtl');
