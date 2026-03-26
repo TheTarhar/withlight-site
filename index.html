@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en-AU" dir="ltr">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <title>With Light — NDIS Support, Done Differently</title>
-<meta name="description" content="With Light is a Social Work-led NDIS provider in South West Sydney." />
+<meta name="description" content="With Light is a Social Work-led NDIS provider in South West Sydney specialising in psychosocial disability." />
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5FP8CBCEBS"></script>
 <script>
@@ -82,6 +82,7 @@ nav {
 .nav-logo { font-family: var(--font-d); font-weight: 700; font-size: 1.3rem; text-decoration: none; color: var(--dark); }
 .nav-links { display: flex; align-items: center; gap: 1.5rem; list-style: none; }
 .nav-links a { font-size: 0.88rem; font-weight: 600; color: var(--warm-gray); text-decoration: none; transition: 0.2s; }
+
 .lang-selector-wrapper { position: relative; }
 .lang-select {
   appearance: none; background: var(--gold-pale); border: 1.5px solid var(--border);
@@ -91,12 +92,13 @@ nav {
 .lang-selector-wrapper::after {
   content: '▼'; font-size: 0.5rem; position: absolute; right: 14px; top: 52%; transform: translateY(-50%); pointer-events: none;
 }
+
 .btn-nav-app {
   background: var(--gold); color: white; padding: 9px 20px; border-radius: 999px;
   text-decoration: none; font-size: 0.82rem; font-weight: 600; transition: transform 0.2s;
 }
 
-/* ─── HERO ──────────────────────────────────────── */
+/* ─── HERO & PHONE VISUAL ───────────────────────── */
 #hero {
   min-height: 100dvh; display: flex; align-items: center;
   padding-top: var(--nav-h); position: relative; overflow: hidden;
@@ -110,7 +112,6 @@ nav {
 .hero-h1 em { font-style: normal; color: var(--gold); }
 .hero-sub { max-width: 480px; margin-bottom: 2.5rem; }
 
-/* ─── PHONE APP VISUAL ──────────────────────────── */
 .hero-visual { position: relative; display: flex; justify-content: center; }
 .phone-outer {
   width: 280px; height: 580px; background: var(--dark); border-radius: 44px; padding: 12px;
@@ -127,18 +128,19 @@ nav {
 
 .p-card { background: white; border-radius: 14px; padding: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
 .p-card-label { font-size: 9px; font-weight: 700; color: #9CA3AF; text-transform: uppercase; margin-bottom: 6px; }
+.p-badge { font-size: 9px; font-weight: 700; background: #DCFCE7; color: #16A34A; padding: 4px 8px; border-radius: 6px; }
+
 .p-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .p-stat { background: white; border-radius: 12px; padding: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
 .p-stat-num { font-size: 20px; font-weight: 700; color: var(--gold); }
 .p-stat-label { font-size: 9px; color: #9CA3AF; font-weight: 600; margin-top: 2px; }
-.p-badge { font-size: 9px; font-weight: 700; background: #DCFCE7; color: #16A34A; padding: 4px 8px; border-radius: 6px; }
 
 .phone-nav { background: white; padding: 10px 16px; display: flex; justify-content: space-around; border-top: 1px solid #F3F4F6; }
 .p-nav-dot { width: 20px; height: 20px; border-radius: 6px; background: #F3F4F6; margin-bottom: 4px; }
 .p-nav-dot.active { background: var(--gold-light); }
 .p-nav-label { font-size: 8px; font-weight: 700; color: #9CA3AF; text-align: center; }
 
-/* Floating Status Cards */
+/* Floating Cards */
 .float-card {
   position: absolute; background: white; border-radius: 16px; padding: 12px 16px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.12); z-index: 3; animation: float 4s ease-in-out infinite;
@@ -153,13 +155,21 @@ nav {
 /* ─── SECTIONS ──────────────────────────────────── */
 section { padding: 6rem 1.5rem; }
 .inner { max-width: 1160px; margin: 0 auto; }
+
+#about { background: var(--white); }
 #languages { background: var(--gold-pale); text-align: center; }
 .lang-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
 .lang-card { background: white; padding: 2rem 1rem; border-radius: var(--radius); border: 1.5px solid var(--border); transition: 0.3s; }
 .l-native { display: block; font-size: 1.25rem; font-weight: 600; color: var(--gold-deep); margin-bottom: 0.4rem; }
 .l-en { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--warm-gray); }
 
-/* ─── RTL SUPPORT ───────────────────────────────── */
+.feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3.5rem; }
+.feat-card { padding: 2.5rem; border-radius: var(--radius); border: 1px solid var(--border); transition: 0.3s; }
+.feat-card:hover { border-color: var(--gold); background: var(--gold-pale); }
+.feat-card h3 { font-size: 1.2rem; margin-bottom: 1rem; }
+.feat-card p { font-size: 0.95rem; line-height: 1.6; color: var(--warm-gray); }
+
+/* ─── RTL & ANIMATIONS ──────────────────────────── */
 body.rtl { direction: rtl; text-align: right; }
 body.rtl .hero-h1, body.rtl h2.display, body.rtl .p-header-title { font-family: var(--font-ar); }
 body.rtl .lang-select { padding: 6px 16px 6px 32px; }
@@ -167,7 +177,6 @@ body.rtl .lang-selector-wrapper::after { right: auto; left: 14px; }
 body.rtl .float-1 { right: auto; left: -20px; }
 body.rtl .float-2 { left: auto; right: -24px; }
 
-/* ─── ANIMATIONS ────────────────────────────────── */
 .reveal { opacity: 0; transform: translateY(25px); transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
 .reveal.in { opacity: 1; transform: translateY(0); }
 
@@ -184,7 +193,7 @@ body.rtl .float-2 { left: auto; right: -24px; }
   <a href="#" class="nav-logo">With Light</a>
   <ul class="nav-links">
     <li><a href="#about" id="nav-about">About</a></li>
-    <li><a href="#languages" id="nav-lang">Languages</a></li>
+    <li><a href="#features" id="nav-feat">Features</a></li>
     <li>
       <div class="lang-selector-wrapper">
         <select class="lang-select" onchange="switchLang(this.value)">
@@ -209,7 +218,9 @@ body.rtl .float-2 { left: auto; right: -24px; }
         <span class="tag" id="hero-tag">NDIS Registered Provider</span>
         <h1 class="hero-h1" id="hero-title">Support that <br/><em>illuminates</em><br/>the path forward.</h1>
         <p class="lead hero-sub" id="hero-sub">Specialising in psychosocial disability and culturally safe care in South West Sydney.</p>
-        <a href="#contact" class="btn-nav-app" style="padding: 14px 32px; font-size: 0.9rem;" id="hero-cta">Get in Touch</a>
+        <div style="display: flex; gap: 1rem; align-items: center;">
+          <a href="#contact" class="btn-nav-app" style="padding: 14px 32px; font-size: 0.9rem;" id="hero-cta">Get Started</a>
+        </div>
       </div>
       
       <div class="reveal hero-visual">
@@ -238,7 +249,7 @@ body.rtl .float-2 { left: auto; right: -24px; }
               </div>
               <div class="p-card">
                 <div class="p-card-label" id="p-recent">Recent Shift</div>
-                <div style="font-size:12px; font-weight:700; color:var(--dark);">Mitchell Smith</div>
+                <div style="font-size:12px; font-weight:700; color:var(--dark);" id="p-name">Michael Smith</div>
                 <div style="font-size:10px; color:#9CA3AF; margin-top:2px;" id="p-note">D.A.P note submitted</div>
                 <span class="p-badge" style="margin-top:6px; display:inline-block;" id="p-sub">✓ Submitted</span>
               </div>
@@ -266,6 +277,16 @@ body.rtl .float-2 { left: auto; right: -24px; }
   </div>
 </section>
 
+<section id="about">
+  <div class="inner">
+    <span class="tag reveal" id="about-tag">Social Work Led</span>
+    <h2 class="display reveal" id="about-title">Personalised care with <em>clinical depth.</em></h2>
+    <p class="lead reveal" style="max-width: 720px;" id="about-body">
+      Founded by qualified social workers, we provide recovery-oriented support that respects your culture, your language, and your goals. We aren't just a service; we are a community bridge.
+    </p>
+  </div>
+</section>
+
 <section id="languages">
   <div class="inner">
     <span class="tag reveal" id="lang-tag">South West Sydney</span>
@@ -281,72 +302,123 @@ body.rtl .float-2 { left: auto; right: -24px; }
   </div>
 </section>
 
+<section id="features">
+  <div class="inner">
+    <span class="tag reveal" id="feat-tag">Innovation</span>
+    <h2 class="display reveal" id="feat-title">A <em>smarter</em> way to support.</h2>
+    <div class="feat-grid">
+      <div class="feat-card reveal">
+        <h3 id="f1-t">Clinical D.A.P Reporting</h3>
+        <p id="f1-d">Every shift is documented using professional clinical standards, ensuring audit-readiness and clear progress tracking.</p>
+      </div>
+      <div class="feat-card reveal">
+        <h3 id="f2-t">Real-time GPS Logs</h3>
+        <p id="f2-d">Families gain total peace of mind with location-verified clock-ins, ensuring transparency across all services.</p>
+      </div>
+      <div class="feat-card reveal">
+        <h3 id="f3-t">Multi-Language Portal</h3>
+        <p id="f3-d">Our technology is built for the community, allowing families to switch between 6+ languages instantly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <script>
 const i18n = {
   en: {
-    navAbout: 'About', navLang: 'Languages', navLogin: 'Platform Login',
-    heroTag: 'NDIS Registered Provider', heroTitle: 'Support that <br/><em>illuminates</em><br/>the path forward.', heroSub: 'Specialising in psychosocial disability and culturally safe care in South West Sydney.', heroCta: 'Get in Touch',
+    navAbout: 'About', navFeat: 'Features', navLogin: 'Platform Login',
+    heroTag: 'NDIS Registered Provider', heroTitle: 'Support that <br/><em>illuminates</em><br/>the path forward.', heroSub: 'Specialising in psychosocial disability and culturally safe care in South West Sydney.', heroCta: 'Get Started',
     pAdmin: 'Admin — Nour', pOv: 'Overview', pPart: 'Active participants', pComp: '✓ Compliant',
     ps1: 'Shifts Today', ps2: 'Workers Active', ps3: 'Docs Valid', ps4: 'Incidents',
-    pRecent: 'Recent Shift', pNote: 'D.A.P note submitted', pSub: '✓ Submitted',
+    pRecent: 'Recent Shift', pName: 'Michael Smith', pNote: 'D.A.P note submitted', pSub: '✓ Submitted',
     pn1: 'Dashboard', pn2: 'Shifts', pn3: 'Team',
     f1l: 'GPS Verified', f1t: 'Location Confirmed', f2l: 'NDIS Compliance', f2t: 'Audit Ready',
+    aboutTag: 'Social Work Led', aboutTitle: 'Personalised care with <em>clinical depth.</em>', aboutBody: 'Founded by qualified social workers, we provide recovery-oriented support that respects your culture, your language, and your goals.',
     langTag: 'South West Sydney', langTitle: 'Support in <em>your language.</em>',
+    featTag: 'Innovation', featTitle: 'A <em>smarter</em> way to support.',
+    f1t: 'Clinical D.A.P Reporting', f1d: 'Every shift is documented using professional clinical standards, ensuring audit-readiness.',
+    f2t: 'Real-time GPS Logs', f2d: 'Families gain total peace of mind with location-verified clock-ins and clock-outs.',
+    f3t: 'Multi-Language Portal', f3d: 'Our technology is built for the community, allowing families to switch languages instantly.',
     rtl: false
   },
   ar: {
-    navAbout: 'حولنا', navLang: 'اللغات', navLogin: 'دخول المنصة',
-    heroTag: 'مزود NDIS مسجل', heroTitle: 'الدعم الذي <br/><em>ينير</em><br/>الطريق للأمام.', heroSub: 'متخصصون في الإعاقة النفسية والاجتماعية والرعاية الآمنة ثقافياً في جنوب غرب سيدني.', heroCta: 'تواصل معنا',
+    navAbout: 'حولنا', navFeat: 'المميزات', navLogin: 'دخول المنصة',
+    heroTag: 'مزود NDIS مسجل', heroTitle: 'الدعم الذي <br/><em>ينير</em><br/>الطريق للأمام.', heroSub: 'متخصصون في الإعاقة النفسية والاجتماعية والرعاية الآمنة ثقافياً في جنوب غرب سيدني.', heroCta: 'ابدأ الآن',
     pAdmin: 'المسؤول — نور', pOv: 'نظرة عامة', pPart: 'المشاركين النشطين', pComp: '✓ ممتثل',
     ps1: 'نوبات اليوم', ps2: 'عمال نشطون', ps3: 'وثائق صالحة', ps4: 'حوادث',
-    pRecent: 'آخر نوبة', pNote: 'تم تقديم ملاحظة D.A.P', pSub: '✓ تم التقديم',
+    pRecent: 'آخر نوبة', pName: 'مايكل سميث', pNote: 'تم تقديم ملاحظة D.A.P', pSub: '✓ تم التقديم',
     pn1: 'الرئيسية', pn2: 'النوبات', pn3: 'الفريق',
     f1l: 'تم التحقق من الموقع', f1t: 'تم تأكيد الموقع', f2l: 'امتثال NDIS', f2t: 'جاهز للتدقيق',
+    aboutTag: 'بإدارة أخصائيين اجتماعيين', aboutTitle: 'رعاية شخصية ذات <em>عمق سريري.</em>', aboutBody: 'تأسست على يد أخصائيين اجتماعيين مؤهلين، ونقدم دعماً يركز على التعافي ويحترم ثقافتكم.',
     langTag: 'جنوب غرب سيدني', langTitle: 'الدعم <em>بلغتك.</em>',
+    featTag: 'ابتكار', featTitle: 'طريقة <em>أكثر ذكاءً</em> للدعم.',
+    f1t: 'تقارير D.A.P السريرية', f1d: 'يتم توثيق كل نوبة باستخدام معايير سريرية احترافية، مما يضمن الجاهزية للتدقيق.',
+    f2t: 'سجلات GPS الحية', f2d: 'راحة بال تامة للعائلات مع ميزة التحقق من الموقع عند الحضور والانصراف.',
+    f3t: 'منصة متعددة اللغات', f3d: 'تم بناء تقنيتنا للمجتمع، مما يتيح للعائلات تبديل اللغات فوراً.',
     rtl: true
   },
   vi: {
-    navAbout: 'Giới thiệu', navLang: 'Ngôn ngữ', navLogin: 'Đăng nhập',
-    heroTag: 'Đơn vị NDIS đã đăng ký', heroTitle: 'Sự hỗ trợ <br/><em>soi sáng</em><br/>con đường phía trước.', heroSub: 'Chuyên về khuyết tật tâm lý xã hội và chăm sóc an toàn văn hóa tại Tây Nam Sydney.', heroCta: 'Liên hệ ngay',
+    navAbout: 'Giới thiệu', navFeat: 'Tính năng', navLogin: 'Đăng nhập',
+    heroTag: 'Đơn vị NDIS đã đăng ký', heroTitle: 'Sự hỗ trợ <br/><em>soi sáng</em><br/>con đường phía trước.', heroSub: 'Chuyên về khuyết tật tâm lý xã hội và chăm sóc an toàn văn hóa tại Tây Nam Sydney.', heroCta: 'Bắt đầu ngay',
     pAdmin: 'Quản trị — Nour', pOv: 'Tổng quan', pPart: 'Người tham gia', pComp: '✓ Tuân thủ',
     ps1: 'Ca làm hôm nay', ps2: 'Nhân viên', ps3: 'Hồ sơ hợp lệ', ps4: 'Sự cố',
-    pRecent: 'Ca gần nhất', pNote: 'Đã nộp ghi chú D.A.P', pSub: '✓ Đã nộp',
+    pRecent: 'Ca gần nhất', pName: 'Michael Smith', pNote: 'Đã nộp ghi chú D.A.P', pSub: '✓ Đã nộp',
     pn1: 'Bảng điều khiển', pn2: 'Ca làm', pn3: 'Đội ngũ',
     f1l: 'Đã xác minh GPS', f1t: 'Vị trí xác nhận', f2l: 'Tuân thủ NDIS', f2t: 'Sẵn sàng kiểm toán',
+    aboutTag: 'Dẫn dắt bởi nhân viên xã hội', aboutTitle: 'Chăm sóc cá nhân hoá <em>chuyên sâu.</em>', aboutBody: 'Được thành lập bởi các nhân viên xã hội có trình độ, chúng tôi hỗ trợ phục hồi và tôn trọng văn hóa.',
     langTag: 'Tây Nam Sydney', langTitle: 'Hỗ trợ bằng <em>ngôn ngữ của bạn.</em>',
+    featTag: 'Sáng tạo', featTitle: 'Cách hỗ trợ <em>thông minh hơn.</em>',
+    f1t: 'Báo cáo lâm sàng D.A.P', f1d: 'Mỗi ca làm việc được ghi chép theo tiêu chuẩn chuyên môn cho các đợt kiểm toán.',
+    f2t: 'Nhật ký GPS trực tuyến', f2d: 'Gia đình an tâm hoàn toàn với việc xác minh vị trí khi bắt đầu và kết thúc ca.',
+    f3t: 'Cổng thông tin đa ngữ', f3d: 'Công nghệ của chúng tôi cho phép các gia đình chuyển đổi ngôn ngữ ngay lập tức.',
     rtl: false
   },
   hi: {
-    navAbout: 'विवरण', navLang: 'भाषाएं', navLogin: 'लॉगिन',
+    navAbout: 'विवरण', navFeat: 'विशेषताएं', navLogin: 'लॉगिन',
     heroTag: 'NDIS पंजीकृत प्रदाता', heroTitle: 'सहयोग जो <br/><em>आगे का रास्ता</em><br/>रोशन करता है।', heroSub: 'दक्षिण पश्चिम सिडनी में मनोसामाजिक विकलांगता और सांस्कृतिक रूप से सुरक्षित देखभाल में विशेषज्ञता।', heroCta: 'संपर्क करें',
     pAdmin: 'एडमिन — नूर', pOv: 'अवलोकन', pPart: 'सक्रिय प्रतिभागी', pComp: '✓ अनुपालन',
     ps1: 'आज की शिफ्ट', ps2: 'सक्रिय कार्यकर्ता', ps3: 'दस्तावेज मान्य', ps4: 'घटनाएं',
-    pRecent: 'हालिया शिफ्ट', pNote: 'D.A.P नोट जमा किया गया', pSub: '✓ जमा किया गया',
+    pRecent: 'हालिया शिफ्ट', pName: 'माइकल स्मिथ', pNote: 'D.A.P नोट जमा किया गया', pSub: '✓ जमा किया गया',
     pn1: 'डैशबोर्ड', pn2: 'शिफ्ट', pn3: 'टीम',
     f1l: 'GPS सत्यापित', f1t: 'स्थान की पुष्टि', f2l: 'NDIS अनुपालन', f2t: 'ऑडिट तैयार',
+    aboutTag: 'सोशल वर्क के नेतृत्व में', aboutTitle: 'नैदानिक गहराई के साथ <em>व्यक्तिगत देखभाल।</em>', aboutBody: 'योग्य सामाजिक कार्यकर्ताओं द्वारा स्थापित, हम रिकवरी-उन्मुख सहायता प्रदान करते हैं।',
     langTag: 'दक्षिण पश्चिम सिडनी', langTitle: 'आपकी <em>भाषा में सहयोग।</em>',
+    featTag: 'नवाचार', featTitle: 'सहयोग करने का <em>बेहतर</em> तरीका।',
+    f1t: 'क्लिनिकल D.A.P रिपोर्टिंग', f1d: 'ऑडिट की तैयारी सुनिश्चित करने के लिए हर शिफ्ट का पेशेवर नैदानिक मानकों के साथ दस्तावेजीकरण।',
+    f2t: 'रियल-टाइम GPS लॉग', f2d: 'लोकेशन-सत्यापित क्लॉक-इन के साथ परिवारों के लिए पूर्ण पारदर्शिता।',
+    f3t: 'बहुभाषी पोर्टल', f3d: 'हमारी तकनीक समुदाय के लिए बनी है, जिससे परिवार तुरंत भाषा बदल सकते हैं।',
     rtl: false
   },
   as: {
-    navAbout: 'حولنا', navLang: 'لغات', navLogin: 'ܥܒܪܬܐ',
+    navAbout: 'حولنا', navFeat: 'ܚܠܡܢܘܬܐ', navLogin: 'ܥܒܪܬܐ',
     heroTag: 'ܦܘܠܚܢܐ ܕ NDIS ܪܫܝܡܐ', heroTitle: 'ܥܘܕܪܢܐ ܕܡܢܗܪ <br/><em>ܠܐܘܪܚܐ</em><br/>ܠܩܕܡܐ', heroSub: 'ܡܕܒܪܢܘܬܐ ܕܚܠܡܢܘܬܐ ܐܢܫܝܬܐ ܓܘ ܡܥܪܒܐ ܕܣܝܕܢܝ܄ ܡܕܒܪܢܐ ܕܦܘܠܚܢܐ ܕ NDIS.', heroCta: 'ܫܪܝ ܡܨܠܝܐ',
     pAdmin: 'ܡܕܒܪܢܐ — ܢܘܪ', pOv: 'ܚܙܝܬܐ', pPart: 'ܡܫܬܘܬܦܢܐ', pComp: '✓ ܬܪܝܨܐ',
     ps1: 'ܫܦܬ̈ܐ ܕܝܘܡܐ', ps2: 'ܦܠܚ̈ܐ', ps3: 'ܟܬܒܝ̈ܐ', ps4: 'ܓܕܫ̈ܐ',
-    pRecent: 'ܫܦܬܐ ܐܚܪܝܬܐ', pNote: 'D.A.P ܦܪܝܣܐ', pSub: '✓ ܦܪܝܣܐ',
+    pRecent: 'ܫܦܬܐ ܐܚܪܝܬܐ', pName: 'ܡܝܟܠ ܣܡܝܬ', pNote: 'D.A.P ܦܪܝܣܐ', pSub: '✓ ܦܪܝܣܐ',
     pn1: 'ܠܘܚܐ', pn2: 'ܫܦܬ̈ܐ', pn3: 'ܓܘܕܐ',
     f1l: 'GPS ܚܘܬܡܐ', f1t: 'ܚܘܬܡܐ ܕܕܘܟܐ', f2l: 'NDIS ܩܢܘܢܐ', f2t: 'ܙܡܝܢܐ ܠܚܙܝܬܐ',
+    aboutTag: 'ܡܕܒܪܢܘܬܐ ܐܢܫܝܬܐ', aboutTitle: 'ܚܠܡܢܘܬܐ ܦܪܨܘܦܝܬܐ <em>ܒܥܘܡܩܐ.</em>', aboutBody: 'ܥܘܕܪܢܐ ܕܡܝܩܪ ܠܡܪܕܘܬܘܟܘܢ ܘܠܠܫܢܘܟܘܢ ܘܠܢܝܫ̈ܘܟܘܢ.',
     langTag: 'ܡܥܪܒܐ ܕܣܝܕܢܝ', langTitle: 'ܥܘܕܪܢܐ <em>ܒܠܫܢܘܟܘܢ.</em>',
+    featTag: 'ܛܟܢܘܠܘܓܝܐ', featTitle: 'ܐܣܛܪܛܝܓܝܐ <em>ܚܟܝܡܬܐ.</em>',
+    f1t: 'D.A.P ܟܬܒܝ̈ܐ', f1d: 'ܟܬܒܬܐ ܕܟܠ ܫܦܬܐ ܒܛܟܣܐ ܡܗܝܪܐ ܠܦܘܬ ܩܢܘܢ̈ܐ ܕ NDIS.',
+    f2t: 'GPS ܚܘܬܡܐ', f2d: 'ܚܙܝܬܐ ܕܫܥܬ̈ܐ ܕܦܘܠܚܢܐ ܒܐܝܕܐ ܕܝܡܐ ܠܡܫܦܚܬܐ.',
+    f3t: 'ܫܘܚܠܦܐ ܕܠܫܢܐ', f3d: 'ܡܨܝܬܐ ܠܡܫܚܠܦܐ ܠܫܢܐ ܒܟܠ ܥܕܢܐ ܠܡܫܦܚܬܐ.',
     rtl: true
   },
   zh: {
-    navAbout: '關於我們', navLang: '語言選擇', navLogin: '平台登錄',
-    heroTag: 'NDIS 註冊服務商', heroTitle: '指引前路的 <br/><em>光明支援</em>', heroSub: '專注於悉尼西南區的心理社會障礙及具備文化安全意識的護理服務。', heroCta: '立即聯繫',
+    navAbout: '關於我們', navFeat: '核心功能', navLogin: '平台登錄',
+    heroTag: 'NDIS 註冊服務商', heroTitle: '指引前路的 <br/><em>光明支援</em>', heroSub: '專注於悉尼西南區的心理社會障礙及具備文化安全意識的護理服務。', heroCta: '立即開始',
     pAdmin: '管理員 — Nour', pOv: '概覽', pPart: '活躍參與者', pComp: '✓ 合規',
     ps1: '今日班次', ps2: '活躍員工', ps3: '文件有效', ps4: '事件',
-    pRecent: '最近班次', pNote: '已提交 D.A.P 記錄', pSub: '✓ 已提交',
+    pRecent: '最近班次', pName: 'Michael Smith', pNote: '已提交 D.A.P 記錄', pSub: '✓ 已提交',
     pn1: '儀表板', pn2: '班次', pn3: '團隊',
     f1l: 'GPS 已驗證', f1t: '位置已確認', f2l: 'NDIS 合規', f2t: '審核就緒',
+    aboutTag: '社工領導', aboutTitle: '具備臨床深度的 <em>個性化護理。</em>', aboutBody: '由合格社工創立，我們提供尊重您的文化、語言和目標的康復導向支持。',
     langTag: '悉尼西南區', langTitle: '您的 <em>語言支援。</em>',
+    featTag: '創新科技', featTitle: '更 <em>智能</em> 的支援方式。',
+    f1t: '臨床 D.A.P 報告', f1d: '每一班次都採用專業臨床標準記錄，確保符合審核要求並清晰追蹤進度。',
+    f2t: '實時 GPS 日誌', f2d: '通過位置驗證的上下班記錄，為家庭提供完全透明的服務保障。',
+    f3t: '多語言平台', f3d: '專為社區設計，我們的平台可讓家庭即時切換超過 6 種語言。',
     rtl: false
   }
 };
@@ -354,16 +426,27 @@ const i18n = {
 function switchLang(lang) {
   const t = i18n[lang];
   document.getElementById('nav-about').textContent = t.navAbout;
-  document.getElementById('nav-lang').textContent = t.navLang;
+  document.getElementById('nav-feat').textContent = t.navFeat;
   document.getElementById('nav-login').textContent = t.navLogin;
   document.getElementById('hero-tag').textContent = t.heroTag;
   document.getElementById('hero-title').innerHTML = t.heroTitle;
   document.getElementById('hero-sub').textContent = t.heroSub;
   document.getElementById('hero-cta').textContent = t.heroCta;
+  document.getElementById('about-tag').textContent = t.aboutTag;
+  document.getElementById('about-title').innerHTML = t.aboutTitle;
+  document.getElementById('about-body').textContent = t.aboutBody;
   document.getElementById('lang-tag').textContent = t.langTag;
   document.getElementById('lang-title').innerHTML = t.langTitle;
-  
-  // Phone Elements
+  document.getElementById('feat-tag').textContent = t.featTag;
+  document.getElementById('feat-title').innerHTML = t.featTitle;
+  document.getElementById('f1-t').textContent = t.f1t;
+  document.getElementById('f1-d').textContent = t.f1d;
+  document.getElementById('f2-t').textContent = t.f2t;
+  document.getElementById('f2-d').textContent = t.f2d;
+  document.getElementById('f3-t').textContent = t.f3t;
+  document.getElementById('f3-d').textContent = t.f3d;
+
+  // Phone Mockup Elements
   document.getElementById('p-admin').textContent = t.pAdmin;
   document.getElementById('p-ov').textContent = t.pOv;
   document.getElementById('p-part').textContent = t.pPart;
@@ -373,12 +456,13 @@ function switchLang(lang) {
   document.getElementById('p-s3').textContent = t.ps3;
   document.getElementById('p-s4').textContent = t.ps4;
   document.getElementById('p-recent').textContent = t.pRecent;
+  document.getElementById('p-name').textContent = t.pName;
   document.getElementById('p-note').textContent = t.pNote;
   document.getElementById('p-sub').textContent = t.pSub;
   document.getElementById('p-n1').textContent = t.pn1;
   document.getElementById('p-n2').textContent = t.pn2;
   document.getElementById('p-n3').textContent = t.pn3;
-  
+
   // Floating Card Elements
   document.getElementById('f1-l').textContent = t.f1l;
   document.getElementById('f1-t').textContent = t.f1t;
